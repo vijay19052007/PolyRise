@@ -1,0 +1,236 @@
+/* -----------------------
+   GLOBAL THEME SETTINGS
+------------------------ */
+
+body.theme-dark {
+  background-color: #121212;
+  color: #f4f4f4;
+}
+
+body.theme-light {
+  background-color: #f9f9f9;
+  color: #222;
+}
+
+body.theme-neon {
+  background-color: #0f0f0f;
+  color: #39ff14;
+}
+
+/* Reset margins/padding */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* -----------------------
+   TOPBAR STYLES (fixed top)
+------------------------ */
+
+.topbar {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 32px;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #39ff14;
+}
+
+.theme-toggle button {
+  font-size: 14px;
+  padding: 4px 10px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #2a2a2a;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.theme-toggle button:hover {
+  background-color: #444;
+}
+
+.auth-links .btn {
+  font-size: 14px;
+  padding: 4px 10px;
+}
+
+
+/* -----------------------
+   DASHBOARD LAYOUT
+------------------------ */
+
+.main-wrapper {
+  display: flex;
+  margin-top: 60px; /* below topbar */
+}
+
+.content-area {
+  padding: 20px;
+  width: 100%;
+  transition: margin-left 0.3s ease;
+}
+
+/* When sidebar is expanded */
+.main-wrapper.sidebar-expanded .content-area {
+  margin-left: 260px;
+}
+
+/* When sidebar is collapsed */
+.main-wrapper.sidebar-collapsed .content-area {
+  margin-left: 70px;
+}
+
+/* -----------------------
+   SIDEBAR STYLES
+------------------------ */
+
+.sidebar {
+  width: 260px;
+  background-color: #1e1e2f;
+  color: white;
+  height: calc(100vh - 60px); /* below topbar */
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  transition: width 0.3s ease;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 10px;
+  border-radius: 6px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.sidebar-menu li:hover {
+  background-color: #2e2e42;
+}
+
+.sidebar-menu i {
+  font-size: 20px;
+  margin-top: 2px;
+  color: #f0f0f0;
+  flex-shrink: 0;
+}
+
+.menu-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.menu-title {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.menu-desc {
+  font-size: 11px;
+  color: #bbb;
+  margin-top: 2px;
+}
+
+
+/* -----------------------
+   COLLAPSE STYLES
+------------------------ */
+
+.collapse-btn {
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.collapse-btn:hover {
+  color: white;
+}
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar.collapsed .menu-text,
+.sidebar.collapsed .sidebar-user-box {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-menu li {
+  justify-content: center;
+}
+
+/* -----------------------
+   USER INFO BOX
+------------------------ */
+
+.sidebar-user-box {
+  background-color: #2a2a3a;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* -----------------------
+   RESPONSIVE FIX (Mobile)
+------------------------ */
+
+@media (max-width: 768px) {
+  .main-wrapper.sidebar-expanded .content-area,
+  .main-wrapper.sidebar-collapsed .content-area {
+    margin-left: 0;
+  }
+
+  .sidebar {
+    position: fixed;
+    z-index: 1001;
+  }
+
+  .content-area {
+    margin-left: 0 !important;
+  }
+}

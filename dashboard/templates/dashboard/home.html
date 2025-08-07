@@ -1,0 +1,53 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Hero Section Box -->
+<div class="container-fluid my-4 px-3 px-md-5">
+  <div class="hero-box text-white">
+    <div class="row align-items-center p-4 p-md-5">
+
+      <!-- Left Side: Text Content -->
+      <div class="col-md-6 text-start">
+        <span class="welcome-tag">👋 Welcome to PolyRise</span>
+        <h1 class="big-heading">Rise Beyond<br>Limits</h1>
+        <p class="hero-desc">
+          Empowering polytechnic students with comprehensive study tools, career guidance,
+          and personalized learning experiences. Transform your academic journey today.
+        </p>
+        <div class="hero-buttons mt-4">
+          <a href="/accounts/signup/" class="btn btn-light me-3">💡 Get Started Free</a>
+          <a href="#" class="btn btn-outline-light">Explore Features →</a>
+        </div>
+      </div>
+
+      <!-- Right Side: Animated Cap & Stats -->
+      <div class="col-md-6 text-center mt-5 mt-md-0 hero-right">
+        <div class="cap-box mb-4">
+          <img src="{% static 'images/grad-cap.png' %}" class="grad-cap" alt="Graduation Cap">
+          <span class="sparkle">✨</span>
+        </div>
+        <div class="student-box">
+          <p class="join-text">Join Our Community</p>
+          <h3 class="student-count">12,500+ Students</h3>
+          <p class="growth-text">👑 Growing Fast!</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Daily Quote Box -->
+<div class="container-fluid my-5 px-3 px-md-5">
+  <div class="quote-box text-center p-4 shadow">
+    <div class="bulb-icon mb-3">💡</div>
+    <blockquote id="quote-text" class="fs-5 fst-italic">Loading...</blockquote>
+    <div id="quote-author" class="text-muted mt-2"></div>
+  </div>
+</div>
+
+<script src="{% static 'js/script.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+/* Sidebar Base Style */
+.sidebar {
+  width: 260px;
+  background-color: #1e1e2f;
+  color: #fff;
+  height: 100vh;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  transition: width 0.3s;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+/* Sidebar Items */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sidebar-menu li:hover {
+  background-color: #2a2a40;
+  border-left: 4px solid #00c4ff;
+}
+
+.sidebar-menu i {
+  font-size: 1.2rem;
+  margin-right: 15px;
+  color: #00c4ff;
+}
+
+.menu-text .menu-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.menu-text .menu-desc {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-top: 2px;
+}
+
+/* User Info Section */
+.sidebar-user-box {
+  margin-top: auto;
+  padding: 15px 25px;
+  border-top: 1px solid #333;
+  font-size: 0.85rem;
+  background-color: #181827;
+}
+
+/* Collapse Button */
+.collapse-btn {
+  position: absolute;
+  right: -12px;
+  top: 20px;
+  background-color: #1e1e2f;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  border: 2px solid #00c4ff;
+  transition: all 0.3s ease;
+}
+
+.collapse-btn:hover {
+  background-color: #00c4ff;
+  color: #000;
+}
+
+.bi {
+  font-size: 1.1rem;
+}
+
+/* Collapsed Mode */
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar.collapsed .menu-text {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-user-box {
+  display: none;
+}

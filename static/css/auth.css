@@ -1,0 +1,160 @@
+/* === Body === */
+.signup-body {
+  background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* === Wrapper === */
+.signup-wrapper {
+  height: 100vh;
+  display: flex;
+}
+
+/* === Left === */
+.auth-left {
+  flex: 1;
+  background: transparent;
+  padding: 30px;
+  color: white;
+}
+
+/* === Right === */
+.auth-right {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Card === */
+.glass-box {
+  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  color: #fff;
+   padding: 20px 24px;
+  max-width: 360px;
+}
+.glass-box h4 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.form-control,
+.form-select {
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  background-color: #e3e2e2;
+  height: 36px;
+}
+
+/* === Button === */
+.btn-gradient {
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+   font-size: 14px;
+}
+
+.btn-gradient:hover {
+  filter: brightness(1.1);
+}
+form label {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Smaller bottom link text */
+.glass-box p {
+  font-size: 12px;
+  margin-top: 16px;
+}
+
+/* === Typing Effect === */
+.typing-effect {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid white;
+  animation: typing 4s steps(20, end) infinite, blink 0.75s step-end infinite;
+  width: 0;
+}
+
+@keyframes typing {
+  0%, 100% { width: 0; }
+  50% { width: 190px; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: white; }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .signup-wrapper {
+    flex-direction: column;
+  }
+  .auth-left {
+    display: none;
+  }
+  .auth-right {
+    flex: 1;
+    padding: 20px;
+  }
+}
+
+
+
+/* ========== LOGIN PAGE ========== */
+
+.login-wrapper {
+  background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+  height: 100vh; /* Full screen height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.login-card {
+  background-color: #ffffff; /* Solid white box */
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2); /* subtle shadow */
+  width: 100%;
+  max-width: 420px;
+  color: #333; /* dark text for readability */
+}
+
+.login-card h4 {
+  font-weight: bold;
+  color: #202124; /* Professional dark heading */
+}
+
+.login-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+
+/* Responsive Login Fix */
+@media (max-width: 768px) {
+  .login-wrapper {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .login-card {
+    padding: 25px 20px;
+  }
+}

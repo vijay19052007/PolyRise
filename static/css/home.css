@@ -1,0 +1,167 @@
+/* === Theme background (outer page) === */
+body.theme-dark {
+  background-color: #111;
+}
+body.theme-light {
+  background-color: #f2f2f2;
+}
+body.theme-neon {
+  background-color: #0c0c2c;
+}
+
+/* === Main content padding === */
+.main-content,
+.content-area {
+  padding: 20px;
+  overflow-x: hidden;
+  width: 100%;
+  margin-left: 0;
+}
+
+/* === Hero section box === */
+.hero-box {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  margin: 30px 0;
+  width: 100%;
+}
+
+/* === Left content === */
+.welcome-tag {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.big-heading {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.hero-desc {
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 550px;
+}
+
+.hero-buttons .btn {
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+/* === Right content (cap icon area) === */
+.hero-right .cap-box {
+  position: relative;
+  display: inline-block;
+  animation: floatUpDown 2s ease-in-out infinite;
+}
+
+.grad-cap {
+  max-width: 100%;
+  width: 180px;
+  height: auto;
+}
+
+.sparkle {
+  position: absolute;
+  top: -10px;
+  right: -15px;
+  font-size: 24px;
+}
+
+/* === Student stats box === */
+.student-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  padding: 20px 30px;
+  border-radius: 15px;
+  display: block;
+  margin-top: 35px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.join-text {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.student-count {
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffe600;
+  margin: 8px 0;
+}
+
+.growth-text {
+  margin: 0;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* === Daily Quote Box === */
+.quote-box {
+  background-color: #3d2e2e;
+  border-radius: 15px;
+  color: white;
+  max-width: 100%;
+  padding: 25px 20px;
+  margin: 40px 0;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.bulb-icon {
+  font-size: 80px;
+  animation: pulse 1.5s infinite alternate;
+}
+
+/* === Animations === */
+@keyframes floatUpDown {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+
+/* === Responsive adjustments === */
+@media (max-width: 768px) {
+  .big-heading {
+    font-size: 36px;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+  }
+
+  .hero-box {
+    padding: 30px 20px;
+  }
+
+  .hero-buttons .btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .grad-cap {
+    width: 140px;
+  }
+
+  .bulb-icon {
+    font-size: 60px;
+  }
+}

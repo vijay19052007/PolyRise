@@ -1,0 +1,38 @@
+{% load static %}
+<nav class="topbar d-flex justify-content-between align-items-center px-3 py-2 shadow-sm">
+
+  <!-- Left: Logo -->
+  <div class="topbar-left d-flex align-items-center">
+    <img src="{% static 'images/logo.png' %}" alt="PolyRise Logo" class="logo-img me-2">
+    <span class="logo-text fw-bold">PolyRise</span>
+  </div>
+
+  <!-- Right: Theme Switch + Auth/Profile -->
+  <div class="topbar-right d-flex align-items-center gap-3">
+
+    <!-- Theme Switch -->
+    <div class="theme-toggle d-flex align-items-center gap-1">
+      <button class="btn btn-sm btn-outline-light" onclick="setTheme('light')">☀️</button>
+      <button class="btn btn-sm btn-outline-light" onclick="setTheme('dark')">🌙</button>
+      <button class="btn btn-sm btn-outline-light" onclick="setTheme('neon')">⚡</button>
+    </div>
+
+    <!-- Authentication Buttons -->
+    {% if user.is_authenticated %}
+      <!-- Profile Dropdown -->
+      <div class="dropdown">
+        <button class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
+          {{ user.username }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#">My Dashboard</a></li>
+          <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+      </div>
+    {% else %}
+      <a href="{% url 'login' %}" class="btn btn-sm btn-outline-light">Login</a>
+      <a href="{% url 'signup' %}" class="btn btn-sm btn-primary">Sign Up</a>
+    {% endif %}
+
+  </div>
+</nav>

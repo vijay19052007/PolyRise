@@ -1,0 +1,78 @@
+<div class="sidebar" id="sidebar">
+  <ul class="sidebar-menu">
+    <li>
+      <i class="bi bi-house-door-fill"></i>
+      <div class="menu-text">
+        <span class="menu-title">Home</span>
+        <small class="menu-desc">Platform overview</small>
+      </div>
+    </li>
+
+    <li>
+      <i class="bi bi-speedometer2"></i>
+      <div class="menu-text">
+        <span class="menu-title">My Dashboard</span>
+        <small class="menu-desc">Personal analytics</small>
+      </div>
+    </li>
+
+    <li>
+      <i class="bi bi-journal-text"></i>
+      <div class="menu-text">
+        <span class="menu-title">Academics</span>
+        <small class="menu-desc">Notes, papers & syllabus</small>
+      </div>
+    </li>
+
+    <li>
+      <i class="bi bi-lightbulb"></i>
+      <div class="menu-text">
+        <span class="menu-title">Smart Tools</span>
+        <small class="menu-desc">MCQs, calculators, tools</small>
+      </div>
+    </li>
+
+    <li>
+      <i class="bi bi-briefcase"></i>
+      <div class="menu-text">
+        <span class="menu-title">Career</span>
+        <small class="menu-desc">Resume, interviews, jobs</small>
+      </div>
+    </li>
+
+    <li>
+      <i class="bi bi-calendar-check"></i>
+      <div class="menu-text">
+        <span class="menu-title">Productivity</span>
+        <small class="menu-desc">Planner & tasks</small>
+      </div>
+    </li>
+
+    <li>
+      <i class="bi bi-bell-fill"></i>
+      <div class="menu-text">
+        <span class="menu-title">Alerts</span>
+        <small class="menu-desc">MSBTE updates & news</small>
+      </div>
+    </li>
+
+    <li>
+      <i class="bi bi-people-fill"></i>
+      <div class="menu-text">
+        <span class="menu-title">Connect</span>
+        <small class="menu-desc">Help & community</small>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Collapse Button -->
+  <div class="collapse-btn" onclick="toggleSidebar()">
+    <i class="bi bi-chevron-left" id="collapseArrow"></i>
+  </div>
+
+  <!-- User Info Box -->
+  <div class="sidebar-user-box">
+    <strong>{{ user.username|upper }}</strong>
+    <p class="text-muted small m-0">Computer Engineering • 1st Year</p>
+  </div>
+</div>
