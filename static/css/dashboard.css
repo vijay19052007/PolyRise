@@ -132,7 +132,7 @@ body, html {
 .sidebar-menu {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 6px;
 }
 
 .sidebar-menu li {
@@ -150,7 +150,7 @@ body, html {
 }
 
 .sidebar-menu i {
-  font-size: 20px;
+  font-size: 25px;
   margin-top: 2px;
   color: #f0f0f0;
   flex-shrink: 0;
@@ -160,6 +160,7 @@ body, html {
   display: flex;
   flex-direction: column;
   line-height: 1.2;
+  margin-top: 6px;
 }
 
 .menu-title {
@@ -180,9 +181,9 @@ body, html {
 
 .collapse-btn {
   text-align: center;
-  padding: 10px;
+  padding: 5px;
   cursor: pointer;
-  color: #ccc;
+  color: #fffbfb;
 }
 
 .collapse-btn:hover {
@@ -207,12 +208,13 @@ body, html {
 ------------------------ */
 
 .sidebar-user-box {
-  background-color: #2a2a3a;
+  background-color: #ececfb;
   padding: 12px;
   border-radius: 8px;
   font-size: 13px;
   text-align: center;
   margin-top: 10px;
+  
 }
 
 /* -----------------------

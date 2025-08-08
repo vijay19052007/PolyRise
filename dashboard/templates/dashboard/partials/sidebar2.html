@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,63 +11,76 @@
 </head>
 <body>
 
-  <div class="d-flex" id="wrapper">
+   <div class="sidebar" id="sidebar">
     <!-- Sidebar -->
-    <div class="bg-dark text-white" id="sidebar-wrapper">
-      <div class="sidebar-heading text-center py-4 primary-text fs-5 fw-bold border-bottom">
+    
+
+        
+  <ul class="sidebar-menu">
+     <li>
+     <div class="sidebar-heading text-center py-4 primary-text fs-5 fw-bold border-bottom">
+       <div class="menu-t">
         <i class="bi bi-person-circle me-2"></i> Hello, Prof. {{ request.user.profile.full_name }}
         <div class="small dept-text">Dept: {{ request.user.profile.department }}</div>
+        </div>
       </div>
-      
+     </li>
+     <li> 
+       <div class="menu-t">
       <div class="list-group list-group-flush my-3">
         <div class="section-label px-4">MY SPACE</div>
-        
-        <a href="{% url 'faculty_dashboard' %}" class="list-group-item list-group-item-action bg-transparent text-white fw-semibold">
-          <i class="bi bi-house-door-fill me-2"></i> My Dashboard
-          <div class="small text-muted ms-4">Overview & quick actions</div>
-        </a>
-
-        <a href="{% url 'faculty_zone' %}" class="list-group-item list-group-item-action bg-transparent text-white fw-semibold">
-          <i class="bi bi-bar-chart-fill me-2"></i> Faculty Zone
-          <div class="small text-muted ms-4">Upload tools & analytics</div>
-        </a>
+        </div>
+     <li>
+    <li>
+      <i class="bi bi-speedometer2"></i>
+      <div class="menu-text">
+        <span class="menu-title">My Dashboard</span>
+        <small class="menu-desc">Personal analytics</small>
       </div>
+    </li>
+
+    <li>
+      <i class="bi bi-bar-chart-fill me-2"></i>
+      <div class="menu-text">
+        <span class="menu-title">Faculty Zone</span>
+        <small class="menu-desc">Notes, papers & syllabus</small>
+      </div>
+    </li>
+
+   
+    <li>
+      <i class="bi bi-bell-fill"></i>
+      <div class="menu-text">
+        <span class="menu-title">Notifications & Alerts</span>
+        <small class="menu-desc">MSBTE updates & news</small>
+      </div>
+    </li>
+
+    <li>
+      <i class="bi bi-people-fill"></i>
+      <div class="menu-text">
+        <span class="menu-title">Connect</span>
+        <small class="menu-desc">Help & community</small>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Collapse Button -->
+  <div class="collapse-btn" onclick="toggleSidebar()">
+    <i class="bi bi-chevron-left" id="collapseArrow"></i>
+  </div>
 
       <div class="sidebar-footer px-4 mt-auto text-secondary small">
         <hr class="bg-secondary" />
         <div class="text-center">
+           <div class="menu-t">
           <i class="bi bi-book me-1"></i> PolyRise v1.0  
           <br/>
           <span class="text-muted">Faculty Panel</span>
+          </div>
         </div>
       </div>
-    </div>
-
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <div class="container-fluid">
-          <button class="btn btn-dark" id="menu-toggle">
-            <i class="bi bi-list"></i>
-          </button>
-          <span class="navbar-text ms-3">
-            Welcome back, Prof. {{ request.user.profile.full_name }}
-          </span>
-        </div>
-      </nav>
-
-      <div class="container-fluid px-4 mt-4">
-        <h3>Faculty Dashboard Content Here</h3>
-        <p>This is the main content area for faculty features.</p>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    document.getElementById("menu-toggle").addEventListener("click", function () {
-      document.getElementById("wrapper").classList.toggle("toggled");
-    });
-  </script>
-
+  
+    
 </body>
 </html>

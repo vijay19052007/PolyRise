@@ -11,14 +11,14 @@
   <div class="topbar-right d-flex align-items-center gap-3">
 
     <!-- Theme Switch -->
-    <div class="theme-toggle d-flex align-items-center gap-1">
+    <div class="theme-toggle d-flex align-items-center gap-0">
       <button class="btn btn-sm btn-outline-light" onclick="setTheme('light')">☀️</button>
       <button class="btn btn-sm btn-outline-light" onclick="setTheme('dark')">🌙</button>
       <button class="btn btn-sm btn-outline-light" onclick="setTheme('neon')">⚡</button>
     </div>
 
     <!-- Authentication Buttons -->
-    {% if user.is_authenticated %}
+    
       <!-- Profile Dropdown -->
       <div class="dropdown">
         <button class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
@@ -29,10 +29,7 @@
           <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
         </ul>
       </div>
-    {% else %}
-      <a href="{% url 'login' %}" class="btn btn-sm btn-outline-light">Login</a>
-      <a href="{% url 'signup' %}" class="btn btn-sm btn-primary">Sign Up</a>
-    {% endif %}
+   
 
   </div>
 </nav>

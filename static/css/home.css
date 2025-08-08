@@ -20,7 +20,7 @@ body.theme-neon {
 
 /* === Hero section box === */
 .hero-box {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(115deg,  #0831e4 0%, #7b06f1 50%, #42bef4 100%);
   border-radius: 20px;
   padding: 40px 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
