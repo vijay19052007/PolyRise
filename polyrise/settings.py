@@ -125,9 +125,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-LOGIN_URL = '/accounts/login/'
 
-LOGOUT_REDIRECT_URL = '/login/'  # or reverse_lazy('login')
 
 
 #AUTH_USER_MODEL = 'accounts.CustomUser'

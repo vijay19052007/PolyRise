@@ -22,7 +22,7 @@
       <!-- Profile Dropdown -->
       <div class="dropdown">
         <button class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
-          {{ user.username }}
+          {{ request.user.profile.full_name }}
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
           <li><a class="dropdown-item" href="#">My Dashboard</a></li>

@@ -1,5 +1,3 @@
-# accounts/models.py
-
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -9,15 +7,12 @@ class Profile(models.Model):
         ('faculty', 'Faculty'),
         ('admin', 'Admin'),
     )
-    
     DEPARTMENT_CHOICES = (
         ('cm', 'Computer Engineering'),
         ('me', 'Mechanical Engineering'),
         ('ee', 'Electrical Engineering'),
         ('cv', 'Civil Engineering'),
-        # Add others as needed
     )
-
     YEAR_CHOICES = (
         ('1st', 'First Year'),
         ('2nd', 'Second Year'),
@@ -31,4 +26,4 @@ class Profile(models.Model):
     year = models.CharField(max_length=10, choices=YEAR_CHOICES, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.user.username} ({self.role})"
+        return f"{self.full_name} ({self.role})"

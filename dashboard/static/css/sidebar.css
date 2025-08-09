@@ -58,6 +58,9 @@
   font-size: 0.85rem;
   background-color: #181827;
 }
+.name{
+  color: #181827;
+}
 
 /* Collapse Button */
 .collapse-btn {
