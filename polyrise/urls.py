@@ -14,17 +14,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# polyrise/urls.py
-
 from django.contrib import admin
 from django.urls import path, include
-from accounts.views import CustomLoginView, signup_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('signup/', signup_view, name='signup'),
-    path('login/', CustomLoginView.as_view(), name='login'),
-    path('logout/', include('django.contrib.auth.urls')),  # optional logout path
+    path('accounts/', include('accounts.urls')),  # accounts app handles signup, login, logout
     path('dashboard/', include('dashboard.urls')),
-    path('', include('core.urls')),  # guest_home should come from here
+    path('', include('core.urls')),  # guest landing/home page
 ]
+

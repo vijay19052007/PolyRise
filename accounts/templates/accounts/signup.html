@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Signup – PolyRise</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/auth.css' %}" />
 </head>
 <body class="signup-body">
 
@@ -16,11 +16,11 @@
 
   <!-- Left Side -->
   <div class="auth-left text-center d-flex flex-column justify-content-center align-items-center">
-    <img src="{% static 'img/logo.png' %}" class="mb-3" alt="PolyRise Logo" style="width: 70px;">
+    <img src="{% static 'img/logo.png' %}" class="mb-3" alt="PolyRise Logo" style="width: 70px;" />
     <h2 class="fw-bold text-light">Join the <span class="text-warning">Future</span> of Learning</h2>
     <p class="text-light small px-3">Smart tools, powerful resources, one step ahead.</p>
     <div class="typing-effect text-light mt-2">Join as Student... Faculty... Achiever...</div>
-    <img src="{% static 'images/student_digital.svg' %}" class="img-fluid mt-4" style="max-height: 400px;">
+    <img src="{% static 'images/student_digital.svg' %}" class="img-fluid mt-4" style="max-height: 400px;" />
   </div>
 
   <!-- Right Side -->
@@ -37,41 +37,57 @@
           {{ form.full_name|add_class:"form-control" }}
           {{ form.full_name.errors }}
         </div>
+
         <div class="mb-2">
           {{ form.email.label_tag }}
           {{ form.email|add_class:"form-control" }}
           {{ form.email.errors }}
         </div>
+
         <div class="mb-2">
           {{ form.role.label_tag }}
           {{ form.role|add_class:"form-select" }}
           {{ form.role.errors }}
         </div>
+
         <div class="mb-2" id="faculty-code-group" style="display: none;">
           {{ form.access_code.label_tag }}
           {{ form.access_code|add_class:"form-control" }}
           {{ form.access_code.errors }}
         </div>
+
         <div class="mb-2">
           {{ form.department.label_tag }}
           {{ form.department|add_class:"form-select" }}
           {{ form.department.errors }}
         </div>
+
         <div class="mb-2">
           {{ form.year.label_tag }}
           {{ form.year|add_class:"form-select" }}
           {{ form.year.errors }}
         </div>
+
         <div class="mb-2">
           {{ form.password.label_tag }}
           {{ form.password|add_class:"form-control" }}
           {{ form.password.errors }}
         </div>
 
+        <!-- Added Terms & Conditions checkbox -->
+        <div class="form-check mb-3">
+          <input type="checkbox" class="form-check-input" id="terms" name="terms" required />
+          <label class="form-check-label text-light" for="terms">
+            I agree to the <a href="#" class="text-warning">Terms & Conditions</a>
+          </label>
+        </div>
+
         <button type="submit" class="btn btn-gradient w-100 mt-2">Create Account</button>
       </form>
 
-      <p class="text-center small mt-3">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+      <p class="text-center small mt-3">
+        Already have an account? <a href="{% url 'login' %}">Login</a>
+      </p>
     </div>
   </div>
 
@@ -79,22 +95,21 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-  const roleSelect = document.getElementById('id_role');
-  const facultyCodeGroup = document.getElementById('faculty-code-group');
-  const deptField = document.getElementById('id_department').parentElement;
-  const yearField = document.getElementById('id_year').parentElement;
+    const roleSelect = document.getElementById('id_role');
+    const facultyCodeGroup = document.getElementById('faculty-code-group');
+    const deptField = document.getElementById('id_department').parentElement;
+    const yearField = document.getElementById('id_year').parentElement;
 
-  function toggleRoleFields() {
-    const role = roleSelect.value;
-    facultyCodeGroup.style.display = role === 'faculty' ? 'block' : 'none';
-    deptField.style.display = role === 'student' ? 'block' : 'none';
-    yearField.style.display = role === 'student' ? 'block' : 'none';
-  }
+    function toggleRoleFields() {
+      const role = roleSelect.value;
+      facultyCodeGroup.style.display = role === 'faculty' ? 'block' : 'none';
+      deptField.style.display = role === 'student' ? 'block' : 'none';
+      yearField.style.display = role === 'student' ? 'block' : 'none';
+    }
 
-  toggleRoleFields();
-  roleSelect.addEventListener('change', toggleRoleFields);
-});
-
+    toggleRoleFields();
+    roleSelect.addEventListener('change', toggleRoleFields);
+  });
 </script>
 </body>
 </html>
