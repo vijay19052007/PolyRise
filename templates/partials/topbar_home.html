@@ -1,8 +1,17 @@
 {% load static %}
-
+<html>
+  <head>
+    <title>navbar</title>
+    <style>
+    .logo-img {
+  height: 32px;
+  width: auto;
+         }
+</style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container-fluid">
     <!-- Logo -->
+     <img src="{% static 'images/logo.png' %}" alt="PolyRise Logo" class="logo-img me-2">
     <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
       PolyRise
     </a>

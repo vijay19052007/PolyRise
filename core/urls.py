@@ -1,7 +1,8 @@
 # core/urls.py
 from django.urls import path
-from .views import guest_home
+from . import views
+
 
 urlpatterns = [
-    path('', guest_home, name='guest_home'),
+    path('', views.landing_page, name='landing_page'), 
 ]

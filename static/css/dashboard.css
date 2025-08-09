@@ -58,28 +58,168 @@ body, html {
 .logo-text {
   font-size: 20px;
   font-weight: bold;
-  color: #39ff14;
+  background: linear-gradient(
+    135deg,
+    #FF00FF 0%,       /* Hot pink */
+    #9D00FF 30%,      /* Electric purple */
+    #00F0FF 60%,      /* Cyan */
+    #00FF9D 100%      /* Aqua green */
+  );
+  text-shadow: 0 0 15px rgba(157, 0, 255, 0.4); 
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* Modern way to make text transparent */
+  background-size: 400% 400%;
+  animation: gradientFlow 4s ease-in-out infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+/* Mini Theme Toggle */
+.theme-toggle {
+  background: rgba(30, 30, 47, 0.7); /* Match your #1e1e2f sidebar */
+  border-radius: 20px;
+  padding: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .theme-toggle button {
-  font-size: 14px;
-  padding: 4px 10px;
-  margin-left: 8px;
+  width: 26px;
+  height: 26px;
+  padding: 0;
   border: none;
-  border-radius: 4px;
-  background-color: #2a2a2a;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  background: transparent;
+  border-radius: 50%;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 1px;
 }
 
+/* Micro-interactions */
 .theme-toggle button:hover {
-  background-color: #444;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
 }
+
+/* Active State Dot Indicator */
+.theme-toggle button.active {
+  color: white;
+  position: relative;
+}
+
+.theme-toggle button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(90deg, #7B61FF, #00F0FF);
+  border-radius: 50%;
+}
+
+/* Theme-Specific Icon Colors */
+.theme-toggle button:nth-child(1) { color: #FFD700; } /* Light */
+.theme-toggle button:nth-child(2) { color: #B388FF; } /* Dark */
+.theme-toggle button:nth-child(3) { color: #00F0FF; } /* Neon */
 
 .auth-links .btn {
   font-size: 14px;
   padding: 4px 10px;
+}
+
+/* Dropdown Button Styling */
+.dropdown-toggle {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  transition: all 0.3s ease;
+  color: white !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-toggle:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.dropdown-toggle::after {
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* Dropdown Menu Container */
+.dropdown-menu {
+  background: #2a2a3f !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(15px);
+  overflow: hidden;
+  margin-top: 8px !important;
+  padding: 5px 0 !important;
+  min-width: 200px !important;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+  color: #e0e0ff !important;
+  padding: 8px 16px !important;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdown-item:hover {
+  background: rgba(123, 97, 255, 0.15) !important;
+  color: white !important;
+  transform: translateX(3px);
+}
+
+/* Icons for dropdown items */
+.dropdown-item:nth-child(1)::before {
+  content: "📊";
+  font-size: 16px;
+}
+
+.dropdown-item:nth-child(2)::before {
+  content: "🚪";
+  font-size: 16px;
+}
+
+/* Active/Focused State */
+.dropdown-item:focus, .dropdown-item:active {
+  background: rgba(123, 97, 255, 0.25) !important;
+}
+
+/* Divider */
+.dropdown-divider {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  margin: 5px 0 !important;
+}
+
+/* Animation on dropdown show */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-menu.show {
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
 
@@ -129,52 +269,80 @@ body, html {
   z-index: 999;
 }
 
+/* ===== Sidebar Menu Items ===== */
 .sidebar-menu {
   list-style: none;
   padding: 0;
-  margin: 6px;
+  margin: 6px; /* Matches your original */
 }
 
 .sidebar-menu li {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px 10px;
-  border-radius: 6px;
-  transition: background 0.2s;
+  align-items: flex-start; /* Original alignment */
+  gap: 12px; /* Original gap */
+  padding: 12px 10px; /* Original padding */
+  border-radius: 6px; /* Original radius */
+  transition: background 0.2s; /* Original transition */
   cursor: pointer;
+  position: relative;
 }
 
+/* Hover & Active States (Improved) */
 .sidebar-menu li:hover {
-  background-color: #2e2e42;
+  background-color: #2e2e42; /* Original hover color */
 }
 
+.sidebar-menu li.active {
+  background: rgba(123, 97, 255, 0.15); /* Subtle version of your gradient */
+  border-left: 3px solid #7B61FF; /* Keeps your indicator */
+}
+
+/* ===== Icons Styling (Preserved Improvements) ===== */
 .sidebar-menu i {
-  font-size: 25px;
-  margin-top: 2px;
-  color: #f0f0f0;
+  font-size: 25px; /* Original size */
+  margin-top: 2px; /* Original offset */
+  color: #f0f0f0; /* Original color */
   flex-shrink: 0;
+  transition: all 0.2s ease; /* Smoother transition */
 }
 
+/* Individual Icon Colors (Kept from your preferences) */
+.sidebar-menu li:nth-child(1) i { color: #FFD700; }
+.sidebar-menu li:nth-child(2) i { color: #00E5FF; }
+.sidebar-menu li:nth-child(3) i { color: #39FF14; }
+.sidebar-menu li:nth-child(4) i { color: #FF6B6B; }
+.sidebar-menu li:nth-child(5) i { color: #FFA500; }
+.sidebar-menu li:nth-child(6) i { color: #FF4081; }
+.sidebar-menu li:nth-child(7) i { color: #00BFFF; }
+
+/* ===== Text Styles (Original Font Sizes) ===== */
 .menu-text {
   display: flex;
   flex-direction: column;
   line-height: 1.2;
-  margin-top: 6px;
+  margin-top: 6px; /* Original spacing */
 }
 
 .menu-title {
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 15px; /* Original size */
+  font-weight: 500; /* Original weight */
+  color: #FFFFFF; /* Brighter than original for accessibility */
 }
 
 .menu-desc {
-  font-size: 11px;
-  color: #bbb;
-  margin-top: 2px;
+  font-size: 11px; /* Original size */
+  color: #bbb; /* Original color */
+  margin-top: 2px; /* Original spacing */
 }
 
+/* Micro-interactions (Subtle) */
+.sidebar-menu li:hover i {
+  transform: scale(1.05); /* More subtle than 1.1 */
+}
 
+.sidebar-menu li.active i {
+  color: #7B61FF; /* Highlight active icon */
+}
 /* -----------------------
    COLLAPSE STYLES
 ------------------------ */
@@ -182,8 +350,10 @@ body, html {
 .collapse-btn {
   text-align: center;
   padding: 5px;
+  background-color: #323246;
   cursor: pointer;
   color: #fffbfb;
+  border-radius: 20px 20px 20px 20px;
 }
 
 .collapse-btn:hover {
@@ -195,12 +365,34 @@ body, html {
 }
 
 .sidebar.collapsed .menu-text,
-.sidebar.collapsed .sidebar-user-box {
+.sidebar.collapsed .sidebar-user-box 
+.sidebar.collapsed .sidebar-heading .primary-text,
+.sidebar.collapsed .dept-text,
+.sidebar.collapsed .sidebar-heading,
+.sidebar.collapsed .sidebar-footer div {
   display: none;
 }
 
 .sidebar.collapsed .sidebar-menu li {
   justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-menu li i {
+    margin-right: 0;
+    font-size: 1.25rem; /* Adjust icon size if needed */
+}
+
+.sidebar.collapsed .sidebar-heading {
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.sidebar.collapsed .sidebar-heading i {
+    margin-right: 0;
+}
+
+.sidebar.collapsed .sidebar-footer i {
+    margin-right: 0;
 }
 
 /* -----------------------
@@ -215,6 +407,58 @@ body, html {
   text-align: center;
   margin-top: 10px;
   
+}
+
+.sidebar-user-box {
+  background: rgba(40, 40, 60, 0.9); /* Slightly lighter than sidebar */
+  border-radius: 10px;
+  padding: 16px;
+  margin: 20px 10px;
+  border: 1px solid rgba(123, 97, 255, 0.3); /* Purple accent border */
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top accent bar - static version (remove if too flashy) */
+.sidebar-user-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    rgba(123, 97, 255, 0.8) 0%, 
+    rgba(54, 174, 254, 0.8) 100%);
+}
+
+/* User name - bold and clear */
+.sidebar-user-box .name {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 6px; /* Increased spacing */
+  letter-spacing: 0.3px;
+}
+
+/* Department/year - enhanced visibility */
+.sidebar-user-box .text-muted {
+  display: block;
+  font-size: 12px;
+  color: #a0a8ff !important; /* Light purple-blue */
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Hover effect */
+.sidebar-user-box:hover {
+  background: rgba(45, 45, 70, 0.95);
+  border-color: rgba(123, 97, 255, 0.5);
 }
 
 /* -----------------------

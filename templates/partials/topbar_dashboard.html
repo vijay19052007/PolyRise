@@ -12,9 +12,9 @@
 
     <!-- Theme Switch -->
     <div class="theme-toggle d-flex align-items-center gap-0">
-      <button class="btn btn-sm btn-outline-light" onclick="setTheme('light')">☀️</button>
-      <button class="btn btn-sm btn-outline-light" onclick="setTheme('dark')">🌙</button>
-      <button class="btn btn-sm btn-outline-light" onclick="setTheme('neon')">⚡</button>
+      <button class="btn btn-sm btn-outline-light" onclick="setTheme('light')">🔆</button>
+      <button class="btn btn-sm btn-outline-light" onclick="setTheme('dark')">☾</button>
+      <button class="btn btn-sm btn-outline-light" onclick="setTheme('neon')">❄️</button>
     </div>
 
     <!-- Authentication Buttons -->
@@ -26,7 +26,7 @@
         </button>
         <ul class="dropdown-menu dropdown-menu-end">
           <li><a class="dropdown-item" href="#">My Dashboard</a></li>
-          <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+          <li><a class="dropdown-item" href="{% url 'logout' %}?next={% url 'landing_page' %}">Logout</a></li>
         </ul>
       </div>
    

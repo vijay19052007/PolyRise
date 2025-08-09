@@ -202,10 +202,12 @@ body, html {
 }
 
 .sidebar.collapsed .menu-text,
-.sidebar.collapsed .sidebar-user-box 
-.sidebar.collapsed .menu-t{
-  display: none;
-}
+    .sidebar.collapsed .sidebar-heading .primary-text,
+    .sidebar.collapsed .dept-text,
+    .sidebar.collapsed .sidebar-footer .bi,
+    .sidebar.collapsed .sidebar-footer div {
+      display: none;
+    }
 
 .sidebar.collapsed .sidebar-menu li {
   justify-content: center;
