@@ -1,17 +1,48 @@
-<!-- templates/partials/topbar.html -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-  <a class="navbar-brand fw-bold" href="/">PolyRise</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="/accounts/login/">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link btn btn-outline-warning ms-2" href="/accounts/signup/">Sign Up</a>
-      </li>
-    </ul>
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+      PolyRise
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu Items -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item me-3">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="#features">Features</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="#about">About</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="#faq">FAQ's</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="btn btn-warning text-dark fw-bold px-4"
+            href="{% url 'signup' %}"
+            >Sign Up</a
+          >
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

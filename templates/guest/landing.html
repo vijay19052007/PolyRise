@@ -6,22 +6,268 @@
   <title>Welcome to PolyRise</title>
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+  #backg {
+    width: 100%;
+    min-height: 500px;
+    background-image: url("{% static 'images/background.jpg' %}");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: 70px; 
+    padding-top: 150px; 
+    padding-bottom: 100px;
+    border-radius: 20px;
+  }
+  .accordion-body {
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+  }
+  .accordion-collapse.show .accordion-body {
+    opacity: 1;
+  }
+  .accordion-button:not(.collapsed) {
+    background-color: #898989;
+    color: white;
+    box-shadow: 10px;
+  }
+
+</style>
+
 </head>
 <body class="theme-dark">
 
   {% include 'partials/topbar_home.html' %}
+  <div class="container my-4 text-center text-white" id="backg">
+  <h1 class="display-4 fw-bold" data-aos="fade-down">Rise Beyond Limits !!!</h1>
+  <p class="lead" data-aos="fade-up">An All-in-One Academic Platform for Polytechnic Students</p>
+  <p data-aos="fade-up" data-aos-delay="200">
+    Study smarter. Track progress. Plan your career. All in one place.
+  </p>
+  
+  <div class="mt-4" data-aos="zoom-in" data-aos-delay="400">
+    <a href="{% url 'signup' %}" class="btn btn-light me-3">Create Account</a>
+    <a href="{% url 'login' %}" class="btn btn-outline-light">Login</a>
+  </div>
+</div>
 
-  <div class="container my-5 py-5 text-center text-white">
-    <h1 class="display-4 fw-bold">🚀 Welcome to PolyRise</h1>
-    <p class="lead">An All-in-One Academic Platform for Polytechnic Students</p>
-    <p>Study smarter. Track progress. Plan your career. All in one place.</p>
-    
-    <div class="mt-4">
-      <a href="{% url 'signup' %}" class="btn btn-light me-3">Create Account</a>
-      <a href="{% url 'login' %}" class="btn btn-outline-light">Login</a>
+<!-- Features Section -->
+<section id="features" class="py-5 bg-dark" >
+  <div class="container text-white">
+    <div class="container px-4  py-4" id="featured-3">
+      <h2 class="pb-2 border-bottom" data-aos="fade-down">Why Choose PolyRise?</h2>
+      <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        
+        <div class="feature col">
+          <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle p-3">
+            📚
+          </div>
+          <h3 class="fs-4 text-light">Syllabus Explorer</h3>
+          <p>Access the latest MSBTE syllabus instantly in one click.</p>
+          <a href="/academics/syllabus/" class="icon-link text-info">
+            Explore Now
+            <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+          </a>
+        </div>
+
+        <div class="feature col">
+          <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-success bg-gradient fs-2 mb-3 rounded-circle p-3">
+            📝
+          </div>
+          <h3 class="fs-4 text-light">Rapid 5 Quiz</h3>
+          <p>Challenge yourself with 5 quick MCQs per subject.</p>
+          <a href="/academics/quiz/" class="icon-link text-info">
+            Take Quiz
+            <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+          </a>
+        </div>
+
+        <div class="feature col">
+          <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-warning bg-gradient fs-2 mb-3 rounded-circle p-3">
+            📄
+          </div>
+          <h3 class="fs-4 text-light">Smart Resume Builder</h3>
+          <p>Create a professional resume in minutes with auto-filled templates.</p>
+          <a href="/career/resume/" class="icon-link text-info">
+            Build Now
+            <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+          </a>
+        </div>
+
+        <div class="feature col">
+          <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-danger bg-gradient fs-2 mb-3 rounded-circle p-3">
+            📢
+          </div>
+          <h3 class="fs-4 text-light">MSBTE Notifications</h3>
+          <p>Stay updated with exam results, timetables, and official notices.</p>
+          <a href="/notifications/" class="icon-link text-info">
+            View Updates
+            <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+          </a>
+        </div>
+
+        <div class="feature col">
+          <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-info bg-gradient fs-2 mb-3 rounded-circle p-3">
+            📑
+          </div>
+          <h3 class="fs-4 text-light">Notes & PDFs</h3>
+          <p>Download faculty-uploaded notes, past papers, and study resources.</p>
+          <a href="/academics/notes/" class="icon-link text-info">
+            Browse Notes
+            <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+          </a>
+        </div>
+
+        <div class="feature col">
+          <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-secondary bg-gradient fs-2 mb-3 rounded-circle p-3">
+            💡
+          </div>
+          <h3 class="fs-4 text-light">Project Ideas</h3>
+          <p>Get final year project ideas with tech stack and sample references.</p>
+          <a href="/career/projects/" class="icon-link text-info">
+            Get Ideas
+            <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+          </a>
+        </div>
+
+      </div>
     </div>
   </div>
+</section>
 
+<!-- About Section -->
+<section id="about" class="py-5 bg-light">
+  <div class="container py-4">
+    <h2 class="text-center mb-4" data-aos="fade-down">About PolyRise</h2>
+    <div class="row align-items-center">
+      
+      <div class="col-md-6">
+        <p class="lead">
+          <strong>PolyRise</strong> is an all-in-one academic platform built especially for diploma students under MSBTE.
+          Our goal is to help students, faculty, and administrators connect, share resources, and track academic progress in a single place.
+        </p>
+        <p>
+          Whether you need quick quizzes, syllabus access, career tools, or official MSBTE updates — PolyRise is here to make your learning journey smoother.
+        </p>
+        <ul>
+          <li> Latest MSBTE syllabus & notes</li>
+          <li> Rapid 5 Quiz for quick practice</li>
+          <li> Real-time MSBTE alerts & updates</li>
+          <li> Resume builder & career guidance</li>
+        </ul>
+        <p><em>“Rise Beyond Limits”</em> — because your education should be limitless.</p>
+      </div>
+
+      <div class="col-md-6 text-center">
+        <img src="{% static 'images/5836.jpg' %}" alt="PolyRise Platform" class="img-fluid rounded shadow" data-aos="zoom-in-up">
+      </div>
+
+    </div>
+  </div>
+</section>
+<section id="faq" class="py-5 bg-light">
+  <div class="container py-4">
+    <h2 class="text-center mb-4" data-aos="fade-down">Frequently Asked Questions</h2>
+
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+                  data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            1. Who can use PolyRise?
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" 
+             aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            PolyRise is designed primarily for polytechnic students and faculty members.
+            <ul>
+            <li>Students can access study materials, syllabus updates, quizzes, and career tools.</li> 
+            
+            <li>Faculty can upload notes, share important announcements, and track student progress.
+            Currently, the platform focuses on MSBTE-affiliated institutes, but we plan to expand to other polytechnic boards in the future.
+          </li>
+        </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            2. Is PolyRise free to use?
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" 
+             aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            Yes, PolyRise is completely free for students and faculty.
+
+            You can browse the syllabus, download notes, attempt quizzes, and view announcements without paying anything.
+
+            In the future, we may introduce optional premium features like advanced analytics or additional storage for faculty uploads, but the core learning tools will always remain free.
+
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            3. How often are study materials updated?
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" 
+             aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            Our team and registered faculty members regularly update study materials to make sure you always have access to the latest syllabus, notes, and past papers.
+
+            Official MSBTE updates (like syllabus changes or circulars) are uploaded as soon as they’re released.
+
+            Faculty-uploaded resources are instantly visible after approval.
+            This ensures you are always studying with current and relevant information.
+
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            4. Is PolyRise available for other states or only MSBTE?
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" 
+             aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            Right now, PolyRise is focused on MSBTE-affiliated polytechnic institutes in Maharashtra, ensuring that the syllabus, notes, and exam updates are accurate and relevant for MSBTE students.<br>
+            However, we are actively working on expanding support to other state boards and technical education councils across India.<br>
+            In the coming months, you can expect:
+            <ul>
+              <li>Custom syllabus sections for different boards.</li>
+              <li>State-specific exam notifications.</li>
+              <li>Faculty and student resources tailored to each region.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-qENu44B4BgmM+AYKkdE+6UXMaLLq5yRvDqxn6VOGGAIvHo9dZYkTfLZBBVY1+8nb" 
+          crossorigin="anonymous"></script>
+     <script>
+  AOS.init();
+</script>
   {% include 'partials/footer.html' %}
 </body>
 </html>
