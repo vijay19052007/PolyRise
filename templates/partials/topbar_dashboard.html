@@ -19,16 +19,67 @@
 
     <!-- Authentication Buttons -->
     
-      <!-- Profile Dropdown -->
-      <div class="dropdown">
-        <button class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
-          {{ request.user.profile.full_name }}
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#">My Dashboard</a></li>
-          <li><a class="dropdown-item" href="{% url 'logout' %}?next={% url 'landing_page' %}">Logout</a></li>
-        </ul>
+     <div class="dropdown profile-dropdown">
+  <button class="btn dropdown-toggle profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
+    {% if request.user.profile.role == 'student' %}
+      <img src="{% static 'images/default-logo.webp' %}" class="profile-avatar" alt="Student Profile">
+    {% elif request.user.profile.role == 'faculty' %}
+      <img src="{% static 'images/defaultf.webp' %}" class="profile-avatar" alt="Faculty Profile">
+    {% else %}
+      <img src="{% static 'images/' %}" class="profile-avatar" alt="Profile">
+    {% endif %}
+    <span class="profile-name text-white">{{ request.user.profile.full_name }}</span>
+  </button>
+
+  <ul class="dropdown-menu dropdown-menu-end bg-dark">
+    <!-- Profile Header -->
+    <li class="dropdown-header px-3 py-2">
+      <div class="d-flex align-items-center">
+        {% if request.user.profile.role == 'student' %}
+          <img src="{% static 'images/default-logo.webp' %}" class="profile-avatar-dropdown me-3" alt="Student Profile">
+        {% elif request.user.profile.role == 'faculty' %}
+          <img src="{% static 'images/defaultf.webp' %}" class="profile-avatar-dropdown me-3" alt="Faculty Profile">
+        {% else %}
+          <img src="{% static 'images/-logo.webp' %}" class="profile-avatar-dropdown me-3" alt="Profile">
+        {% endif %}
+        <div>
+          <div class="profile-name-dropdown text-white">{{ request.user.profile.full_name }}</div>
+          <div class="profile-email text-white-50">{{ request.user.email }}</div>
+          <div class="profile-role-badge text-white mt-1">
+            {% if request.user.profile.role == 'student' %}
+              <i class="fas fa-graduation-cap role-icon text-white-50"></i> Student
+            {% elif request.user.profile.role == 'faculty' %}
+              <i class="fas fa-chalkboard-teacher role-icon text-white-50"></i> Faculty
+            {% endif %}
+          </div>
+        </div>
       </div>
+    </li>
+    
+    <li><hr class="dropdown-divider bg-secondary"></li>
+    
+    <!-- Menu Items -->
+    <li>
+      <a class="dropdown-item text-white" href="{% url 'student_dashboard' %}">
+        <i class="fas fa-tachometer-alt menu-icon text-white-50 me-2"></i>My Dashboard
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item text-white" href="#">
+        <i class="fas fa-cog menu-icon text-white-50 me-2"></i>Settings
+      </a>
+    </li>
+    
+    <li><hr class="dropdown-divider bg-secondary"></li>
+    
+    <!-- Logout -->
+    <li>
+      <a class="dropdown-item text-danger" href="{% url 'logout' %}">
+        <i class="fas fa-sign-out-alt menu-icon me-2"></i>Logout
+      </a>
+    </li>
+  </ul>
+</div>
    
 
   </div>

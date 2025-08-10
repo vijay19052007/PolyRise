@@ -12,14 +12,11 @@
 <body>
 
    <div class="sidebar" id="sidebar">
-    <!-- Sidebar -->
-    
-      
-        
+    <!-- Sidebar -->      
   <ul class="sidebar-menu">
      <li>
      <div class="sidebar-heading text-center py-4 primary-text fs-5 fw-bold border-bottom">
-        <i class="bi bi-person-circle me-2"></i> Hello, Prof. {{ request.user.profile.full_name }}
+        <i class="bi bi-person-circle me-2"></i> Hello, Prof. <br>{{ request.user.profile.full_name }}
         <div class="small dept-text">Dept: {{ request.user.profile.department }}</div>
       </div>
      </li>
