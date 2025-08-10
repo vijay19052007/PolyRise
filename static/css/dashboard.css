@@ -347,6 +347,9 @@ body, html {
   z-index: 999;
 }
 
+.sidebar::-webkit-scrollbar {
+  display: none; /* scroll bar is hide */
+}
 /* ===== Sidebar Menu Items ===== */
 .sidebar-menu {
   list-style: none;

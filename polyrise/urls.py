@@ -19,8 +19,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('core.urls')),  # guest landing/home page
     path('accounts/', include('accounts.urls')),  # accounts app handles signup, login, logout
     path('dashboard/', include('dashboard.urls')),
-    path('', include('core.urls')),  # guest landing/home page
+    path('support/',include('support.urls')), #this is a suppourt
+    path('smarttools/',include('smarttools.urls')), #this is a suppourt 
 ]
 
