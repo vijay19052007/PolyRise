@@ -167,6 +167,13 @@ body, html {
   border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+.profile-side{
+  width: 60px;
+  height: 50px;
+   object-fit: cover;
+  border-radius: 50%;
+  padding: -5px;
+}
 .profile-name {
   font-size: 0.95rem;
   font-weight: 500;
@@ -343,7 +350,8 @@ body, html {
   top: 60px;
   left: 0;
   transition: width 0.3s ease;
-  overflow-y: auto;
+  overflow-y: hidden;
+  overflow-x: hidden;
   z-index: 999;
 }
 

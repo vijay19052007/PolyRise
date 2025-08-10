@@ -24,7 +24,7 @@
     {% if request.user.profile.role == 'student' %}
       <img src="{% static 'images/default-logo.webp' %}" class="profile-avatar" alt="Student Profile">
     {% elif request.user.profile.role == 'faculty' %}
-      <img src="{% static 'images/defaultf.webp' %}" class="profile-avatar" alt="Faculty Profile">
+      <img src="{% static 'images/defaultf1.png' %}" class="profile-avatar" alt="Faculty Profile">
     {% else %}
       <img src="{% static 'images/' %}" class="profile-avatar" alt="Profile">
     {% endif %}
@@ -38,7 +38,7 @@
         {% if request.user.profile.role == 'student' %}
           <img src="{% static 'images/default-logo.webp' %}" class="profile-avatar-dropdown me-3" alt="Student Profile">
         {% elif request.user.profile.role == 'faculty' %}
-          <img src="{% static 'images/defaultf.webp' %}" class="profile-avatar-dropdown me-3" alt="Faculty Profile">
+          <img src="{% static 'images/defaultf1.png' %}" class="profile-avatar-dropdown me-3" alt="Faculty Profile">
         {% else %}
           <img src="{% static 'images/-logo.webp' %}" class="profile-avatar-dropdown me-3" alt="Profile">
         {% endif %}

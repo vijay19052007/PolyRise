@@ -31,6 +31,7 @@ def signup_view(request):
             profile.save()
 
             messages.success(request, "Account created successfully. Please login.")
+            login(request, user)
            
             if role == 'student':
                 return redirect('student_dashboard')
