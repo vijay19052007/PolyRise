@@ -11,14 +11,33 @@
       background-color: rgba(0,0,0,0.5) !important;
       box-shadow: 2px 2px 5px 2px rgba(0,0,0,0.5);
     }
+    .logo-text {
+  font-size: 23px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  background: linear-gradient(
+    135deg,
+    #FF00FF 0%,      
+    #9D00FF 30%,     
+    #00F0FF 60%,     
+    #00FF9D 100%     
+  );
+  text-shadow: 0 0 15px rgba(157, 0, 255, 0.4); 
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; 
+  background-size: 400% 400%;
+
+}
+
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top p-2">
   <div class="container-fluid">
     <!-- Logo -->
      <img src="{% static 'images/logo.png' %}" alt="PolyRise Logo" class="logo-img me-2">
-    <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
-      PolyRise
-    </a>
+     <span class="logo-text fw-bold">PolyRise</span>
+    
 
     <!-- Mobile Menu Button -->
     <button
