@@ -10,24 +10,54 @@ body.theme-neon {
 }
 
 /* === Main content padding === */
+/* === Main content padding === */
 .main-content,
 .content-area {
-  padding: 20px;
+  padding: 0;
   overflow-x: hidden;
   width: 100%;
   margin-left: 0;
+  /* Correct scrollbar hiding syntax: */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
-/* === Hero section box === */
+/* Proper WebKit scrollbar hiding must be separate */
+.main-content::-webkit-scrollbar,
+.content-area::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
+/* === Hero section box - FIXED === */
 .hero-box {
-  background: linear-gradient(115deg,  #0831e4 0%, #7b06f1 50%, #42bef4 100%);
+  background: linear-gradient(115deg, #0831e4 0%, #7b06f1 50%, #42bef4 100%);
   border-radius: 20px;
   padding: 40px 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   margin: 30px 0;
+  /* FIXED: Use 100% width instead of fixed pixel */
   width: 100%;
+  max-width: 1500px; /* Maximum width */
+  /* Better centering */
+  margin-left: auto;
+  margin-right: auto;
+  /* Ensure proper overflow */
+  box-sizing: border-box;
 }
 
+/* Rest of your CSS remains good, but add this for full-page scrollbar hiding: */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+html::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
+body {
+  -webkit-overflow-scrolling: touch; /* Smooth iOS scrolling */
+  overflow-y: scroll; /* Always reserve scroll space */
+}
 /* === Left content === */
 .welcome-tag {
   background: rgba(255, 255, 255, 0.1);

@@ -432,6 +432,20 @@ body, html {
 .sidebar-menu li.active i {
   color: #7B61FF; /* Highlight active icon */
 }
+
+/* Makes the link behave EXACTLY like the original non-link version */
+.sidebar-link {
+  display: flex;           /* Forces horizontal layout */
+  align-items: flex-start; /* Aligns icon + text to top */
+  gap: 12px;               /* Matches original spacing */
+  color: inherit;          /* Prevents blue link color */
+  text-decoration: none;   /* Removes underline */
+}
+
+/* Optional: Match hover/active states */
+.sidebar-link:hover {
+  background-color: #2e2e42; /* Original hover color */
+}
 /* -----------------------
    COLLAPSE STYLES
 ------------------------ */
