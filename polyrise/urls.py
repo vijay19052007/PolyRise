@@ -24,5 +24,6 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('support/',include('support.urls')), #this is a suppourt
     path('smarttools/',include('smarttools.urls')), #this is a suppourt 
+    path('planner/',include('planner.urls')), #this is a planner
 ]
 

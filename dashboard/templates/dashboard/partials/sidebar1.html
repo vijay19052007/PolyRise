@@ -1,108 +1,106 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Dashboard | PolyRise</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard | PolyRise</title>
 
-  <!-- Bootstrap Icons CDN -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <!-- Bootstrap Icons CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
 
-  <!-- External Sidebar CSS -->
-  <link rel="stylesheet" href="{% static 'dashboard/css/.css' %}" />
-</head>
-<body>
+    <!-- External Sidebar CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard/css/.css' %}" />
+  </head>
+  <body>
+    <div class="sidebar" id="sidebar">
+      <ul class="sidebar-menu">
+        <li>
+          <a href="{% url 'student_dashboard' %}" class="sidebar-link">
+            <i class="bi bi-speedometer2"></i>
+            <div class="menu-text">
+              <span class="menu-title">My Dashboard</span>
+              <small class="menu-desc">Track progress & goals</small>
+            </div>
+          </a>
+        </li>
 
-  <div class="sidebar" id="sidebar">
-    <ul class="sidebar-menu">
-      <li>
-      <a href="{% url 'student_dashboard' %}" class="sidebar-link">
-        <i class="bi bi-speedometer2"></i>
-        <div class="menu-text">
-          <span class="menu-title">My Dashboard</span>
-          <small class="menu-desc">Track progress & goals</small>
-        </div>
-      </a>  
-      </li>   
+        <li>
+          <a href="#" class="sidebar-link">
+            <i class="bi bi-journal-text"></i>
+            <div class="menu-text">
+              <span class="menu-title">Academics & Resources</span>
+              <small class="menu-desc">Notes, syllabus & papers</small>
+            </div>
+          </a>
+        </li>
 
-      <li>
-       <a href="" class="sidebar-link"> 
-        <i class="bi bi-journal-text"></i>
-        <div class="menu-text">
-          <span class="menu-title">Academics & Resources</span>
-          <small class="menu-desc">Notes, syllabus & papers</small>
-        </div>
-       </a> 
-      </li>
+        <li>
+          <a href="{% url 'tools' %}" class="sidebar-link">
+            <i class="bi bi-lightbulb"></i>
+            <div class="menu-text">
+              <span class="menu-title">Smart Learning Tools</span>
+              <small class="menu-desc">MCQs, converters, extras</small>
+            </div>
+          </a>
+        </li>
 
-      <li>
-       <a href="" class="sidebar-link"> 
-        <i class="bi bi-lightbulb"></i>
-        <div class="menu-text">
-          <span class="menu-title">Smart Learning Tools</span>
-          <small class="menu-desc">MCQs, converters, extras</small>
-        </div>
-       </a>  
-      </li>
+        <li>
+          <a href="#" class="sidebar-link">
+            <i class="bi bi-briefcase"></i>
+            <div class="menu-text">
+              <span class="menu-title">Career Launchpad</span>
+              <small class="menu-desc">Resume, jobs & interviews</small>
+            </div>
+          </a>
+        </li>
 
-      <li>
-       <a href="" class="sidebar-link"> 
-        <i class="bi bi-briefcase"></i>
-        <div class="menu-text">
-          <span class="menu-title">Career Launchpad</span>
-          <small class="menu-desc">Resume, jobs & interviews</small>
-        </div>
-       </a> 
-      </li>
+        <li>
+          <a href="{% url 'planner' %}" class="sidebar-link">
+            <i class="bi bi-calendar-check"></i>
+            <div class="menu-text">
+              <span class="menu-title">Planner & Productivity</span>
+              <small class="menu-desc">Task manager & calendar</small>
+            </div>
+          </a>
+        </li>
 
-      <li>
-       <a href="" class="sidebar-link"> 
-        <i class="bi bi-calendar-check"></i>
-        <div class="menu-text">
-          <span class="menu-title">Planner & Productivity</span>
-          <small class="menu-desc">Task manager & calendar</small>
-        </div>
-       </a> 
-      </li>
+        <li>
+          <a href="#" class="sidebar-link">
+            <i class="bi bi-bell-fill"></i>
+            <div class="menu-text">
+              <span class="menu-title">Notifications & Alerts</span>
+              <small class="menu-desc">MSBTE updates & deadlines</small>
+            </div>
+          </a>
+        </li>
 
-      <li>
-       <a href="" class="sidebar-link"> 
-        <i class="bi bi-bell-fill"></i>
-        <div class="menu-text">
-          <span class="menu-title">Notifications & Alerts</span>
-          <small class="menu-desc">MSBTE updates & deadlines</small>
-        </div>
-       </a> 
-      </li>
+        <li>
+          <a href="{% url 'support' %}" class="sidebar-link">
+            <i class="bi bi-chat-dots"></i>
+            <div class="menu-text">
+              <span class="menu-title">Support & Connect</span>
+              <small class="menu-desc">Help, chat, contact us</small>
+            </div>
+          </a>
+        </li>
+      </ul>
 
-      <li>
-       <a href="" class="sidebar-link"> 
-        <i class="bi bi-chat-dots"></i>
-        <div class="menu-text">
-          <span class="menu-title">Support & Connect</span>
-          <small class="menu-desc">Help, chat, contact us</small>
-        </div>
-       </a> 
-      </li>
-    </ul>
+      <!-- Collapse Sidebar Button -->
+      <div class="collapse-btn" onclick="toggleSidebar()">
+        <i class="bi bi-chevron-left" id="collapseArrow"></i>
+      </div>
 
-    <!-- Collapse Sidebar Button -->
-    <div class="collapse-btn" onclick="toggleSidebar()">
-      <i class="bi bi-chevron-left" id="collapseArrow"></i>
+      <!-- Bottom User Info -->
+      <div class="sidebar-user-box">
+        <strong class="name">{{ request.user.profile.full_name|upper }}</strong>
+        <p class="text-muted medium m-0">
+          {{ request.user.profile.department }} • {{ request.user.profile.year }}
+        </p>
+      </div>
     </div>
-
-    <!-- Bottom User Info -->
-    <div class="sidebar-user-box">
-      <strong class="name">{{ request.user.profile.full_name|upper }}</strong>
-      <p class="text-muted medium m-0">{{ request.user.profile.department }} • {{ request.user.profile.year }}</p>
-    </div>
-  </div>
-
-  
-
-</body>
+  </body>
 </html>
-
-
-
