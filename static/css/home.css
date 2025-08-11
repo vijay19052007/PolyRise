@@ -89,6 +89,7 @@ body {
   border-radius: 8px;
 }
 
+
 /* === Right content (cap icon area) === */
 .hero-right .cap-box {
   position: relative;
@@ -195,3 +196,220 @@ body {
     font-size: 60px;
   }
 }
+
+
+
+
+.profile-avat{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  object-fit:cover;
+  border: 2px solid rgba(255,255,255,0.06);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+:root {
+  /* Base Colors - Dark Theme */
+  --bg: #0f0f10;
+  --panel: #111014;
+  --text: #ffffff;
+  --text-muted: rgba(255,255,255,0.7);
+  --accent: #7b61ff;
+  --accent-2: #ff8a00;
+  --accent-light: #00f0ff;
+  --border: rgba(255,255,255,0.03);
+}
+
+/* Light Theme */
+.theme-light {
+  --bg: #f8f9fa;
+  --panel: #ffffff;
+  --text: #212529;
+  --text-muted: rgba(0,0,0,0.65);
+  --border: rgba(0,0,0,0.03);
+}
+
+/* Neon Theme */
+.theme-neon {
+  --bg: #0c0c2c;
+  --panel: #1a1a3e;
+  --text: #ffffff;
+  --text-muted: rgba(255,255,255,0.75);
+  --accent: #39ff14;
+  --accent-2: #ff00ff;
+  --accent-light: #00f0ff;
+  --border: rgba(57,255,20,0.1);
+}
+
+/* Base Card Styles */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+/* Headings inside cards */
+.card h4, .card h5 {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Muted text fix */
+.card p, 
+.text-muted, 
+.small {
+  color: var(--text-muted) !important;
+}
+
+/* Highlight Card */
+.highlight-card {
+  border-left: 3px solid var(--accent);
+  background: linear-gradient(135deg, rgba(123, 97, 255, 0.08), rgba(0, 0, 0, 0.1));
+}
+.theme-light .highlight-card {
+  background: linear-gradient(135deg, rgba(123, 97, 255, 0.05), rgba(0, 0, 0, 0.02));
+}
+.theme-neon .highlight-card {
+  background: linear-gradient(135deg, rgba(57, 255, 20, 0.12), rgba(0, 0, 0, 0.15));
+}
+
+/* News Card */
+.news-card {
+  border-left: 3px solid var(--accent-2);
+  background: linear-gradient(135deg, rgba(255, 138, 0, 0.08), rgba(0, 0, 0, 0.1));
+}
+.theme-neon .news-card {
+  background: linear-gradient(135deg, rgba(255, 0, 255, 0.12), rgba(0, 0, 0, 0.15));
+}
+
+/* Badge Styles */
+.badge-feature {
+  background: rgba(123,97,255,0.15);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.badge-feature.secondary {
+  background: rgba(255,138,0,0.15);
+  color: var(--accent-2);
+}
+.theme-neon .badge-feature.secondary {
+  background: rgba(255,0,255,0.15);
+}
+
+/* Quick Access Hover */
+.quick-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  border-color: var(--accent);
+}
+.theme-light .quick-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.theme-neon .quick-card:hover {
+  box-shadow: 0 0 15px rgba(57,255,20,0.3);
+}
+
+/* Quick Access Icon Box */
+.icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  margin-bottom: 12px;
+}
+
+/* Illustration Images */
+.highlight-illus,
+.news-illus {
+  width: 100px;
+  opacity: 0.95;
+}
+
+@media (max-width: 767px) {
+  .highlight-illus,
+  .news-illus {
+    display: none;
+  }
+}
+/* Base TIL Box Styles */
+.til-box {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.til-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* Header Styling */
+.til-header {
+    padding: 10px 15px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(45deg, #007bff, #00d4ff);
+    font-size: 1.1rem;
+}
+
+/* Content Styling */
+.til-content {
+    padding: 15px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    background-color: var(--til-bg);
+    color: var(--til-text);
+}
+
+/* ===== Light Theme ===== */
+body.light-theme {
+    --til-bg: #ffffff;
+    --til-text: #222;
+}
+
+/* ===== Dark Theme ===== */
+body.dark-theme {
+    --til-bg: #1f1f1f;
+    --til-text: #f1f1f1;
+}
+
+/* ===== Neon Theme ===== */
+body.neon-theme {
+    --til-bg: #0d0d0d;
+    --til-text: #0ff;
+    box-shadow: 0 0 12px #0ff, 0 0 24px #0ff;
+}
+
+body.neon-theme .til-header {
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+}
+
+.neon-footer {
+    text-align: center;
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color:  rgb(179, 131, 8);
+   
+}
+
+.neon-footer p {
+    margin: 0;
+}
+
+

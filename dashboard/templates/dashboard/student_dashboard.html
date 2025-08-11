@@ -1,37 +1,139 @@
 {% extends "base_dashboard.html" %}
-{% load static %}  
+{% load static %}
+{% block title %}My Dashboard - PolyRise{% endblock %}
+
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard_extra.css' %}">
 
+<div class="container-fluid dashboard-container my-4 px-3 px-md-5">
 
-<!-- Hero Section Box -->
-<div class="container-fluid my-4 px-3 px-md-5">
+  <style>
+  /* Customizations for student dashboard hero */
+   .welcome-tag {
+    display: inline-block;
+    background: rgba(123, 97, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    border-left: 3px solid gold;
+    margin-bottom: 15px;
+  }
+  
+  .welcome-icon {
+    margin-right: 8px;
+  }
+  
+  .welcome-tag strong {
+    font-weight: 600;
+    color: white;
+    font-size: 20px;
+  }
+
+  .student-stats {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  
+  .stat-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    padding: 15px 20px;
+    min-width: 120px;
+    text-align: center;
+  }
+  
+  .stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffe600;
+    line-height: 1;
+  }
+  
+  .stat-label {
+    font-size: 14px;
+    margin-top: 5px;
+    color: rgba(255,255,255,0.8);
+  }
+  
+  .student-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  
+  .avatar-box {
+    position: relative;
+    display: inline-block;
+    animation: floatUpDown 4s ease-in-out infinite;
+  }
+  
+  .action-box .btn {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  
+  @keyframes floatUpDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+</style>
+
+  <!-- Welcome Row -->
+  <div class="container-fluid my-4 px-3 px-md-5">
   <div class="hero-box text-white">
     <div class="row align-items-center p-4 p-md-5">
 
-      <!-- Left Side: Text Content -->
-      <div class="col-md-6 text-start">
-        <span class="welcome-tag">👋 Welcome to PolyRise</span>
-        <h1 class="big-heading">Rise Beyond<br>Limits</h1>
+      <!-- Left Side: Student Welcome -->
+      <div class="col-md-7 text-start">
+       <span class="welcome-tag">
+  <span class="welcome-icon">👋</span>
+  <strong>Welcome, {{ request.user.profile.full_name|default:request.user.username }}</strong>
+</span>
+        <h1 class="big-heading">Your Learning<br>Dashboard</h1>
         <p class="hero-desc">
-          Empowering polytechnic students with comprehensive study tools, career guidance,
-          and personalized learning experiences. Transform your academic journey today.
+          Track your progress, access study materials, and unlock your full potential. 
+          Everything you need to succeed in your polytechnic journey.
         </p>
-        <div class="hero-buttons mt-4">
-          <a href="/accounts/signup/" class="btn btn-light me-3">💡 Get Started Free</a>
-          <a href="#" class="btn btn-outline-light">Explore Features →</a>
+        
+        <!-- Student Stats -->
+        <div class="student-stats mt-4">
+          <div class="stat-box">
+            <div class="stat-value" id="progress-val">68%</div>
+            <div class="stat-label">Study Progress</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="quizzes-done">12</div>
+            <div class="stat-label">Quizzes Done</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="upcoming-exams">2</div>
+            <div class="stat-label">Upcoming Exams</div>
+          </div>
         </div>
       </div>
 
-      <!-- Right Side: Animated Cap & Stats -->
-      <div class="col-md-6 text-center mt-5 mt-md-0 hero-right">
-        <div class="cap-box mb-4">
-          <img src="{% static 'images/grad-cap.png' %}" class="grad-cap" alt="Graduation Cap">
+      <!-- Right Side: Student Avatar & Quick Actions -->
+      <div class="col-md-5 text-center mt-5 mt-md-0 hero-right">
+        <div class="avatar-box mb-4">
+          <img src="{% static 'images/default-logo.webp' %}" class="student-avatar" alt="Student Avatar">
           <span class="sparkle">✨</span>
         </div>
-        <div class="student-box">
-          <p class="join-text">Join Our Community</p>
-          <h3 class="student-count">12,500+ Students</h3>
-          <p class="growth-text">👑 Growing Fast!</p>
+        <div class="action-box">
+          <a href="" class="btn btn-light btn-lg mb-3">
+            <i class="bi bi-journal-bookmark"></i> Study Materials
+          </a>
+          <a href="" class="btn btn-outline-light btn-lg">
+            <i class="bi bi-patch-question"></i> Take a Quiz
+          </a>
         </div>
       </div>
 
@@ -39,8 +141,10 @@
   </div>
 </div>
 
-<!-- Daily Quote Box -->
-<div class="container-fluid my-5 px-3 px-md-5">
+
+
+    <!-- Quote card (narrow) -->
+    <div class="container-fluid my-5 px-3 px-md-5">
   <div class="quote-box text-center p-4 shadow">
     <div class="bulb-icon mb-3">💡</div>
     <blockquote id="quote-text" class="fs-5 fst-italic">Loading...</blockquote>
@@ -48,7 +152,119 @@
   </div>
 </div>
 
-<script src="{% static 'js/script.js' %}"></script>
+  <!-- Highlights Row -->
+  <div class="row g-3 mb-4">
+    <div class="col-lg-6">
+      <div class="card highlight-card p-4 rounded-3 shadow-sm h-100">
+        <div class="d-flex align-items-start">
+          <div class="highlight-left me-3">
+            <div class="badge-feature">⭐ Today's Highlight</div>
+            <h4 class="mb-1">MSBTE Syllabus Explorer</h4>
+            <p class="text-muted small mb-3">Browse K-Scheme subjects and detailed curriculum breakdown.</p>
+            <a href="" class="btn btn-warning btn-sm">Try Now</a>
+          </div>
+          <div class="ms-auto d-none d-md-flex align-items-center">
+            <img src="{% static 'images/syllabus-illustration.png' %}" alt="tool" class="highlight-illus">
+          </div>
+        </div>
+      </div>
+    </div>
 
-  
+   <div class="col-lg-6">
+  <div class="card news-card p-4 rounded-3 shadow-sm h-100">
+    <div class="d-flex align-items-center justify-content-between">
+      <div>
+        <div class="badge-feature secondary">📰 Daily Tech & Study News</div>
+        {% if tech_news %}
+          <h4 id="news-title" class="mb-1">{{ tech_news.headline }}</h4>
+          <p id="news-body" class="text-muted small mb-2">{{ tech_news.description }}</p>
+          {% if tech_news.link %}
+            <a href="{{ tech_news.link }}" id="news-link" class="text-decoration-none small" target="_blank" rel="noopener">Read more →</a>
+          {% else %}
+            <a href="#" id="news-link" class="text-decoration-none small disabled" tabindex="-1" aria-disabled="true">Read more →</a>
+          {% endif %}
+        {% else %}
+          <h4 id="news-title" class="mb-1">No news available</h4>
+          <p id="news-body" class="text-muted small mb-2">Please check back later for updates.</p>
+          <a href="#" id="news-link" class="text-decoration-none small disabled" tabindex="-1" aria-disabled="true">Read more →</a>
+        {% endif %}
+      </div>
+      <div class="ms-auto d-none d-md-block">
+        <img src="{% static 'images/news-illustration.png' %}" alt="news" class="news-illus">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="til-box mt-4 p-3 rounded-3 shadow-sm">
+  <div class="til-header fw-semibold mb-2">
+    📚 Today I Learned
+  </div>
+  <div class="til-content">
+    {% if til %}
+      <p>Did you know? <strong>{{ til.title }}</strong><br>{{ til.content }}</p>
+    {% else %}
+      <p>No TIL update available today. Please check back later.</p>
+    {% endif %}
+  </div>
+</div>
+
+
+
+  <!-- Quick Access -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h4 class="section-title">Quick Access</h4>
+      <p class="text-muted small mb-3">Jump to your favorite tools and features</p>
+    </div>
+
+    <div class="col-sm-6 col-md-3 mb-3">
+      <a href="" class="card quick-card p-3 h-100 text-reset text-decoration-none">
+        <div class="icon-box">📝</div>
+        <div class="card-body p-0">
+          <h5 class="card-title">Rapid 5 Quiz</h5>
+          <p class="small text-muted m-0">Random MCQ practice</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-md-3 mb-3">
+      <a href="" class="card quick-card p-3 h-100 text-reset text-decoration-none">
+        <div class="icon-box">📚</div>
+        <div class="card-body p-0">
+          <h5 class="card-title">Syllabus Explorer</h5>
+          <p class="small text-muted m-0">MSBTE K-Scheme</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-md-3 mb-3">
+      <a href="" class="card quick-card p-3 h-100 text-reset text-decoration-none">
+        <div class="icon-box">💼</div>
+        <div class="card-body p-0">
+          <h5 class="card-title">Resume Builder</h5>
+          <p class="small text-muted m-0">Smart templates</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-sm-6 col-md-3 mb-3">
+      <a href="" class="card quick-card p-3 h-100 text-reset text-decoration-none">
+        <div class="icon-box">🔔</div>
+        <div class="card-body p-0">
+          <h5 class="card-title">MSBTE Alerts</h5>
+          <p class="small text-muted m-0">Latest updates</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+<footer class="neon-footer">
+    <p> PolyRise — Keep Learning ❤️ Keep Rising</p>
+</footer>
+
+
+</div>
+
+  <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
