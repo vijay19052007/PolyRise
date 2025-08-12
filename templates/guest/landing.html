@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Welcome to PolyRise</title>
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -12,18 +13,45 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
-  #backg {
-    width: 100%;
-    min-height: 500px;
-    background-image: url("{% static 'images/background.jpg' %}");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin-top: 70px; 
-    padding-top: 150px; 
-    padding-bottom: 100px;
-    border-radius: 20px;
-  }
+    body {
+  font-family: 'Open Sans', sans-serif;
+}
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+    #backg {
+  background: radial-gradient(circle at 80% center, rgba(128,0,255,0.3) 0%, transparent 40%),
+              linear-gradient(135deg, #0a0a0f, #1a1a2e);
+  border-radius: 20px;
+  padding: 40px;
+}
+  /* Avatar glow effect */
+  .avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  transform: translateX(10px);
+}
+
+.avatar-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width:400px; /* adjust size of glow */
+  height: 350px;
+  background: radial-gradient(circle, rgba(83, 114, 216, 0.5) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 0;
+  filter: blur(40px);
+}
+
+.avatar-wrapper img {
+  position: relative;
+  z-index: 1;
+}
+
+
   .accordion-body {
     opacity: 0;
     transition: opacity 0.1s ease-in-out;
@@ -43,6 +71,16 @@
   transform: translateY(-5px);
   background: rgba(255,255,255,0.05);
 }
+.btn-light:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+.btn-outline-light:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
 
 
 </style>
@@ -51,18 +89,35 @@
 <body class="theme-dark">
 
   {% include 'partials/topbar_home.html' %}
-  <div class="container my-4 text-center text-white" id="backg">
-  <h1 class="display-4 fw-bold" data-aos="fade-down">Rise Beyond Limits !!!</h1>
-  <p class="lead" data-aos="fade-up">An All-in-One Academic Platform for Polytechnic Students</p>
-  <p data-aos="fade-up" data-aos-delay="200">
-    Study smarter. Track progress. Plan your career. All in one place.
-  </p>
   
-  <div class="mt-4" data-aos="zoom-in" data-aos-delay="400">
-    <a href="{% url 'signup' %}" class="btn btn-light me-3">Start with us</a>
-    <a href="{% url 'login' %}" class="btn btn-outline-light">Login</a>
+<div class="container my-2 text-white" id="backg">
+  <div class="row align-items-center">
+
+    <!-- Left side: Text content -->
+    <div class="col-md-6 text-center text-md-start" data-aos="fade-right">
+      <h1 class="display-4 fw-bold">Rise Beyond Limits </h1><h2>- Your All-in-One Academic Platform</h2>
+      <p class="lead">
+  Study smarter, track progress, and <span style="color:#ffbb00;">plan your career</span> — built for diploma students.
+</p>
+
+      <div class="mt-4">
+        <a href="{% url 'signup' %}" class="btn btn-light me-3">Start with us</a>
+        <a href="{% url 'login' %}" class="btn btn-outline-light">Login</a>
+      </div>
+    </div>
+
+    <!-- Right side: Avatar with glow -->
+    <div class="col-md-6 text-end pe-5" data-aos="fade-left">
+  <div class="avatar-wrapper">
+    <img src="{% static 'images/avatar1.png' %}" alt="Student Avatar" 
+         class="img-fluid" style="max-height: 550px;">
   </div>
 </div>
+
+
+  </div>
+</div>
+
 
 <!-- Features Section -->
 <section id="features" class="py-5 bg-dark" >
