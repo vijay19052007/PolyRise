@@ -70,3 +70,50 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+
+// dashboard_extra.js
+document.addEventListener('DOMContentLoaded', function(){
+  // --- Quotes (fallback). If you already have a script that sets #quote-text/#quote-author, remove this block.
+  const quotes = [
+    { text: "Small steps every day lead to bigger results.", author: "PolyRise" },
+    { text: "Practice more. Worry less. Learn faster.", author: "PolyRise" },
+    { text: "Knowledge grows when you teach it.", author: "PolyRise" }
+  ];
+  // Show quote of the day based on day index
+  const dayIndex = new Date().getDate() % quotes.length;
+  const q = quotes[dayIndex];
+  const quoteText = document.getElementById('quote-text');
+  const quoteAuthor = document.getElementById('quote-author');
+  if (quoteText) quoteText.textContent = q.text;
+  if (quoteAuthor) quoteAuthor.textContent = q.author;
+
+  // --- News rotation (simple)
+  const newsItems = [
+    { title: "AI Revolution in Engineering", body: "How artificial intelligence is transforming engineering practices.", link: "#" },
+    { title: "MSBTE Updates: Exam Dates", body: "New exam dates published for K-Scheme students.", link: "#" },
+    { title: "Top Internship Tips 2025", body: "How to prepare for campus drives and virtual interviews.", link: "#" }
+  ];
+  let newsIndex = 0;
+  const newsTitle = document.getElementById('news-title');
+  const newsBody = document.getElementById('news-body');
+  const newsLink = document.getElementById('news-link');
+  function showNews(i){
+    const item = newsItems[i % newsItems.length];
+    if (newsTitle) newsTitle.textContent = item.title;
+    if (newsBody) newsBody.textContent = item.body;
+    if (newsLink) newsLink.href = item.link;
+  }
+  showNews(newsIndex);
+  setInterval(function(){
+    newsIndex++;
+    showNews(newsIndex);
+  }, 8000);
+
+  // small UI nicety: animate quote fade
+  if (quoteText) {
+    quoteText.style.opacity = 0;
+    setTimeout(()=> quoteText.style.transition = "opacity .4s", 100);
+    setTimeout(()=> quoteText.style.opacity = 1, 120);
+  }
+});

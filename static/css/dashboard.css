@@ -14,7 +14,7 @@ body.theme-light {
 
 body.theme-neon {
   background-color: #0f0f0f;
-  color: #39ff14;
+  color: #68f0dc;
 }
 
 /* Reset margins/padding */
@@ -47,16 +47,17 @@ body, html {
 .logo-area {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 10spx;
 }
 
 .logo-img {
-  height: 32px;
+  height: 35px;
   width: auto;
 }
 
 .logo-text {
-  font-size: 20px;
+  font-size: 23px;
+  letter-spacing: 2px;
   font-weight: bold;
   background: linear-gradient(
     135deg,
