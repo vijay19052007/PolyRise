@@ -412,3 +412,73 @@ body.neon-theme .til-header {
     margin: 0;
 }
 
+ body {
+  font-family: 'Open Sans', sans-serif;
+}
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+    #backg {
+  background: radial-gradient(circle at 80% center, rgba(128,0,255,0.3) 0%, transparent 40%),
+              linear-gradient(135deg, #0a0a0f, #1a1a2e);
+  border-radius: 20px;
+  padding: 40px;
+}
+  /* Avatar glow effect */
+  .avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  transform: translateX(10px);
+}
+
+.avatar-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 40%;
+  right: -100px;
+  left: 20%;
+  width: 300px;  
+  height: 300px; 
+  background: radial-gradient(circle, rgba(128, 0, 255, 0.5) 0%, transparent 90%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 0;
+  filter: blur(60px);
+}
+
+
+.avatar-wrapper img {
+  position: relative;
+  z-index: 1;
+}
+
+
+  .accordion-body {
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+  }
+  .accordion-collapse.show .accordion-body {
+    opacity: 1;
+  }
+  .accordion-button:not(.collapsed) {
+    background-color: #898989;
+    color: white;
+    box-shadow: 10px;
+  }
+  .feature-card {
+  transition: all 0.3s ease;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255,255,255,0.05);
+}
+.btn-light:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+.btn-outline-light:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
