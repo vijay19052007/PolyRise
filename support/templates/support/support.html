@@ -1,82 +1,305 @@
 {% extends "base_dashboard.html" %}
-
 {% block title %}Support{% endblock %}
 {% load static %}
 
-
 {% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 <style>
-    body{
-        padding: 10px;
-    }
+/* Shared Styling */
+body {
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-    .theme-dark .name {
-        color: white;
+/* Section Card Styling */
+.section-card {
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Light Mode */
+.theme-light body {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+.theme-light .section-card {
+    background-color: #ffffff;
+    color: #212529;
+    border: 1px solid #dee2e6;
+}
+.theme-light .accordion-button {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+.theme-light .accordion-button:not(.collapsed) {
+    background-color: #e9ecef;
+}
+
+/* Dark Mode */
+.theme-dark body {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+.theme-dark .section-card {
+    background-color: #1e1e2f;
+    color: #f1f1f1;
+    border: 1px solid #444;
+}
+.theme-dark .accordion-button {
+    background-color: #2c2c3a;
+    color: #f1f1f1;
+}
+.theme-dark .accordion-button:not(.collapsed) {
+    background-color: #3a3a4d;
+}
+
+/* Section Titles */
+.section-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Social Icons */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: background-color 0.3s, transform 0.3s, color 0.3s;
+}
+.social-icon i {
+    font-size: 1.5rem;
+    color: currentColor;
+}
+.social-icon:hover {
+    transform: scale(1.2);
+    background-color: rgba(90,30,6,0.1);
+    color: #5a1e06;
+}
+
+/* Form Styling */
+input.form-control, textarea.form-control, select.form-select {
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+input.form-control:focus, textarea.form-control:focus, select.form-select:focus {
+    border-color: #5a1e06;
+    box-shadow: 0 0 5px rgba(90,30,6,0.5);
+}
+.btn-primary {
+    border-radius: 8px;
+}
+
+/* FAQ Accordion Hover */
+.accordion-button:hover {
+    background-color: rgba(90,30,6,0.1);
+}
+
+/* Responsive Centering */
+.text-center-md {
+    text-align: center;
+}
+@media(min-width:768px) {
+    .text-center-md {
+        text-align: left;
     }
-    .theme-neon .name {
-        color: skyblue;
-    }
+}
 </style>
-<h2>🤝Support & Connect</h2>
-<p>Get help and connect with the community</p>
-<!-- Bootstrap CSS -->
 
-<div class="container my-5">
-    <div class="row">
-        <!-- Left side doubt box -->
-        <div class="col-md-6">
-            <div class="card shadow-sm p-4">
-                <form method="POST" action="{% url 'submit_doubt' %}">
-                    {% csrf_token %}
-                    
-                    <h3 class="name mb-4 text-center">Anonymous Doubt Box</h3>
-                        {% if messages %}
-                        {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show py-2" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close py-3" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        {% endfor %}
-                        {% endif %}
-                    <!-- Category -->
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Category</label>
-                        <select name="category" id="category" class="form-select" required>
-                            <option value="technical">Technical Question</option>
-                            <option value="academic">Academic Doubt</option>
-                            <option value="career">Career Guidance</option>
-                            <option value="general">General Query</option>
-                        </select>
-                    </div>
-                    <!-- email -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input name="email" id="email" rows="5" class="form-control" placeholder="email" required>
-                    </div>
-                    <!-- Message -->
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Your Doubt</label>
-                        <textarea name="message" id="message" rows="5" class="form-control" placeholder="Ask your doubt anonymously..." required></textarea>
-                    </div>
-                    
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary w-100">
-                        Submit Doubt Anonymously
-                    </button>
-                    
-                </form>
-            </div>
-        </div>
-
-        <!-- Right side empty space or future content -->
-        <div class="col-md-7">
-            <!-- You can put other content here if needed -->
-        </div>
-    </div>
+<!-- Page Header -->
+<div class="text-center mb-5">
+    <h2>🤝 Support & Connect</h2>
+    <p class="lead">Get help and connect with the community</p>
 </div>
 
-<!-- Bootstrap JS (optional, for some components) -->
+<div class="container">
+    <!-- Doubt Box Section -->
+    <section>
+        <div class="section-card">
+            <h3 class="section-title">Anonymous Doubt Box</h3>
+            <form method="POST" action="{% url 'submit_doubt' %}">
+                {% csrf_token %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show py-2" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close py-3" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select name="category" id="category" class="form-select" required>
+                        <option value="technical">💻 Technical Question</option>
+                        <option value="academic">📘 Academic Doubt</option>
+                        <option value="career">🎯 Career Guidance</option>
+                        <option value="general">ℹ️ General Query</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input name="email" id="email" type="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Your Doubt</label>
+                    <textarea name="message" id="message" rows="5" class="form-control" placeholder="Ask your doubt anonymously..." required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary px-5">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section>
+        <div class="section-card shadow-sm p-4">
+            <h3 class="section-title">Frequently Asked Questions</h3>
+            <div class="accordion accordion-flush" id="faqAccordion">
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq1-heading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                            What is PolyRise and who is it for?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse" aria-labelledby="faq1-heading" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                        PolyRise is an educational platform designed for students, educators, and lifelong learners. It provides:
+                        <ul>
+                        <li>Study materials like notes, syllabus, and question papers.</li>
+
+                        <li>Tutorials, guidance, and support for academic success.</li>
+
+                        <li>A community where learners can connect, discuss, and share knowledge.</li>
+                        PolyRise is perfect for polytechnic students, college students, and anyone looking to enhance their learning in a structured and easy-to-access way.
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq2-heading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                            Is PolyRise completely free to use?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2-heading" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes! PolyRise is completely free for all users. You can access all notes, question papers, tutorials, and learning materials without any charges. Our goal is to make quality education accessible to everyone, with no hidden fees or subscriptions.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq3-heading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                            How do I access syllabus, notes, and question papers?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faq3-heading" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Accessing learning materials is simple:<br>
+
+                            1.Go to the Resources section on PolyRise.<br>
+
+                            2.Select your stream, subject, or semester.<br>
+
+                            3.You will find organized syllabus, notes, and previous question papers ready to view or download.<br>
+                            All materials are updated regularly to ensure you have the latest academic content.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq4-heading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                            Can I use PolyRise on my phone?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" aria-labelledby="faq4-heading" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes! PolyRise is fully mobile-friendly. You can access it via any smartphone or tablet using a browser. Our responsive design ensures that all features – from tutorials to discussion forums – work smoothly on smaller screens. No app download is required, but you can bookmark the site for quick access anytime.      
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq5-heading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                            I’m facing a login issue – what should I do?
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" aria-labelledby="faq5-heading" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            If you can’t log in:
+                            <ul>
+                                <li>
+                                Double-check that your email and password are correct.
+                                </li>
+                                Make sure Caps Lock is off.
+                                <li>
+                                Try clearing your browser cache or switching browsers.</li>
+                                <li>Still stuck? Click “Forgot Password” or contact support, and we’ll help you regain access quickly.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Contact Section -->
+    <section class="section-card text-center text-md-start">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <h2 class="fw-bold">About PolyRise</h2>
+                <p>
+                    PolyRise is an <strong>educational platform</strong> designed to help students access study materials, tutorials, notes, and previous question papers in one place. Our goal is to make learning <strong>easy, organized, and accessible</strong> for everyone, whether you’re a polytechnic student, college student, or lifelong learner.
+                </p>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <h2 class="fw-bold">Contact Us</h2>
+                <ul class="list-unstyled mb-3">
+                    <li><strong>Phone:</strong> +91-45223XXXXX</li>
+                    <li><strong>Email:</strong> <a href="mailto:support@polyrise.com">support@polyrise.com</a></li>
+                </ul>
+
+                <h5 class="fw-bold">Follow Us</h5>
+                <div class="d-flex justify-content-center align-items-center gap-1">
+                    <a href="#" class="text-decoration-none social-icon"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-decoration-none social-icon"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-decoration-none social-icon"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-decoration-none social-icon"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<!-- Initialize Tooltips -->
+<script>
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+</script>
 {% endblock %}
-

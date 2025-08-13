@@ -14,6 +14,6 @@ def submit_doubt(request):
         email=request.POST['email']
         question=doubt(category=ctg,message=msg,email=email)
         question.save() 
-        messages.success(request, "Profile details updated.")
+        messages.success(request, "Successfully send!!!")
         return HttpResponseRedirect("/support")
     return redirect('support')
