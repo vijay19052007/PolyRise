@@ -1,5 +1,53 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import *
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+@login_required
 def planner(request):
-    return render(request,"planner/planner.html")
+    # Timetable data
+    timetable_data = Timetable.objects.filter(user=request.user)
+    # Reminders data
+    reminders = Reminder.objects.filter(user=request.user).order_by('datetime')
+
+    return render(request, "planner/planner.html", {
+        'data': timetable_data,
+        'reminders': reminders
+    })
+
+@login_required
+def timetable_view(request):
+    if request.method == 'POST':
+        topic = request.POST['topic']
+        date = request.POST['date']
+        time = request.POST['time']
+        duration = request.POST['duration']
+
+        tt = Timetable(
+            user=request.user,
+            topic=topic,
+            date=date,
+            time=time,
+            duration=duration
+        )
+        tt.save() 
+
+        return redirect('planner') 
+
+    data = Timetable.objects.filter(user=request.user)
+    return render(request, "planner/planner.html", {'data': data})
+
+
+@login_required
+def add_reminder(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        datetime_value = request.POST.get('datetime')
+
+        if title and datetime_value:
+            Reminder.objects.create(
+                user=request.user,
+                title=title,
+                datetime=datetime_value
+            )
+
+    return redirect('planner')
