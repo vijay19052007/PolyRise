@@ -69,7 +69,7 @@
         </li>
 
         <li>
-          <a href="#" class="sidebar-link">
+          <a href="{% url 'notifications:notifications_list' %}" class="sidebar-link">
             <i class="bi bi-bell-fill"></i>
             <div class="menu-text">
               <span class="menu-title">Notifications & Alerts</span>
@@ -97,7 +97,7 @@
       <!-- Bottom User Info -->
       <div class="sidebar-user-box">
         <strong class="name">{{ request.user.profile.full_name|upper }}</strong>
-        <p class="text-muted medium m-0">
+        <p class="user-text medium m-0">
           {{ request.user.profile.department }} • {{ request.user.profile.year }}
         </p>
       </div>

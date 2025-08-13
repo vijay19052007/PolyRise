@@ -1,0 +1,91 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block title %}Notifications & Alerts - PolyRise{% endblock %}
+
+{% block extra_head %}
+<!-- Make sure Bootstrap Icons CSS is loaded in your base template or add here -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="{% static 'notifications/notifications.css' %}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+  <h2 class="mb-4">Notifications & Alerts</h2>
+
+  <!-- Filter Form -->
+  <form method="get" class="mb-4">
+    <label for="categorySelect" class="form-label">Filter by Category:</label>
+    <select name="category" id="categorySelect" class="form-select w-auto d-inline-block" onchange="this.form.submit()">
+      <option value="" {% if not current_category %}selected{% endif %}>All</option>
+      {% for code, name in categories %}
+      <option value="{{ code }}" {% if current_category == code %}selected{% endif %}>{{ name }}</option>
+      {% endfor %}
+    </select>
+  </form>
+
+  {% if notifications %}
+  <div class="row gy-3">
+    {% for note in notifications %}
+    <div class="col-12">
+      <div class="card shadow-sm notification-card">
+
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+
+            <h5 class="card-title mb-0">
+              {% if note.category == 'exam' %}
+                <i class="bi bi-file-earmark-text me-2" aria-label="Exam"></i>
+              {% elif note.category == 'result' %}
+                <i class="bi bi-trophy me-2" aria-label="Result"></i>
+              {% elif note.category == 'deadline' %}
+                <i class="bi bi-clock me-2" aria-label="Deadline"></i>
+              {% elif note.category == 'general' %}
+                <i class="bi bi-bell me-2" aria-label="General"></i>
+              {% else %}
+                <i class="bi bi-info-circle me-2" aria-label="Notification"></i>
+              {% endif %}
+              {{ note.title }}
+            </h5>
+
+            <span class="badge text-uppercase category-badge
+              {% if note.category == 'exam' %}badge-exam
+              {% elif note.category == 'result' %}badge-result
+              {% elif note.category == 'deadline' %}badge-deadline
+              {% elif note.category == 'general' %}badge-general
+              {% else %}badge-default
+              {% endif %}
+            ">
+              {{ note.get_category_display }}
+            </span>
+
+          </div>
+
+          <p class="card-text">{{ note.message }}</p>
+
+          <div>
+            {% if note.link %}
+              <a href="{{ note.link }}" target="_blank" class="btn btn-sm btn-outline-primary me-2">View Details</a>
+            {% endif %}
+            {% if note.attachment %}
+              <a href="{{ note.attachment.url }}" target="_blank" class="btn btn-sm btn-outline-secondary">Download PDF</a>
+            {% endif %}
+          </div>
+
+          <p class="text-muted small mt-3 mb-0">
+            <em>Valid until: <time datetime="{{ note.expiry_date }}">{{ note.expiry_date|date:"d M Y" }}</time></em>
+          </p>
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="text-muted">No notifications to show.</p>
+  {% endif %}
+
+</div>
+{% endblock %}

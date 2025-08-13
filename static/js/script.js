@@ -49,6 +49,11 @@ function setTheme(theme) {
   document.body.classList.remove("theme-light", "theme-dark", "theme-neon");
   document.body.classList.add("theme-" + theme);
   localStorage.setItem("theme", theme);
+
+document.querySelectorAll('.theme-toggle button').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('onclick') === `setTheme('${theme}')`);
+  });
+
 }
 
 // 📁 Sidebar Collapse/Expand Logic
