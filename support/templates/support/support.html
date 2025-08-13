@@ -1,5 +1,5 @@
 {% extends "base_dashboard.html" %}
-{% block title %}Support{% endblock %}
+{% block title %}Support & connect - PolyRise{% endblock %}
 {% load static %}
 
 {% block content %}
@@ -114,7 +114,7 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
 </style>
 
 <!-- Page Header -->
-<div class="text-center mb-5">
+<div class="text-center mb-2">
     <h2>🤝 Support & Connect</h2>
     <p class="lead">Get help and connect with the community</p>
 </div>
@@ -134,27 +134,28 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
                         </div>
                     {% endfor %}
                 {% endif %}
-
-                <div class="mb-3">
+                
+                <div class="mb-3"  style="margin-left: 20%;">
                     <label for="category" class="form-label">Category</label>
-                    <select name="category" id="category" class="form-select" required>
+                    <select name="category" id="category" class="form-select w-75" required>
                         <option value="technical">💻 Technical Question</option>
                         <option value="academic">📘 Academic Doubt</option>
                         <option value="career">🎯 Career Guidance</option>
                         <option value="general">ℹ️ General Query</option>
                     </select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3"  style="margin-left: 20%;">
                     <label for="email" class="form-label">Email</label>
-                    <input name="email" id="email" type="email" class="form-control" placeholder="Enter your email" required>
+                    <input name="email" id="email" type="email" class="form-control w-75" placeholder="Enter your email" required>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3"  style="margin-left: 20%;">
                     <label for="message" class="form-label">Your Doubt</label>
-                    <textarea name="message" id="message" rows="5" class="form-control" placeholder="Ask your doubt anonymously..." required></textarea>
+                    <textarea name="message" id="message" rows="5" class="form-control w-75" placeholder="Ask your doubt anonymously..." required></textarea>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary px-5">Submit</button>
                 </div>
+                
             </form>
         </div>
     </section>
