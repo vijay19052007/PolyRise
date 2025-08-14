@@ -128,10 +128,10 @@
             <a class="nav-link" id="reminders-tab" data-bs-toggle="tab" href="#reminders" role="tab">Reminders</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="activity-tab" data-bs-toggle="tab" href="#activity" role="tab">Activity Tracker</a>
+            <a class="nav-link" id="activity-tab" data-bs-toggle="tab" href="#activity" role="tab">Pomodoro Timer</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="engagement-tab" data-bs-toggle="tab" href="#engagement" role="tab">Engagement</a>
+            <a class="nav-link" id="engagement-tab" data-bs-toggle="tab" href="#engagement" role="tab">To Do-list</a>
         </li>
     </ul>
 
@@ -266,49 +266,145 @@
                 </div>
             </div>
         </div>
-
-
-        <!-- Activity Tracker Tab -->
+        <!-- Pomodoro Timer Tab -->
+        
         <div class="tab-pane fade" id="activity" role="tabpanel">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card planner-card">
-                        <div class="card-body">
-                            <p>Your activity stats will appear here.</p>
-                        </div>
-                    </div>
+            <div class="card planner-card p-3 text-center" style="max-width: 600px; margin: auto;">
+                <h4>⏳ Pomodoro Timer</h4>
+                
+                <!-- Time Display -->
+                <h1 id="timer" class="display-4">25:00</h1>
+                <p id="status" class="fw-bold">Work Session</p>
+                
+                <!-- Session Counter -->
+                <p>🎯 Sessions Completed: <span id="sessions">0</span></p>
+                
+                <!-- Time Settings -->
+                <div class="mb-3 text-center">
+                    <label>Work (mins):</label>
+                    <input type="number" id="workTime" value="25" min="1" max="60" class="form-control text-center mx-auto" style="width: 100px;">
+                    <label>Short Break (mins):</label>
+                    <input type="number" id="shortBreak" value="5" min="1" max="30" class="form-control text-center mx-auto" style="width: 100px;">
+                    <label>Long Break (mins):</label>
+                    <input type="number" id="longBreak" value="15" min="1" max="60" class="form-control text-center mx-auto" style="width: 100px;">
                 </div>
-                <div class="col-md-4">
-                    <div class="card planner-card">
-                        <div class="card-body">
-                            <p>Add activity filters or goals here.</p>
-                        </div>
-                    </div>
-                </div><br>
-                <h1>Coming soon..</h1>
+
+                <!-- Controls -->
+                <div class="d-flex justify-content-center gap-3">
+                    <button id="startBtn" class="btn btn-success px-3">Start</button>
+                    <button id="resetBtn" class="btn btn-danger px-3">Reset</button>
+                </div>
             </div>
         </div>
 
-        <!-- Engagement Tab -->
+
         <div class="tab-pane fade" id="engagement" role="tabpanel">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card planner-card">
-                        <div class="card-body">
-                            <p>Engagement history and participation logs.</p>
-                        </div>
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div class="card planner-card p-3">
+                        <h4 class="text-center mb-3">✅ To-Do List</h4>
+
+                        <form method="POST" action="{% url 'planner' %}" class="mb-3 text-center">
+                            {% csrf_token %}
+                            <div class="input-group w-100 mx-auto">
+                                <input type="text" name="title" class="form-control" placeholder="Add a task..." required>
+                                <button type="submit" name="add_todo" class="btn btn-success px-3">+</button>
+                            </div>
+                        </form>
+                        <!-- Task List -->
+                        <ul class="list-group">
+                            {% for todo in todos %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="{% if todo.completed %}text-decoration-line-through text-muted{% endif %}">
+                                        {{ todo.title }}
+                                    </span>
+                                    <div>
+                                        <a href="{% url 'toggle_todo' todo.pk %}" class="btn btn-sm btn-warning">✔</a>
+                                        <a href="{% url 'delete_todo' todo.pk %}" class="btn btn-sm btn-danger">✖</a>
+                                    </div>
+                                </li>
+                            {% empty %}
+                                <li class="list-group-item text-center text-muted">No tasks yet</li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card planner-card">
-                        <div class="card-body">
-                            <p>Add engagement targets or challenges here.</p>
-                        </div>
-                    </div>
-                </div><br>
-                <h1>Coming soon..</h1>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+let timerDisplay = document.getElementById("timer");
+let statusDisplay = document.getElementById("status");
+let sessionCountDisplay = document.getElementById("sessions");
+let workTimeInput = document.getElementById("workTime");
+let shortBreakInput = document.getElementById("shortBreak");
+let longBreakInput = document.getElementById("longBreak");
+let startBtn = document.getElementById("startBtn");
+let resetBtn = document.getElementById("resetBtn");
+
+let timer;
+let isRunning = false;
+let isWorkSession = true;
+let sessionCount = 0;
+let timeLeft;
+let cycles = 0; // Tracks cycles for long break
+
+function startTimer() {
+    if (isRunning) return;
+
+    let minutes = isWorkSession 
+        ? workTimeInput.value 
+        : (cycles % 4 === 0 ? longBreakInput.value : shortBreakInput.value);
+    
+    timeLeft = minutes * 60;
+
+    timer = setInterval(() => {
+        let min = Math.floor(timeLeft / 60);
+        let sec = timeLeft % 60;
+        timerDisplay.textContent = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+        timeLeft--;
+
+        if (timeLeft < 0) {
+            clearInterval(timer);
+            if (isWorkSession) {
+                sessionCount++;
+                cycles++;
+                sessionCountDisplay.textContent = sessionCount;
+            }
+            isWorkSession = !isWorkSession;
+            statusDisplay.textContent = isWorkSession 
+                ? "Work Session" 
+                : (cycles % 4 === 0 ? "Long Break" : "Short Break");
+            isRunning = false;
+            startTimer(); // Auto-start next session
+        }
+    }, 1000);
+
+    isRunning = true;
+}
+
+function resetTimer() {
+    clearInterval(timer);
+    isRunning = false;
+    isWorkSession = true;
+    sessionCount = 0;
+    cycles = 0;
+    sessionCountDisplay.textContent = "0";
+    statusDisplay.textContent = "Work Session";
+    timerDisplay.textContent = `${String(workTimeInput.value).padStart(2, '0')}:00`;
+}
+
+// Update display when settings change
+workTimeInput.addEventListener("input", () => {
+    if (!isRunning && isWorkSession) {
+        timerDisplay.textContent = `${String(workTimeInput.value).padStart(2, '0')}:00`;
+    }
+});
+
+startBtn.addEventListener("click", startTimer);
+resetBtn.addEventListener("click", resetTimer);
+</script>
+
 {% endblock %}
