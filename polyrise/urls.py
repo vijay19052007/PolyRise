@@ -19,13 +19,13 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),  # guest landing/home page
-    path('accounts/', include('accounts.urls')),  # accounts app handles signup, login, logout
+    path('', include('core.urls')),  
+    path('accounts/', include('accounts.urls')),  
     path('dashboard/', include('dashboard.urls')),
-    path('support/',include('support.urls')), #this is a suppourt
-    path('smarttools/',include('smarttools.urls')), #this is a suppourt 
-    path('planner/',include('planner.urls')), #this is a planner
+    path('support/',include('support.urls')), 
+    path('smarttools/',include('smarttools.urls')),
+    path('planner/',include('planner.urls')), 
     path('facultyzone/',include('facultyzone.urls')), 
-    path('notifications/', include('notifications.urls', namespace='notifications')),
+    path('notifications/', include('notifications.urls')),
 ]
 

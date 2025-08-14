@@ -497,13 +497,11 @@ body, html {
     margin-right: 0;
 }
 
-.sidebar.collapsed .sidebar-footer i {
-    margin-right: 0;
+.sidebar.collapsed .panel{
+  display: none; /* Hide only the text */
 }
 
-/* -----------------------
-   USER INFO BOX
------------------------- */
+
 
 .sidebar-user-box {
   background-color: white;
@@ -566,6 +564,12 @@ body, html {
 .sidebar-user-box:hover {
   background: rgba(45, 45, 70, 0.95);
   border-color: rgba(123, 97, 255, 0.5);
+}
+
+.panel{
+  color: rgb(86, 78, 112);
+  text-align: center;
+  margin-top: 20px;
 }
 
 /* -----------------------

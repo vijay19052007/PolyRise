@@ -30,7 +30,7 @@ class SignupForm(forms.Form):
         if role == 'faculty':
             if not access_code:
                 raise forms.ValidationError("Faculty Access Code is required")
-            valid_code = getattr(settings, 'FACULTY_ACCESS_CODE', 'PR-TEACH-2025')
+            valid_code = getattr(settings, 'FACULTY_ACCESS_CODE', 'Passion')
             if access_code != valid_code:
                 raise forms.ValidationError("Invalid Faculty Access Code")
 

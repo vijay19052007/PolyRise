@@ -11,47 +11,54 @@
 </head>
 <body>
 
-   <div class="sidebar" id="sidebar">
-    <!-- Sidebar -->      
+<div class="sidebar" id="sidebar">
+  <!-- Sidebar -->
   <ul class="sidebar-menu">
-     <li>
-     <div class="sidebar-heading text-center py-4 primary-text fs-5 fw-bold border-bottom">
-      <img src="{% static 'images/defaultf1.png' %}" class="profile-side" alt="Faculty Profile"><br><br>
-        <h5> Hello, Prof. {{ request.user.profile.full_name }} </h5>
-       
-      </div>
-     </li>
     <li>
-      <i class="bi bi-speedometer2"></i>
-      <div class="menu-text">
-        <span class="menu-title">My Dashboard</span>
-        <small class="menu-desc">Personal analytics</small>
+      <div class="sidebar-heading text-center py-4 primary-text fs-5 fw-bold border-bottom">
+        <img src="{% static 'images/defaultf1.png' %}" class="profile-side" alt="Faculty Profile"><br><br>
+        <h5>Hello, Prof. {{ request.user.profile.full_name }}</h5>
       </div>
     </li>
 
     <li>
-      <i class="bi bi-bar-chart-fill me-2"></i>
-      <div class="menu-text">
-        <span class="menu-title">Faculty Zone</span>
-        <small class="menu-desc">Notes, papers & syllabus</small>
-      </div>
-    </li>
-
-   
-    <li>
-      <i class="bi bi-bell-fill"></i>
-      <div class="menu-text">
-        <span class="menu-title">Notifications & Alerts</span>
-        <small class="menu-desc">MSBTE updates & news</small>
-      </div>
+      <a href="" class="sidebar-link">
+        <i class="bi bi-speedometer2"></i>
+        <div class="menu-text">
+          <span class="menu-title">My Dashboard</span>
+          <small class="menu-desc">Personal analytics</small>
+        </div>
+      </a>
     </li>
 
     <li>
-      <i class="bi bi-people-fill"></i>
-      <div class="menu-text">
-        <span class="menu-title">Connect</span>
-        <small class="menu-desc">Help & community</small>
-      </div>
+      <a href="" class="sidebar-link">
+        <i class="bi bi-bar-chart-fill me-2"></i>
+        <div class="menu-text">
+          <span class="menu-title">Faculty Zone</span>
+          <small class="menu-desc">Notes, papers & syllabus</small>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a href="{% url 'notifications:notifications_list' %}" class="sidebar-link">
+        <i class="bi bi-bell-fill"></i>
+        <div class="menu-text">
+          <span class="menu-title">Notifications & Alerts</span>
+          <small class="menu-desc">MSBTE updates & news</small>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a href="" class="sidebar-link">
+        <i class="bi bi-people-fill"></i>
+        <div class="menu-text">
+          <span class="menu-title">Connect</span>
+          <small class="menu-desc">Help & community</small>
+        </div>
+      </a>
     </li>
   </ul>
 
@@ -60,14 +67,11 @@
     <i class="bi bi-chevron-left" id="collapseArrow"></i>
   </div>
 
-      <div class="sidebar-footer px-4 mt-auto text-secondary small">
-        <hr class="bg-secondary" />
-        <div class="text-center">
-          <i class="bi bi-book me-1"></i> PolyRise Faculty Panel
-          
-        </div>
-      </div>
   
-    
+    <div class="panel">
+      <i class="bi bi-book me-1"></i> PolyRise Faculty Panel
+    </div>
+  
+
 </body>
 </html>

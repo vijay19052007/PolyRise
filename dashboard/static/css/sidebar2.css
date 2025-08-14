@@ -129,6 +129,9 @@ body, html {
   z-index: 999;
 }
 
+.sidebar-link{
+  cursor: default;
+}
 .sidebar-menu {
   list-style: none;
   padding: 0;
