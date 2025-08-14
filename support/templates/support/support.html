@@ -124,39 +124,43 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
     <section>
         <div class="section-card">
             <h3 class="section-title">Anonymous Doubt Box</h3>
-            <form method="POST" action="{% url 'submit_doubt' %}">
+            <form method="POST" action="{% url 'submit_doubt' %}" class="mx-auto w-75">
                 {% csrf_token %}
                 {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-{{ message.tags }} alert-dismissible fade show py-2" role="alert">
                             {{ message }}
-                            <button type="button" class="btn-close py-3" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>
                     {% endfor %}
                 {% endif %}
-                
-                <div class="mb-3"  style="margin-left: 20%;">
+
+                <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
-                    <select name="category" id="category" class="form-select w-75" required>
+                    <select name="category" id="category" class="form-select" required>
+                        <option value="">-- Select Category --</option>
                         <option value="technical">💻 Technical Question</option>
                         <option value="academic">📘 Academic Doubt</option>
                         <option value="career">🎯 Career Guidance</option>
                         <option value="general">ℹ️ General Query</option>
                     </select>
                 </div>
-                <div class="mb-3"  style="margin-left: 20%;">
+
+                <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input name="email" id="email" type="email" class="form-control w-75" placeholder="Enter your email" required>
+                    <input name="email" id="email" type="email" class="form-control" placeholder="Enter your email" required>
                 </div>
-                <div class="mb-3"  style="margin-left: 20%;">
+
+                <div class="mb-3">
                     <label for="message" class="form-label">Your Doubt</label>
-                    <textarea name="message" id="message" rows="5" class="form-control w-75" placeholder="Ask your doubt anonymously..." required></textarea>
+                    <textarea name="message" id="message" rows="5" class="form-control" placeholder="Ask your doubt anonymously..." required></textarea>
                 </div>
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary px-5">Submit</button>
                 </div>
-                
             </form>
+
         </div>
     </section>
 

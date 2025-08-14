@@ -25,6 +25,7 @@ urlpatterns = [
     path('support/',include('support.urls')), #this is a suppourt
     path('smarttools/',include('smarttools.urls')), #this is a suppourt 
     path('planner/',include('planner.urls')), #this is a planner
-     path('notifications/', include('notifications.urls', namespace='notifications')),
+    path('facultyzone/',include('facultyzone.urls')), 
+    path('notifications/', include('notifications.urls', namespace='notifications')),
 ]
 

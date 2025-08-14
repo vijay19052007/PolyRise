@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import *
 from .models import *
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 @login_required
 def planner(request):
@@ -35,19 +36,17 @@ def timetable_view(request):
 
     data = Timetable.objects.filter(user=request.user)
     return render(request, "planner/planner.html", {'data': data})
-
-
 @login_required
 def add_reminder(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         datetime_value = request.POST.get('datetime')
-
-        if title and datetime_value:
+        priority = request.POST.get('priority')
+        if title and datetime_value and priority:
             Reminder.objects.create(
                 user=request.user,
                 title=title,
-                datetime=datetime_value
+                datetime=datetime_value,
+                priority=priority
             )
-
     return redirect('planner')
