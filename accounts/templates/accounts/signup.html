@@ -101,15 +101,17 @@
     const yearField = document.getElementById('id_year').parentElement;
 
     function toggleRoleFields() {
-      const role = roleSelect.value;
+      const role = roleSelect.value.toLowerCase(); // ✅ case-insensitive match
       facultyCodeGroup.style.display = role === 'faculty' ? 'block' : 'none';
-      deptField.style.display = role === 'student' ? 'block' : 'none';
-      yearField.style.display = role === 'student' ? 'block' : 'none';
+      const isStudent = role === 'student';
+      deptField.style.display = isStudent ? 'block' : 'none';
+      yearField.style.display = isStudent ? 'block' : 'none';
     }
 
     toggleRoleFields();
     roleSelect.addEventListener('change', toggleRoleFields);
   });
 </script>
+
 </body>
 </html>

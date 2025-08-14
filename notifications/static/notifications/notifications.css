@@ -197,6 +197,9 @@ form.mb-4 {
   align-items: center;
 }
 
+.text-mut{
+  margin-left: 10px;
+}
 
 .theme-dark h2.mb-4 {
   color: #f0f0f0;
@@ -251,9 +254,10 @@ form.mb-4 {
   color: #999;
 }
 
-.theme-dark .text-muted {
-  background: #2a2a3a;
-  border-color: #4a4a5a;
+.theme-dark .text-mut {
+  margin-left: 10px;
+  border-color: #07fbfb;
+  color: #e0e0e0;
 }
 
 
@@ -308,9 +312,9 @@ form.mb-4 {
   color: #999;
 }
 
-.theme-neon .text-muted {
-  background: #2a2a3a;
-  border-color: #4a4a5a;
+.theme-neon .text-mut {
+  margin-left: 10px;
+  color: rgb(66, 160, 172);
 }
 
 /* Responsive */
