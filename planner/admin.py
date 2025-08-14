@@ -3,3 +3,4 @@ from .models import *
 # Register your models here.
 admin.site.register(Timetable)
 admin.site.register(Reminder)
+admin.site.register(Todo)
