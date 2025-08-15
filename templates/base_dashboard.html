@@ -29,17 +29,17 @@
    
      {% if user.is_authenticated %}
         {% if user.is_superuser %}
-        {% elif user.profile.role == 'student' %}
+        {% elif user.profile.role|lower == 'student' %}
             {% include 'dashboard/partials/sidebar1.html' %}
-        {% elif user.profile.role == 'faculty' %}
+        {% elif user.profile.role|lower == 'faculty' %}
             {% include 'dashboard/partials/sidebar2.html' %}
         {% endif %}
     {% endif %}
 
     <div class="content-area">
-      {% block content %}
-      {% endblock %}
+        {% block content %}{% endblock %}
     </div>
+
   </div>
 
 
