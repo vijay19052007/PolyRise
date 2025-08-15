@@ -1,4 +1,3 @@
-# forms.py
 from django import forms
 from django.core.validators import EmailValidator
 from .models import Doubt
@@ -18,5 +17,4 @@ class DoubtForm(forms.ModelForm):
     
     def clean(self):
         cleaned_data = super().clean()
-        # Additional custom validation (if needed)
         return cleaned_data
