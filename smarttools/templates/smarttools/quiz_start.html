@@ -1,0 +1,38 @@
+{% extends "base_dashboard.html" %}
+{% block title %}MCQ Practice{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">📝 MCQ Practice</h2>
+    <p class="text-center text-muted">Test your knowledge and see how you score!</p>
+
+    {% if score is not None %}
+        <div class="alert alert-info text-center">
+            <h4>🎯 Your Score: {{ score }} / {{ total }}</h4>
+            <a href="{% url 'quiz_start' %}" class="btn btn-success mt-2">Try Again</a>
+            <a href="{% url 'tools' %}" class="btn btn-primary mt-2">Go back</a>
+        </div>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {% for q in questions %}
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Q{{ forloop.counter }}: {{ q.question }}</h5>
+                        {% for opt in q.options %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="question_{{ forloop.parentloop.counter0 }}" value="{{ opt }}" required>
+                                <label class="form-check-label">{{ opt }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary px-4">Submit</button>
+            </div>
+            
+        </form>
+    {% endif %}
+</div>
+{% endblock %}

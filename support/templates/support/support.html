@@ -124,38 +124,60 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
     <section>
         <div class="section-card">
             <h3 class="section-title">Anonymous Doubt Box</h3>
-            <form method="POST" action="{% url 'submit_doubt' %}" class="mx-auto w-75">
+            <form method="POST" action="{% url 'submit_doubt' %}" class="mx-auto w-75" novalidate>
                 {% csrf_token %}
+                
+                <!-- Messages (Bootstrap 5) -->
                 {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-{{ message.tags }} alert-dismissible fade show py-2" role="alert">
                             {{ message }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     {% endfor %}
                 {% endif %}
 
+                <!-- Category Field -->
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
-                    <select name="category" id="category" class="form-select" required>
+                    <select name="category" id="category" class="form-select {% if form.errors.category %}is-invalid{% endif %}" required>
                         <option value="">-- Select Category --</option>
-                        <option value="technical">💻 Technical Question</option>
-                        <option value="academic">📘 Academic Doubt</option>
-                        <option value="career">🎯 Career Guidance</option>
-                        <option value="general">ℹ️ General Query</option>
+                        <option value="technical" {% if form.data.category == 'technical' %}selected{% endif %}>💻 Technical Question</option>
+                        <option value="academic" {% if form.data.category == 'academic' %}selected{% endif %}>📘 Academic Doubt</option>
+                        <option value="career" {% if form.data.category == 'career' %}selected{% endif %}>🎯 Career Guidance</option>
+                        <option value="general" {% if form.data.category == 'general' %}selected{% endif %}>ℹ️ General Query</option>
                     </select>
+                    {% if form.errors.category %}
+                        <div class="invalid-feedback">{{ form.errors.category.0 }}</div>
+                    {% endif %}
                 </div>
 
+                <!-- Email Field -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input name="email" id="email" type="email" class="form-control" placeholder="Enter your email" required>
+                    <input name="email" id="email" type="email" 
+                        class="form-control {% if form.errors.email %}is-invalid{% endif %}" 
+                        placeholder="your@email.com" 
+                        value="{{ form.data.email|default:'' }}" 
+                        required>
+                    {% if form.errors.email %}
+                        <div class="invalid-feedback">{{ form.errors.email.0 }}</div>
+                    {% endif %}
                 </div>
 
+                <!-- Message Field -->
                 <div class="mb-3">
                     <label for="message" class="form-label">Your Doubt</label>
-                    <textarea name="message" id="message" rows="5" class="form-control" placeholder="Ask your doubt anonymously..." required></textarea>
+                    <textarea name="message" id="message" rows="5" 
+                            class="form-control {% if form.errors.message %}is-invalid{% endif %}" 
+                            placeholder="Describe your doubt in detail..." 
+                            required>{{ form.data.message|default:'' }}</textarea>
+                    {% if form.errors.message %}
+                        <div class="invalid-feedback">{{ form.errors.message.0 }}</div>
+                    {% endif %}
                 </div>
 
+                <!-- Submit Button -->
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary px-5">Submit</button>
                 </div>

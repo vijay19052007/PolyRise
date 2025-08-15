@@ -1,11 +1,115 @@
 {% extends "base_dashboard.html" %}
-{%block title%}Smart tools{% endblock%}
+{% block title %}Smart Tools{% endblock %}
 {% block content %}
-<!-- Page Header -->
-<div class="text-center mb-2 py-2">
-    <h2> 🧠Smart Learning Tools</h2>
-    <p class="lead">Interactive study tools to enhance your learning experience</p>
+
+<div class="container py-3">
+  
+  <div class="text-center mb-3">
+    <h2>🧠 Smart Learning Tools</h2>
+    <p class="text-muted">Interactive study tools to enhance your learning experience</p>
+  </div>
+
+  
+  <ul class="nav nav-tabs justify-content-center" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#mcq" type="button">MCQ Practice</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#flashcards" type="button">Flashcards</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#playground" type="button">Coding Playground</button></li>
+  </ul>
+
+  <div class="tab-content mt-3">
+
+    
+    <div class="tab-pane fade show active" id="mcq">
+      <div class="card p-4">
+        <h4 class="text-center mb-1">MCQ Practice</h4>
+        <p class="text-center text-muted">Test your knowledge with subject-wise multiple choice questions</p>
+
+        <div class="row g-3 text-center mt-2">
+          <div class="col-12 col-md-4">
+            <div class="p-3 rounded bg-light border"><span class="h4">{{ total_questions|default:10 }}</span><br><small>Questions</small></div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="p-3 rounded bg-light border"><span class="h4">{{ time_limit|default:"1:00" }}</span><br><small>Time Limit</small></div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="p-3 rounded bg-light border"><span class="h4">{{ difficulty|default:"Mixed" }}</span><br><small>Difficulty</small></div>
+          </div>
+        </div>
+
+        <div class="text-center mt-3">
+          
+          <a href="{% url 'quiz_start' %}" class="btn btn-dark px-4">▶ Start Quiz</a>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="flashcards">
+      <div class="card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="mb-0">Flashcards</h4>
+          <div>
+            <button id="prevCard" class="btn btn-outline-secondary btn-sm">◀ Prev</button>
+            <button id="nextCard" class="btn btn-outline-secondary btn-sm">Next ▶</button>
+          </div>
+        </div>
+
+        <div id="flashcard" class="border rounded p-4 text-center" style="min-height:160px;cursor:pointer;">
+          <div class="text-muted">Click to flip</div>
+          <div id="flashFront" class="h5 mt-2">What is a pointer?</div>
+          <div id="flashBack" class="h5 mt-2 d-none">A variable that stores a memory address.</div>
+        </div>
+
+        <div class="text-center mt-2">
+          <small class="text-muted">Card <span id="cardIndex">1</span>/<span id="cardTotal">3</span></small>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="tab-pane fade" id="playground">
+      <div class="card p-3">
+        <h5 class="mb-3">Coding Playground</h5>
+        <iframe src="https://onecompiler.com/python" width="100%" height="350"></iframe>
+      </div>
+    </div>
+
+  </div>
 </div>
 
+<script>
+const cards = [
+  {q: "What is a pointer?", a: "A variable that stores a memory address."},
+  {q: "HTTP stands for?", a: "HyperText Transfer Protocol."},
+  {q: "DBMS primary key?", a: "A unique identifier for a record."}
+];
+let idx = 0, flipped = false;
+const flashFront = document.getElementById('flashFront');
+const flashBack  = document.getElementById('flashBack');
+const flashcard  = document.getElementById('flashcard');
+const cardIndex  = document.getElementById('cardIndex');
+const cardTotal  = document.getElementById('cardTotal');
+if (cardTotal) cardTotal.textContent = cards.length;
+
+function renderCard() {
+  if (!flashFront) return;
+  flashFront.textContent = cards[idx].q;
+  flashBack.textContent  = cards[idx].a;
+  cardIndex.textContent  = (idx+1);
+  flipped = false;
+  flashBack.classList.add('d-none');
+  flashFront.classList.remove('d-none');
+}
+flashcard?.addEventListener('click', () => {
+  flipped = !flipped;
+  flashFront.classList.toggle('d-none', flipped);
+  flashBack.classList.toggle('d-none', !flipped);
+});
+document.getElementById('prevCard')?.addEventListener('click', ()=>{ idx=(idx-1+cards.length)%cards.length; renderCard(); });
+document.getElementById('nextCard')?.addEventListener('click', ()=>{ idx=(idx+1)%cards.length; renderCard(); });
+renderCard();
+
+
+</script>
+
 {% endblock %}
-    
