@@ -1,4 +1,3 @@
-# views.py
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
@@ -6,7 +5,7 @@ from .models import Doubt
 from .forms import DoubtForm
 
 def support(request):
-    form = DoubtForm()  # Pass empty form for GET requests
+    form = DoubtForm() 
     return render(request, "support/support.html", {'form': form})
 
 def submit_doubt(request):
@@ -15,7 +14,7 @@ def submit_doubt(request):
         
         if form.is_valid():
             try:
-                form.save()  # Saves the doubt to the database
+                form.save()
                 messages.success(
                     request,
                     "Your doubt has been submitted! We'll contact you via email."
@@ -25,14 +24,12 @@ def submit_doubt(request):
                     request,
                     "An error occurred. Please try again later."
                 )
-                # Log the error (e.g., using `logging` for debugging)
+               
         else:
-            # Display form errors to the user
+            
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.error(request, f"{field.capitalize()}: {error}")
-        
-        return redirect(reverse('support'))  # Always redirect after POST
+        return redirect(reverse('support'))
     
-    # If not POST, redirect to support page
     return redirect(reverse('support'))
