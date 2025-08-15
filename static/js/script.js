@@ -122,3 +122,21 @@ document.addEventListener('DOMContentLoaded', function(){
     setTimeout(()=> quoteText.style.opacity = 1, 120);
   }
 });
+
+
+$(document).ready(function(){
+    $('.tab-btn').click(function(){
+        var tab = $(this).data('tab');
+        $('.tab-btn').removeClass('active');
+        $(this).addClass('active');
+        $('.tab-section').removeClass('active');
+        $('#' + tab).addClass('active');
+    });
+
+    $('#add-note-btn').click(function(){
+        $('#add-note-form').toggle();
+    });
+});
+
+
+

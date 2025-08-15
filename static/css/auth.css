@@ -1,4 +1,4 @@
-/* === Body === */
+
 .signup-body {
   background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
   height: 100vh;
@@ -7,13 +7,13 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* === Wrapper === */
+
 .signup-wrapper {
   height: 100vh;
   display: flex;
 }
 
-/* === Left === */
+
 .auth-left {
   flex: 1;
   background: transparent;
@@ -21,7 +21,7 @@
   color: white;
 }
 
-/* === Right === */
+
 .auth-right {
   flex: 1;
   background: rgba(255, 255, 255, 0.02);
@@ -30,7 +30,7 @@
   justify-content: center;
 }
 
-/* === Card === */
+
 .glass-box {
   backdrop-filter: blur(18px);
   background: rgba(255, 255, 255, 0.1);
@@ -54,7 +54,7 @@
   height: 36px;
 }
 
-/* === Button === */
+
 .btn-gradient {
   background: linear-gradient(to right, #00c6ff, #0072ff);
   color: white;
@@ -73,13 +73,13 @@ form label {
   font-weight: 500;
 }
 
-/* Smaller bottom link text */
+
 .glass-box p {
   font-size: 12px;
   margin-top: 16px;
 }
 
-/* === Typing Effect === */
+
 .typing-effect {
   font-size: 14px;
   white-space: nowrap;
@@ -99,7 +99,7 @@ form label {
   50% { border-color: white; }
 }
 
-/* === Responsive === */
+
 @media (max-width: 768px) {
   .signup-wrapper {
     flex-direction: column;
@@ -114,47 +114,3 @@ form label {
 }
 
 
-
-/* ========== LOGIN PAGE ========== */
-
-.login-wrapper {
-  background: linear-gradient(to bottom right, #6a11cb, #2575fc);
-  height: 100vh; /* Full screen height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.login-card {
-  background-color: #ffffff; /* Solid white box */
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2); /* subtle shadow */
-  width: 100%;
-  max-width: 420px;
-  color: #333; /* dark text for readability */
-}
-
-.login-card h4 {
-  font-weight: bold;
-  color: #202124; /* Professional dark heading */
-}
-
-.login-card p {
-  font-size: 14px;
-  color: #666;
-}
-
-
-/* Responsive Login Fix */
-@media (max-width: 768px) {
-  .login-wrapper {
-    height: auto;
-    padding: 40px 20px;
-  }
-
-  .login-card {
-    padding: 25px 20px;
-  }
-}

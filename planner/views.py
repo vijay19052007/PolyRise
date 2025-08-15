@@ -1,96 +1,91 @@
-from django.shortcuts import *
-from .models import *
-from .forms import *
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Timetable, Reminder, Todo
+from .forms import TodoForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 @login_required
 def planner(request):
-    # Timetable data
-    timetable_data = Timetable.objects.filter(user=request.user)
-    # Reminders data
-    reminders = Reminder.objects.filter(user=request.user).order_by('datetime')
-    # Todos data for the engagement tab
-    todos = Todo.objects.filter(user=request.user).order_by('-created_at')
+    try:
+        timetable_data = Timetable.objects.filter(user=request.user)
+        reminders = Reminder.objects.filter(user=request.user).order_by('datetime')
+        todos = Todo.objects.filter(user=request.user).order_by('-created_at')
+    except Exception as e:
+        messages.error(request, f"Error loading data: {str(e)}")
+        timetable_data = []
+        reminders = []
+        todos = []
 
-    # Handle adding new todo
     if request.method == "POST" and 'add_todo' in request.POST:
         title = request.POST.get('title')
         if title:
-            Todo.objects.create(user=request.user, title=title)
-        return redirect('planner')  # redirect to avoid resubmission
+            try:
+                Todo.objects.create(user=request.user, title=title)
+                messages.success(request, "Todo added successfully!")
+            except Exception as e:
+                messages.error(request, f"Error adding todo: {str(e)}")
+        return redirect('planner')
 
     return render(request, "planner/planner.html", {
         'data': timetable_data,
         'reminders': reminders,
-        'todos': todos
+        'todos': todos,
+        'todo_form': TodoForm()
     })
-
 
 @login_required
 def timetable_view(request):
     if request.method == 'POST':
-        topic = request.POST['topic']
-        date = request.POST['date']
-        time = request.POST['time']
-        duration = request.POST['duration']
+        try:
+            Timetable.objects.create(
+                user=request.user,
+                topic=request.POST['topic'],
+                date=request.POST['date'],
+                time=request.POST['time'],
+                duration=request.POST['duration']
+            )
+            messages.success(request, "Timetable entry added!")
+        except Exception as e:
+            messages.error(request, f"Error: {str(e)}")
+        return redirect('planner')
+    return redirect('planner')
 
-        tt = Timetable(
-            user=request.user,
-            topic=topic,
-            date=date,
-            time=time,
-            duration=duration
-        )
-        tt.save() 
-
-        return redirect('planner') 
-
-    data = Timetable.objects.filter(user=request.user)
-    return render(request, "planner/planner.html", {'data': data})
 @login_required
-
 def add_reminder(request):
     if request.method == 'POST':
-        title = request.POST.get('title')
-        datetime_value = request.POST.get('datetime')
-        priority = request.POST.get('priority')
-        if title and datetime_value and priority:
+        try:
             Reminder.objects.create(
                 user=request.user,
-                title=title,
-                datetime=datetime_value,
-                priority=priority
+                title=request.POST.get('title'),
+                datetime=request.POST.get('datetime'),
+                priority=request.POST.get('priority')
             )
+            messages.success(request, "Reminder added!")
+        except Exception as e:
+            messages.error(request, f"Error adding reminder: {str(e)}")
     return redirect('planner')
+
 @login_required
 def engagement_view(request):
-    todos = Todo.objects.filter(user=request.user).order_by('-created_at')
-    todo_form = TodoForm()
-
-    if request.method == 'POST':
-        if 'add_todo' in request.POST:
-            todo_form = TodoForm(request.POST)
-            if todo_form.is_valid():
-                todo = todo_form.save(commit=False) 
-                todo.user = request.user         
-                todo.save()                         
-                return redirect('planner')
-
-    return render(request, 'planner.html', {
-        'todos': todos,
-        'todo_form': todo_form
-    })
+    return redirect('planner')
 
 @login_required
 def delete_todo(request, pk):
-    todo = get_object_or_404(Todo, pk=pk, user=request.user)
-    todo.delete()
+    try:
+        todo = get_object_or_404(Todo, pk=pk, user=request.user)
+        todo.delete()
+        messages.success(request, "Todo deleted!")
+    except Exception as e:
+        messages.error(request, f"Error deleting todo: {str(e)}")
     return redirect('planner')
 
 @login_required
 def toggle_todo(request, pk):
-    todo = get_object_or_404(Todo, pk=pk, user=request.user)
-    todo.completed = not todo.completed
-    todo.save()
+    try:
+        todo = get_object_or_404(Todo, pk=pk, user=request.user)
+        todo.completed = not todo.completed
+        todo.save()
+        messages.success(request, "Todo updated!")
+    except Exception as e:
+        messages.error(request, f"Error updating todo: {str(e)}")
     return redirect('planner')

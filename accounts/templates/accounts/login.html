@@ -5,51 +5,325 @@
 {% block title %}Login - PolyRise{% endblock %}
 
 {% block content %}
-<div class="login-wrapper d-flex align-items-center justify-content-center min-vh-100 px-3">
-  <div class="login-card shadow p-4 rounded-4" style="width: 100%; max-width: 400px; background: white;">
-    <div class="text-center mb-4">
-      <img src="{% static 'images/logo.png' %}" alt="PolyRise Logo" style="height: 40px;" />
-      <h4 class="mt-3">Welcome Back to PolyRise 👋</h4>
-      <p class="text-muted small">Sign in to access your personalized dashboard</p>
+  {% include 'partials/topbar_home.html' %}
+
+<div id="login-page-container">
+  <!-- Welcome Section -->
+  <div id="welcome-section">
+    <div id="welcome-content">
+      <h1>Welcome Back to PolyRise</h1>
+      <p id="welcome-message">We're thrilled to see you again. Sign in to access your personalized dashboard and continue your learning journey with us.</p>
+      <ul id="welcome-features">
+        <li>Access all your features and materials</li>
+        <li>Create you career plan easily with us</li>
+        <li>Connect with instructors and peers</li>
+      </ul>
     </div>
+  </div>
 
-    <form method="POST" novalidate autocomplete="off">
-      {% csrf_token %}
-      {{ form.non_field_errors }}
+  <div id="login-section">
+    <div id="login-form-container">
+      <h2 id="login-title">Sign In</h2>
+      <p id="login-subtitle">Enter your credentials to continue</p>
 
-      <div class="mb-3">
-        {{ form.role.label_tag }}
-        {{ form.role|add_class:"form-select" }}
-        {{ form.role.errors }}
-      </div>
+      <form method="POST" novalidate autocomplete="off" id="auth-form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
 
-      <div class="mb-3" id="username-group">
-        {{ form.username.label_tag }}
-        {{ form.username|add_class:"form-control" }}
-        {{ form.username.errors }}
-      </div>
+        <div class="form-field">
+          {{ form.role.label_tag }}
+          {{ form.role|add_class:"form-input" }}
+          {{ form.role.errors }}
+        </div>
 
-      <div class="mb-3">
-        {{ form.password.label_tag }}
-        {{ form.password|add_class:"form-control" }}
-        {{ form.password.errors }}
-      </div>
+        <div class="form-field" id="username-group">
+          {{ form.username.label_tag }}
+          {{ form.username|add_class:"form-input" }}
+          {{ form.username.errors }}
+        </div>
 
-      <div class="form-check mb-3">
-        <input type="checkbox" class="form-check-input" id="remember_me" name="remember_me" />
-        <label class="form-check-label" for="remember_me">Remember Me</label>
-      </div>
+        <div class="form-field">
+          {{ form.password.label_tag }}
+          {{ form.password|add_class:"form-input" }}
+          {{ form.password.errors }}
+        </div>
+         
+        <div id="form-options">
+          <div class="remember-me">
+            <input type="checkbox" id="remember_me" name="remember_me">
+            <label for="remember_me">Remember me</label>
+          </div>
+          <a href="#" id="forgot-password">Forgot password?</a>
+        </div>
 
-      <div class="d-grid">
-        <button type="submit" class="btn btn-primary">Login</button>
-      </div>
-    </form>
+        <button type="submit" id="login-button">Login</button>
 
-    <p class="mt-3 text-center">
-      Don't have an account? <a href="{% url 'signup' %}">Create one</a>
-    </p>
+        <p id="signup-redirect">Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+      </form>
+    </div>
   </div>
 </div>
+
+<style>
+ 
+html, body {
+    overflow: hidden;
+    height: 100%;
+  }
+
+  #login-page-container {
+    display: flex;
+    min-height: 100vh;
+    background-image: url('{% static "images/loginbg.avif" %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 60px;
+  }
+
+  
+  #welcome-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+
+  #welcome-content {
+    max-width: 600px;
+    margin-top: -220px;
+  }
+
+  #welcome-logo {
+    height: 50px;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  }
+
+  #welcome-section h1 {
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  #welcome-message {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    opacity: 0.9;
+  }
+
+  #welcome-features {
+    list-style: none;
+    padding: 0;
+    font-size: 1rem;
+  }
+
+  #welcome-features li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 30px;
+  }
+
+  #welcome-features li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #4299e1;
+    font-weight: bold;
+  }
+
+  
+  #login-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+
+    #login-form-container {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18),
+                inset 0 0 16px rgba(255, 255, 255, 0.15);
+    margin-top: -130px;
+    height: 560px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  }
+
+  #login-form-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+
+  #login-title {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  #login-subtitle {
+    color: rgba(200, 235, 255, 0.9);
+    font-size: 1rem;
+    margin-bottom: 30px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+
+  .form-field {
+    margin-bottom: 24px;
+    padding: 6px;
+    height: 60px;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #ffffff;
+    transition: all 0.3s ease;
+  }
+
+  .form-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .form-input:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(100, 200, 255, 0.3);
+    outline: none;
+  }
+
+  #form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0;
+    font-size: 0.9rem;
+  }
+
+  .remember-me {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .remember-me input {
+    margin-right: 8px;
+    accent-color: #4facfe;
+  }
+
+  #forgot-password {
+    color: rgba(150, 220, 255, 0.9);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  #forgot-password:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(100, 200, 255, 0.6);
+  }
+
+  #login-button {
+    width: 100%;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 70%);
+  }
+
+  #login-button:active {
+    transform: translateY(0);
+  }
+
+  #login-button::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0) 45%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 55%
+    );
+    transform: rotate(30deg);
+    transition: all 0.6s ease;
+  }
+
+  #login-button:hover::after {
+    left: 100%;
+  }
+
+  #signup-redirect {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  #signup-redirect a {
+    color: #4facfe;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  #signup-redirect a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(100, 200, 255, 0.4);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 992px) {
+    #login-form-container {
+      margin-top: 0;
+      height: auto;
+    }
+  }
+
+  @media (max-width: 576px) {
+    #login-form-container {
+      padding: 30px 20px;
+      border-radius: 12px;
+    }
+    
+    #login-title {
+      font-size: 1.8rem;
+    }
+  }
+</style>
 
 <script>
   // Role label toggle
@@ -71,4 +345,6 @@
   }
 </script>
 
+
 {% endblock %}
+
