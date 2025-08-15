@@ -1,0 +1,82 @@
+/* Container */
+.resume-builder, .resume-preview {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card styling */
+.card {
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+
+/* Resume header */
+.resume-header {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+}
+
+.profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #333;
+}
+
+/* Input & textarea styling */
+.form-control {
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+}
+
+.form-control:focus {
+    border-color: #333;
+    box-shadow: none;
+}
+
+/* Button styling */
+.btn-dark {
+    background-color: #333;
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+.btn-dark:hover {
+    background-color: #555;
+}
+
+/* Resume sections */
+.resume-section h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.resume-section p {
+    font-size: 0.95rem;
+    color: #555;
+    white-space: pre-line;
+}
+
+/* Centering buttons in preview */
+.text-center a.btn {
+    min-width: 120px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .resume-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-photo {
+        margin-bottom: 10px;
+    }
+}

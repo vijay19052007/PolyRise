@@ -1,0 +1,106 @@
+{% extends "base_dashboard.html" %}
+{% load static %}
+
+{% block title %}Career Launchpad - PolyRise{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/career.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="career-container" class="container py-5">
+  <div id="career-header" class="text-center mb-5">
+    <h1 id="career-title">Career Launchpad</h1>
+    <p id="career-desc">Explore all tools to build your career, from resumes to interview prep!</p>
+  </div>
+
+  <div id="career-grid" class="row g-4">
+
+    <div class="col-lg-4 col-md-6">
+      <div id="resume-card" class="career-card">
+        <div class="card-header">
+          <i class="bi bi-file-earmark-person-fill card-icon"></i>
+          <h5 class="card-title">Smart Resume Builder</h5>
+        </div>
+        <div class="card-image">
+          <img src="{% static 'images/resume.jpg' %}" id="resume-img" class="img-fluid">
+        </div>
+        <p class="card-text">Auto-filled resume templates ready to download and showcase your skills professionally.</p>
+        <a href="{% url 'resume_builder' %}" class="btn btn-primary w-70">Open</a>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+      <div id="project-card" class="career-card">
+        <div class="card-header">
+          <i class="bi bi-lightbulb-fill card-icon"></i>
+          <h5 class="card-title">Final Year Project Ideas</h5>
+        </div>
+        <div class="card-image">
+          <img src="{% static 'images/ideas.jpg' %}" id="project-img" class="img-fluid">
+        </div>
+        <p class="card-text">Explore project ideas with recommended tech stacks and sample references for inspiration.</p>
+        <a href="" class="btn btn-success w-70">Open</a>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+      <div id="aptitude-card" class="career-card">
+        <div class="card-header">
+          <i class="bi bi-journal-text card-icon"></i>
+          <h5 class="card-title">Aptitude MCQ Practice</h5>
+        </div>
+        <div class="card-image">
+          <img src="{% static 'images/apti.avif' %}" id="aptitude-img" class="img-fluid">
+        </div>
+        <p class="card-text">Sharpen your logical, verbal, and quantitative skills with interactive practice tests.</p>
+        <a href="" class="btn btn-warning w-70">Start</a>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+      <div id="hr-card" class="career-card">
+        <div class="card-header">
+          <i class="bi bi-people-fill card-icon"></i>
+          <h5 class="card-title">HR Interview Practice</h5>
+        </div>
+        <div class="card-image">
+          <img src="{% static 'images/hr.png' %}" id="hr-img" class="img-fluid">
+        </div>
+        <p class="card-text">Prepare for interviews with common HR questions and model answers to ace your discussions.</p>
+        <a href="" class="btn btn-danger w-70">View</a>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+      <div id="tips-card" class="career-card">
+        <div class="card-header">
+          <i class="bi bi-camera-video-fill card-icon"></i>
+          <h5 class="card-title">Interview Tips Library</h5>
+        </div>
+        <div class="card-image">
+          <img src="{% static 'images/tips.jpg' %}" id="tips-img" class="img-fluid">
+        </div>
+        <p class="card-text">Watch curated interview videos to learn strategies and tips from industry experts.</p>
+        <a href="" class="btn btn-info w-70">Watch</a>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+      <div id="quiz-card" class="career-card">
+        <div class="card-header">
+          <i class="bi bi-card-checklist card-icon"></i>
+          <h5 class="card-title">Career Interest Quiz</h5>
+        </div>
+        <div class="card-image">
+          <img src="{% static 'images/quize.jpg' %}" id="quiz-img" class="img-fluid">
+        </div>
+        <p class="card-text">Discover career paths matching your interests with a fun and interactive quiz.</p>
+        <a href="" class="btn btn-secondary w-70">Start</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

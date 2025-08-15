@@ -1,0 +1,276 @@
+#career-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#career-header {
+    margin-bottom: 3rem;
+    animation: slideDown 0.8s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#career-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: all 0.4s ease;
+}
+
+#career-desc {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    transition: all 0.4s ease;
+}
+
+#career-grid {
+    justify-content: center;
+}
+
+.career-card {
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transform: translateY(0);
+    animation: cardEntrance 0.6s ease-out;
+    animation-fill-mode: backwards;
+}
+
+@keyframes cardEntrance {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.career-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.card-header {
+    padding: 1.5rem 1.5rem 0;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.career-card:hover .card-icon {
+    transform: scale(1.1);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.card-image {
+    padding: 0 1.5rem;
+    margin: 1rem 0;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.card-image img {
+    border-radius: 8px;
+    max-height: 150px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.career-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.card-text {
+    padding: 0 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.career-card .btn {
+    margin: 1.5rem;
+    padding: 0.75rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    transform: translateY(0);
+}
+
+.career-card:hover .btn {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+body.theme-light {
+    background-color: #f9f9f9;
+    color: #222;
+}
+
+body.theme-light #career-desc,
+body.theme-light .card-text {
+    color: #4a5568;
+}
+
+body.theme-light .career-card {
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+body.theme-light .card-title {
+    color: #2d3748;
+}
+
+body.theme-dark {
+    background-color: #121212;
+    color: #f4f4f4;
+}
+
+body.theme-dark #career-desc,
+body.theme-dark .card-text {
+    color: #e2e8f0;
+}
+
+body.theme-dark .career-card {
+    background: #1e293b;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.theme-dark .card-title {
+    color: #f8fafc;
+}
+
+body.theme-dark .btn {
+    color: white;
+}
+
+body.theme-neon {
+    background-color: #0f0f0f;
+    color: #68f0dc;
+}
+
+body.theme-neon #career-desc,
+body.theme-neon .card-text {
+    color: #a7f3e0;
+}
+
+body.theme-neon .career-card {
+    background: #1a1a1a;
+    box-shadow: 0 0 15px rgba(104, 240, 220, 0.2);
+    border: 1px solid rgba(104, 240, 220, 0.1);
+}
+
+body.theme-neon .career-card:hover {
+    box-shadow: 0 0 25px rgba(104, 240, 220, 0.3);
+}
+
+body.theme-neon .card-title {
+    color: #68f0dc;
+}
+
+body.theme-neon .btn {
+    background: transparent;
+    border: 1px solid #68f0dc;
+    color: #68f0dc;
+}
+
+body.theme-neon .btn:hover {
+    background: rgba(104, 240, 220, 0.1);
+}
+
+
+#resume-card .card-icon { color: #3b82f6; }
+#project-card .card-icon { color: #10b981; }
+#aptitude-card .card-icon { color: #f59e0b; }
+#hr-card .card-icon { color: #ef4444; }
+#tips-card .card-icon { color: #06b6d4; }
+#quiz-card .card-icon { color: #64748b; }
+
+
+body.theme-dark #resume-card .card-icon,
+body.theme-neon #resume-card .card-icon { color: #60a5fa; }
+
+body.theme-dark #project-card .card-icon,
+body.theme-neon #project-card .card-icon { color: #34d399; }
+
+body.theme-dark #aptitude-card .card-icon,
+body.theme-neon #aptitude-card .card-icon { color: #fbbf24; }
+
+body.theme-dark #hr-card .card-icon,
+body.theme-neon #hr-card .card-icon { color: #f87171; }
+
+body.theme-dark #tips-card .card-icon,
+body.theme-neon #tips-card .card-icon { color: #22d3ee; }
+
+body.theme-dark #quiz-card .card-icon,
+body.theme-neon #quiz-card .card-icon { color: #94a3b8; }
+
+
+@media (max-width: 768px) {
+    #career-title {
+        font-size: 2rem;
+    }
+    
+    #career-desc {
+        font-size: 1rem;
+    }
+    
+    .card-header {
+        padding: 1rem 1rem 0;
+    }
+}
+
+@media (max-width: 576px) {
+    #career-title {
+        font-size: 1.75rem;
+    }
+    
+    .career-card {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+}
+
+
+#career-grid .col-lg-4:nth-child(1) .career-card { animation-delay: 0.1s; }
+#career-grid .col-lg-4:nth-child(2) .career-card { animation-delay: 0.2s; }
+#career-grid .col-lg-4:nth-child(3) .career-card { animation-delay: 0.3s; }
+#career-grid .col-lg-4:nth-child(4) .career-card { animation-delay: 0.4s; }
+#career-grid .col-lg-4:nth-child(5) .career-card { animation-delay: 0.5s; }
+#career-grid .col-lg-4:nth-child(6) .career-card { animation-delay: 0.6s; }

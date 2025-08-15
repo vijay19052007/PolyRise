@@ -1,0 +1,75 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block title %}Resume Builder - PolyRise{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'career/css/resume.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="resume-builder container mt-5">
+    <h2 class="text-center mb-3">📄 Resume Builder</h2>
+    <p class="text-center text-muted mb-4">Create your professional resume easily</p>
+
+    <div class="card shadow-sm mx-auto p-4" style="max-width: 900px;">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <input type="text" name="full_name" value="{{ form.full_name.value }}" placeholder="Full Name" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <input type="email" name="email" value="{{ form.email.value }}" placeholder="Email" class="form-control">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <input type="text" name="phone" value="{{ form.phone.value }}" placeholder="Phone Number" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <select name="template" class="form-control">
+                        <option value="classic">Classic Template</option>
+                        <option value="modern">Modern Template</option>
+                        <option value="creative">Creative Template</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <textarea name="education" rows="3" placeholder="Education" class="form-control">{{ form.education.value }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <textarea name="skills" rows="3" placeholder="Skills" class="form-control">{{ form.skills.value }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <textarea name="projects" rows="3" placeholder="Projects" class="form-control">{{ form.projects.value }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <textarea name="achievements" rows="3" placeholder="Achievements" class="form-control">{{ form.achievements.value }}</textarea>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <input type="url" name="linkedin" value="{{ form.linkedin.value }}" placeholder="LinkedIn Profile" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <input type="url" name="github" value="{{ form.github.value }}" placeholder="GitHub Profile" class="form-control">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="photo" class="form-label">Profile Photo</label>
+                <input type="file" name="photo" accept="image/*" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-dark w-100 mt-3">Generate Resume</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

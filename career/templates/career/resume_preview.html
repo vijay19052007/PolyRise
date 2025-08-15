@@ -1,0 +1,53 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block title %}Resume Preview - PolyRise{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'career/css/resume.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="resume-preview container mt-5">
+    <div class="card shadow-sm mx-auto p-4" style="max-width: 900px;">
+        <div class="resume-header d-flex align-items-center mb-4">
+            {% if photo_url %}
+            <img src="{{ photo_url }}" alt="Profile Photo" class="profile-photo me-3">
+            {% endif %}
+            <div>
+                <h2>{{ full_name }}</h2>
+                <p class="text-muted">{{ email }} | {{ phone }}</p>
+                <p class="text-muted">
+                    {% if linkedin %}<a href="{{ linkedin }}" target="_blank">LinkedIn</a>{% endif %}
+                    {% if github %} | <a href="{{ github }}" target="_blank">GitHub</a>{% endif %}
+                </p>
+            </div>
+        </div>
+
+        <div class="resume-section mb-3">
+            <h4>Education</h4>
+            <p>{{ education|linebreaks }}</p>
+        </div>
+
+        <div class="resume-section mb-3">
+            <h4>Skills</h4>
+            <p>{{ skills|linebreaks }}</p>
+        </div>
+
+        <div class="resume-section mb-3">
+            <h4>Projects</h4>
+            <p>{{ projects|linebreaks }}</p>
+        </div>
+
+        <div class="resume-section mb-3">
+            <h4>Achievements</h4>
+            <p>{{ achievements|linebreaks }}</p>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'resume_builder' %}" class="btn btn-secondary me-2">Edit</a>
+            <a href="{% url 'career_home' %}" class="btn btn-dark">Done</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
