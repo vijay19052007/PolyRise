@@ -10,7 +10,7 @@ class Syllabus(models.Model):
     ('E&TC', 'Electrical & Telecommunication Engineering'),
     ('CE', 'Civil Engineering'),
     ]
-    SEMESTER_CHOICES = [(i, f'Semester {i}') for i in range(1, 9)]
+    SEMESTER_CHOICES = [(i, f'Semester {i}') for i in range(1, 7)]
 
     title = models.CharField(max_length=200)
     branch = models.CharField(max_length=20, choices=BRANCH_CHOICES)
@@ -29,7 +29,7 @@ class PreviousYearPaper(models.Model):
     ('E&TC', 'Electrical & Telecommunication Engineering'),
     ('CE', 'Civil Engineering'),
     ]
-    SEMESTER_CHOICES = [(i, f'Semester {i}') for i in range(1, 9)]
+    SEMESTER_CHOICES = [(i, f'Semester {i}') for i in range(1, 7)]
     EXAM_CHOICES = [
         ('Winter', 'Winter'),
         ('Summer', 'Summer'),

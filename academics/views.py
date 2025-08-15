@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def resources_view(request):
+    active_tab = request.GET.get('active_tab', 'syllabus')
     branch = request.GET.get('branch')
     semester = request.GET.get('semester')
     subject = request.GET.get('subject')
@@ -57,8 +58,8 @@ def resources_view(request):
         'faculty_notes_list': faculty_notes_list,
         'personal_notes_list': personal_notes_list,
         'semesters': semesters,
+        'active_tab': active_tab,
     })
-
 
 @login_required
 def edit_personal_note(request, pk):
@@ -70,7 +71,6 @@ def edit_personal_note(request, pk):
         note.save()
         return redirect('resources')
     return render(request, 'academics/edit_personal_note.html', {'note': note})
-
 
 @login_required
 def delete_personal_note(request, pk):

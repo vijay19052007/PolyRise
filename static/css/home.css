@@ -1,4 +1,4 @@
-/* === Theme background (outer page) === */
+
 body.theme-dark {
   background-color: #111;
 }
@@ -9,57 +9,52 @@ body.theme-neon {
   background-color: #0c0c2c;
 }
 
-/* === Main content padding === */
-/* === Main content padding === */
 .main-content,
 .content-area {
   padding: 0;
   overflow-x: hidden;
   width: 100%;
   margin-left: 0;
-  /* Correct scrollbar hiding syntax: */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+ 
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 
-/* Proper WebKit scrollbar hiding must be separate */
+
 .main-content::-webkit-scrollbar,
 .content-area::-webkit-scrollbar {
-  display: none; /* Chrome/Safari/Opera */
+  display: none; 
 }
 
-/* === Hero section box - FIXED === */
+
 .hero-box {
   background: linear-gradient(115deg, #0831e4 0%, #7b06f1 50%, #42bef4 100%);
   border-radius: 20px;
   padding: 30px 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   margin: 30px 0;
-  /* FIXED: Use 100% width instead of fixed pixel */
   width: 100%;
-  max-width: 1500px; /* Maximum width */
-  /* Better centering */
+  max-width: 1500px; 
   margin-left: auto;
   margin-right: auto;
-  /* Ensure proper overflow */
   box-sizing: border-box;
 }
 
-/* Rest of your CSS remains good, but add this for full-page scrollbar hiding: */
+
 html {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 html::-webkit-scrollbar {
-  display: none; /* Chrome/Safari/Opera */
+  display: none; 
 }
 
 body {
-  -webkit-overflow-scrolling: touch; /* Smooth iOS scrolling */
-  overflow-y: scroll; /* Always reserve scroll space */
+  -webkit-overflow-scrolling: touch; 
+  overflow-y: scroll; 
 }
-/* === Left content === */
-.welcome-tag {
+
+     .welcome-tag {
   background: rgba(255, 255, 255, 0.1);
   padding: 6px 14px;
   border-radius: 20px;
@@ -69,17 +64,17 @@ body {
   display: inline-block;
 }
 
-.big-heading {
+   .big-heading {
   font-size: 52px;
   font-weight: 800;
   line-height: 1.2;
 }
 
 .hero-desc {
-  margin-top: 20px;
-  font-size: 18px;
-  line-height: 1.6;
-  max-width: 550px;
+   margin-top: 20px;
+    font-size: 18px;
+   line-height: 1.6;
+  max-width: 550px; 
 }
 
 .hero-buttons .btn {
@@ -90,7 +85,7 @@ body {
 }
 
 
-/* === Right content (cap icon area) === */
+
 .hero-right .cap-box {
   position: relative;
   display: inline-block;
@@ -110,7 +105,7 @@ body {
   font-size: 24px;
 }
 
-/* === Student stats box === */
+
 .student-box {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
@@ -140,9 +135,9 @@ body {
   color: #fff;
 }
 
-/* === Daily Quote Box === */
+
 .quote-box {
-  background: linear-gradient(135deg, #f29b06, #fa8304f3);
+  background: linear-gradient(135deg, #f23906, #fa8304f3);
   border-radius: 15px;
   color: white;
   max-width: 100%;
@@ -157,7 +152,7 @@ body {
   animation: pulse 1.5s infinite alternate;
 }
 
-/* === Animations === */
+
 @keyframes floatUpDown {
   0% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
@@ -169,7 +164,7 @@ body {
   100% { opacity: 1; transform: scale(1.05); }
 }
 
-/* === Responsive adjustments === */
+
 @media (max-width: 768px) {
   .big-heading {
     font-size: 36px;
@@ -209,7 +204,7 @@ body {
   box-shadow: 0 6px 20px rgba(0,0,0,0.5);
 }
 :root {
-  /* Base Colors - Dark Theme */
+  
   --bg: #0f0f10;
   --panel: #111014;
   --text: #ffffff;
@@ -220,7 +215,7 @@ body {
   --border: rgba(255,255,255,0.03);
 }
 
-/* Light Theme */
+
 .theme-light {
   --bg: #f8f9fa;
   --panel: #ffffff;
@@ -229,7 +224,7 @@ body {
   --border: rgba(0,0,0,0.03);
 }
 
-/* Neon Theme */
+
 .theme-neon {
   --bg: #0c0c2c;
   --panel: #1a1a3e;
@@ -241,7 +236,7 @@ body {
   --border: rgba(57,255,20,0.1);
 }
 
-/* Base Card Styles */
+
 .card {
   background: var(--panel);
   border: 1px solid var(--border);
@@ -249,20 +244,20 @@ body {
   transition: all 0.2s ease;
 }
 
-/* Headings inside cards */
+
 .card h4, .card h5 {
   color: var(--text);
   font-weight: 600;
 }
 
-/* Muted text fix */
+
 .card p, 
 .text-m, 
 .small {
   color: var(--text-muted) !important;
 }
 
-/* Highlight Card */
+
 .highlight-card {
   border-left: 3px solid var(--accent);
   background: linear-gradient(135deg, rgba(123, 97, 255, 0.08), rgba(0, 0, 0, 0.1));
@@ -274,7 +269,7 @@ body {
   background: linear-gradient(135deg, rgba(57, 255, 20, 0.12), rgba(0, 0, 0, 0.15));
 }
 
-/* News Card */
+
 .news-card {
   border-left: 3px solid var(--accent-2);
   background: linear-gradient(135deg, rgba(255, 138, 0, 0.08), rgba(0, 0, 0, 0.1));
@@ -283,7 +278,7 @@ body {
   background: linear-gradient(135deg, rgba(255, 0, 255, 0.12), rgba(0, 0, 0, 0.15));
 }
 
-/* Badge Styles */
+
 .badge-feature {
   background: rgba(123,97,255,0.15);
   padding: 6px 12px;
@@ -302,7 +297,6 @@ body {
   background: rgba(255,0,255,0.15);
 }
 
-/* Quick Access Hover */
 .quick-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 18px rgba(0,0,0,0.25);
@@ -315,7 +309,7 @@ body {
   box-shadow: 0 0 15px rgba(57,255,20,0.3);
 }
 
-/* Quick Access Icon Box */
+
 .icon-box {
   width: 52px;
   height: 52px;
@@ -329,7 +323,7 @@ body {
   margin-bottom: 12px;
 }
 
-/* Illustration Images */
+
 .highlight-illus,
 .news-illus {
   width: 100px;
@@ -342,7 +336,7 @@ body {
     display: none;
   }
 }
-/* Base TIL Box Styles */
+
 .til-box {
     border-radius: 12px;
     overflow: hidden;
@@ -351,13 +345,13 @@ body {
     transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-/* Hover effect */
+
 .til-box:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
-/* Header Styling */
+
 .til-header {
     padding: 10px 15px;
     font-weight: bold;
@@ -366,7 +360,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* Content Styling */
+
 .til-content {
     padding: 15px;
     font-size: 0.95rem;
@@ -375,19 +369,19 @@ body {
     color: var(--til-text);
 }
 
-/* ===== Light Theme ===== */
+
 body.light-theme {
     --til-bg: #ffffff;
     --til-text: #222;
 }
 
-/* ===== Dark Theme ===== */
+
 body.dark-theme {
     --til-bg: #1f1f1f;
     --til-text: #f1f1f1;
 }
 
-/* ===== Neon Theme ===== */
+
 body.neon-theme {
     --til-bg: #0d0d0d;
     --til-text: #0ff;
@@ -424,7 +418,7 @@ h1, h2, h3 {
   border-radius: 20px;
   padding: 40px;
 }
-  /* Avatar glow effect */
+  
   .avatar-wrapper {
   position: relative;
   display: inline-block;

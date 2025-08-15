@@ -15,29 +15,28 @@
     </div>
 
     <div class="tabs mb-3">
-        <button class="tab-btn active" data-tab="syllabus">Syllabus Explorer</button>
-        <button class="tab-btn" data-tab="papers">Previous Papers</button>
-        <button class="tab-btn" data-tab="faculty_notes">Study Notes</button>
-        <button class="tab-btn" data-tab="personal_notes">My Notes</button>
+        <button class="tab-btn {% if active_tab == 'syllabus' %}active{% endif %}" data-tab="syllabus">Syllabus Explorer</button>
+        <button class="tab-btn {% if active_tab == 'papers' %}active{% endif %}" data-tab="papers">Previous Papers</button>
+        <button class="tab-btn {% if active_tab == 'faculty_notes' %}active{% endif %}" data-tab="faculty_notes">Study Notes</button>
+        <button class="tab-btn {% if active_tab == 'personal_notes' %}active{% endif %}" data-tab="personal_notes">My Notes</button>
     </div>
 
     <div class="tab-content">
-
-        <!-- Syllabus Explorer -->
-        <div id="syllabus" class="tab-section active">
+        <div id="syllabus" class="tab-section {% if active_tab == 'syllabus' %}active{% endif %}">
             <div class="filters mb-2">
-                <form method="get">
+                <form method="get" action=".">
+                    <input type="hidden" name="active_tab" value="syllabus">
                     <select name="branch">
                         <option value="">Select Branch</option>
-                        <option value="CO">Computer Engineering</option>
-                        <option value="CE">Civil Engineering</option>
-                        <option value="E&TC">Electrical & Telecommunication Engineering</option>
-                        <option value="Mech">Mechanical Engineering</option>
+                        <option value="CO" {% if request.GET.branch == "CO" %}selected{% endif %}>Computer Engineering</option>
+                        <option value="CE" {% if request.GET.branch == "CE" %}selected{% endif %}>Civil Engineering</option>
+                        <option value="E&TC" {% if request.GET.branch == "E&TC" %}selected{% endif %}>Electrical & Telecommunication Engineering</option>
+                        <option value="Mech" {% if request.GET.branch == "Mech" %}selected{% endif %}>Mechanical Engineering</option>
                     </select>
                     <select name="semester">
                         <option value="">Select Semester</option>
                         {% for i in semesters %}
-                        <option value="{{ i }}">{{ i }}</option>
+                        <option value="{{ i }}" {% if request.GET.semester == i|stringformat:"s" %}selected{% endif %}>{{ i }}</option>
                         {% endfor %}
                     </select>
                     <button type="submit">Filter</button>
@@ -46,8 +45,8 @@
             <div id="cards">
                 {% for item in syllabus_list %}
                 <div id="card">
-                    <h5>{{ item.title }}</h5>
-                    <p>{{ item.branch }} | Semester {{ item.semester }}</p>
+                    <h5><i class="bi bi-journal-text"></i>{{ item.title }}</h5>
+                    <p><i class="bi bi-book"></i> {{ item.branch }} | Semester {{ item.semester }}</p>
                     <a href="{{ item.file.url }}" class="btn btn-primary" download>Download</a>
                 </div>
                 {% empty %}
@@ -56,29 +55,29 @@
             </div>
         </div>
 
-        <!-- Previous Papers -->
-        <div id="papers" class="tab-section">
+        <div id="papers" class="tab-section {% if active_tab == 'papers' %}active{% endif %}">
             <div class="filters mb-2">
-                <form method="get">
+                <form method="get" action=".">
+                    <input type="hidden" name="active_tab" value="papers">
                     <select name="branch">
-                         <option value="">Select Branch</option>
-                        <option value="CO">Computer Engineering</option>
-                        <option value="CE">Civil Engineering</option>
-                        <option value="E&TC">Electrical & Telecommunication Engineering</option>
-                        <option value="Mech">Mechanical Engineering</option>
+                        <option value="">Select Branch</option>
+                        <option value="CO" {% if request.GET.branch == "CO" %}selected{% endif %}>Computer Engineering</option>
+                        <option value="CE" {% if request.GET.branch == "CE" %}selected{% endif %}>Civil Engineering</option>
+                        <option value="E&TC" {% if request.GET.branch == "E&TC" %}selected{% endif %}>Electrical & Telecommunication Engineering</option>
+                        <option value="Mech" {% if request.GET.branch == "Mech" %}selected{% endif %}>Mechanical Engineering</option>
                     </select>
                     <select name="semester">
                         <option value="">Select Semester</option>
                         {% for i in semesters %}
-                        <option value="{{ i }}">{{ i }}</option>
+                        <option value="{{ i }}" {% if request.GET.semester == i|stringformat:"s" %}selected{% endif %}>{{ i }}</option>
                         {% endfor %}
                     </select>
-                    <input type="text" name="subject" placeholder="Subject">
-                    <input type="number" name="year" placeholder="Year">
+                    <input type="text" name="subject" placeholder="Subject" value="{{ request.GET.subject }}">
+                    <input type="number" name="year" placeholder="Year" value="{{ request.GET.year }}">
                     <select name="exam_type">
                         <option value="">Select Exam</option>
-                        <option value="Winter">Winter</option>
-                        <option value="Summer">Summer</option>
+                        <option value="Winter" {% if request.GET.exam_type == "Winter" %}selected{% endif %}>Winter</option>
+                        <option value="Summer" {% if request.GET.exam_type == "Summer" %}selected{% endif %}>Summer</option>
                     </select>
                     <button type="submit">Filter</button>
                 </form>
@@ -86,8 +85,9 @@
             <div id="cards">
                 {% for item in papers_list %}
                 <div id="card">
-                    <h5>{{ item.subject }} - {{ item.exam_name }}</h5>
-                    <p>{{ item.branch }} | Sem {{ item.semester }} | {{ item.year }} | {{ item.exam_type }}</p>
+                    <h5><i class="bi bi-file-earmark-text"></i> {{ item.subject }} - {{ item.exam_name }}</h5>
+                    <p><i class="bi bi-building"></i> {{ item.branch }} | Sem {{ item.semester }}</p>
+                    <p><i class="bi bi-calendar-event"></i> {{ item.year }} | {{ item.exam_type }}</p>
                     <a href="{{ item.file.url }}" class="btn btn-primary" download>Download</a>
                 </div>
                 {% empty %}
@@ -96,32 +96,33 @@
             </div>
         </div>
 
-        <!-- Faculty Notes -->
-        <div id="faculty_notes" class="tab-section">
+        <div id="faculty_notes" class="tab-section {% if active_tab == 'faculty_notes' %}active{% endif %}">
             <div class="filters mb-2">
-                <form method="get">
+                <form method="get" action=".">
+                    <input type="hidden" name="active_tab" value="faculty_notes">
                     <select name="branch">
                         <option value="">Select Branch</option>
-                        <option value="CO">Computer Engineering</option>
-                        <option value="CE">Civil Engineering</option>
-                        <option value="E&TC">Electrical & Telecommunication Engineering</option>
-                        <option value="Mech">Mechanical Engineering</option>
+                        <option value="CO" {% if request.GET.branch == "CO" %}selected{% endif %}>Computer Engineering</option>
+                        <option value="CE" {% if request.GET.branch == "CE" %}selected{% endif %}>Civil Engineering</option>
+                        <option value="E&TC" {% if request.GET.branch == "E&TC" %}selected{% endif %}>Electrical & Telecommunication Engineering</option>
+                        <option value="Mech" {% if request.GET.branch == "Mech" %}selected{% endif %}>Mechanical Engineering</option>
                     </select>
                     <select name="semester">
                         <option value="">Select Semester</option>
                         {% for i in semesters %}
-                        <option value="{{ i }}">{{ i }}</option>
+                        <option value="{{ i }}" {% if request.GET.semester == i|stringformat:"s" %}selected{% endif %}>{{ i }}</option>
                         {% endfor %}
                     </select>
-                    <input type="text" name="subject" placeholder="Subject">
+                    <input type="text" name="subject" placeholder="Subject" value="{{ request.GET.subject }}">
                     <button type="submit">Filter</button>
                 </form>
             </div>
             <div id="cards">
                 {% for item in faculty_notes_list %}
                 <div id="card">
-                    <h5>{{ item.title }}</h5>
-                    <p>{{ item.branch }} | Sem {{ item.semester }} | {{ item.subject }}</p>
+                    <h5><i class="bi bi-journal-bookmark"></i> {{ item.title }}</h5>
+                    <p><i class="bi bi-book-half"></i> {{ item.branch }} | Sem {{ item.semester }}</p>
+                    <p><i class="bi bi-card-text"></i> {{ item.subject }}</p>
                     <a href="{{ item.file.url }}" class="btn btn-primary" download>Download</a>
                 </div>
                 {% empty %}
@@ -130,12 +131,19 @@
             </div>
         </div>
 
-        <!-- Personal Notes -->
-        <div id="personal_notes" class="tab-section">
+        <div id="personal_notes" class="tab-section {% if active_tab == 'personal_notes' %}active{% endif %}">
+            <div class="filters mb-2">
+                <form method="get" action=".">
+                    <input type="hidden" name="active_tab" value="personal_notes">
+                    <input type="text" name="tags" placeholder="Filter by tags" value="{{ request.GET.tags }}">
+                    <button type="submit">Filter</button>
+                </form>
+            </div>
             <button id="add-note-btn" class="btn btn-success mb-2">Add Note</button>
             <div id="add-note-form" style="display:none;">
                 <form method="post">
                     {% csrf_token %}
+                    <input type="hidden" name="active_tab" value="personal_notes">
                     <input type="text" name="title" placeholder="Title" required>
                     <textarea name="content" placeholder="Content" required></textarea>
                     <input type="text" name="tags" placeholder="Tags">
@@ -145,20 +153,43 @@
             <div id="cards">
                 {% for item in personal_notes_list %}
                 <div id="card">
-                    <h5>{{ item.title }}</h5>
-                    <p>Tags: {{ item.tags }}</p>
-                    <a href="{% url 'edit_personal_note' item.id %}" class="btn btn-warning btn-sm">Edit</a>
-                    <a href="{% url 'delete_personal_note' item.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    <h5><i class="bi bi-journal-plus"></i> {{ item.title }}</h5>
+                    <p><i class="bi bi-tags"></i> Tags: {{ item.tags }}</p>
+                    <a href="{% url 'edit_personal_note' item.id %}" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i> Edit</a>
+                    <a href="{% url 'delete_personal_note' item.id %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Delete</a>
                 </div>
                 {% empty %}
                 <p>No personal notes found.</p>
                 {% endfor %}
             </div>
         </div>
-
     </div>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tab = this.dataset.tab;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+        });
+    });
 
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function() {
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'active_tab';
+            input.value = activeTab;
+            this.appendChild(input);
+        });
+    });
 
+   
+});
+</script>
 {% endblock %}

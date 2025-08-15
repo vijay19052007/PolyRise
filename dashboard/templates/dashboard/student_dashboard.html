@@ -86,12 +86,12 @@
   }
 </style>
 
-  <!-- Welcome Row -->
+  
   <div class="container-fluid my-4 px-3 px-md-5">
   <div class="hero-box text-white">
     <div class="row align-items-center p-4 p-md-5">
 
-      <!-- Left Side: Student Welcome -->
+      
       <div class="col-md-7 text-start">
        <span class="welcome-tag">
   <span class="welcome-icon">👋</span>
@@ -103,7 +103,7 @@
           Everything you need to succeed in your polytechnic journey.
         </p>
         
-        <!-- Student Stats -->
+        
         <div class="student-stats mt-4">
           <div class="stat-box">
             <div class="stat-value" id="progress-val">68%</div>
@@ -120,17 +120,17 @@
         </div>
       </div>
 
-      <!-- Right Side: Student Avatar & Quick Actions -->
+      
       <div class="col-md-5 text-center mt-5 mt-md-0 hero-right">
         <div class="avatar-box mb-4">
           <img src="{% static 'images/default-logo.webp' %}" class="student-avatar" alt="Student Avatar">
           <span class="sparkle">✨</span>
         </div>
         <div class="action-box">
-          <a href="" class="btn btn-light btn-lg mb-3">
+          <a href="{% url 'resources' %}" class="btn btn-light btn-lg mb-3">
             <i class="bi bi-journal-bookmark"></i> Study Materials
           </a>
-          <a href="" class="btn btn-outline-light btn-lg">
+          <a href="{% url 'tools' %}" class="btn btn-outline-light btn-lg">
             <i class="bi bi-patch-question"></i> Take a Quiz
           </a>
         </div>
@@ -142,7 +142,7 @@
 
 
 
-    <!-- Quote card (narrow) -->
+    
     <div class="container-fluid my-5 px-3 px-md-5">
   <div class="quote-box text-center p-4 shadow">
     <div class="bulb-icon mb-3">💡</div>
@@ -151,7 +151,7 @@
   </div>
 </div>
 
-  <!-- Highlights Row -->
+  
   <div class="row g-3 mb-4">
     <div class="col-lg-6">
       <div class="card highlight-card p-4 rounded-3 shadow-sm h-100">
@@ -163,7 +163,7 @@
             <a href="" class="btn btn-warning btn-sm">Try Now</a>
           </div>
           <div class="ms-auto d-none d-md-flex align-items-center">
-            <img src="{% static 'images/syllabus-illustration.png' %}" alt="tool" class="highlight-illus">
+            <img src="{% static 'images/highlight.webp' %}" alt="tool" class="highlight-illus">
           </div>
         </div>
       </div>
@@ -189,7 +189,7 @@
         {% endif %}
       </div>
       <div class="ms-auto d-none d-md-block">
-        <img src="{% static 'images/news-illustration.png' %}" alt="news" class="news-illus">
+        <img src="{% static 'images/news.png' %}" alt="news" class="news-illus">
       </div>
     </div>
   </div>
@@ -210,7 +210,7 @@
 
 
 
-  <!-- Quick Access -->
+  
   <div class="row mb-4">
     <div class="col-12">
       <h4 class="section-title">Quick Access</h4>
@@ -248,7 +248,7 @@
     </div>
 
     <div class="col-sm-6 col-md-3 mb-3">
-      <a href="" class="card quick-card p-3 h-100 text-reset text-decoration-none">
+      <a href="{% url 'resources' %}" class="card quick-card p-3 h-100 text-reset text-decoration-none">
         <div class="icon-box">🔔</div>
         <div class="card-body p-0">
           <h5 class="card-title">MSBTE Alerts</h5>

@@ -254,13 +254,11 @@ body, html {
   opacity: 1;
 }
 
-/* Divider */
 .dropdown-divider {
   border-color: rgba(255, 255, 255, 0.1) !important;
   margin: 5px 0 !important;
 }
 
-/* Logout Item - Red Only */
 .dropdown-item.text-danger {
   color: #ff6b6b !important;
 }
@@ -531,13 +529,37 @@ body, html {
   border-color: rgba(123, 97, 255, 0.5);
 }
 
-.panel{
+#panel{
   color: rgb(86, 78, 112);
   text-align: center;
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
+.sidebar.collapsed {
+    width: 70px;
+    padding: 20px 5px;
+}
 
+.sidebar.collapsed .menu-text,
+.sidebar.collapsed .sidebar-heading h5,
+.sidebar.collapsed #panel {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-heading img {
+    width: 40px;
+    margin: 0 auto;
+}
+
+.sidebar.collapsed .sidebar-link {
+    justify-content: center;
+    padding: 12px 0;
+}
+
+.sidebar.collapsed .sidebar-menu li i {
+    margin-right: 0;
+    font-size: 1.5rem;
+}
 
 
 

@@ -1,22 +1,84 @@
+{% extends 'base_dashboard.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+
+{% block title %}Academics & Resources - PolyRise{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'academics/css/resources.css' %}">
+{% endblock %}
+
+{% block content %}
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Edit Personal Note - PolyRise</title>
 <link rel="stylesheet" href="{% static 'academics/css/resources.css' %}">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body.theme-dark {
+    background-color: #121212;
+    color: #f4f4f4;
+}
+body.theme-light {
+    background-color: #f9f9f9;
+    color: #222;
+}
+body.theme-neon {
+    background-color: #0f0f0f;
+    color: #68f0dc;
+}
+   body.theme-neon form{
+    border: #68f0dc 2px solid;
+   }
+body.theme-dark form{
+    background-color: #c4e3de;
+}
+body.theme-dark .form-control{
+    background-color: #a0dfd5;
+}
+
+body.theme-neon .form-control{
+    background-color: #a9acab;
+}
+
+form{
+    width: 1000px;
+    height: 300px;
+    border-radius: 20px;
+    
+}
+.form-control {
+    margin-left: 50px;
+    padding-bottom: -50px;
+    width: 90%;
+    height: 50px;
+}
+
+    h3{
+        margin-left: 10px;
+        font-size: 40px;
+    }
+    #p{
+        margin-left: 14px;
+    }
+    .btn {
+        margin-right: 0px;
+        margin-left: 50px;
+    }
+    #div{
+        margin-bottom: -50px;
+    }
+    </style>
 </head>
 <body class="{{ theme_class }}">
 <div class="container mt-4">
     <div class="header">
         <h3>Edit Personal Note</h3>
-        <p>Modify your note and save changes</p>
+        <p id="p">Modify your note and save changes</p>
     </div>
-    <div class="card p-3 mt-3">
+    <div class="form p-3 mt-3">
         <form method="post">
             {% csrf_token %}
+            <div id="div">
             <input type="text" name="title" value="{{ note.title }}" required class="form-control mb-3">
             <textarea name="content" required class="form-control mb-3">{{ note.content }}</textarea>
             <input type="text" name="tags" value="{{ note.tags }}" class="form-control mb-3" placeholder="Tags (optional)">
@@ -24,9 +86,11 @@
                 <button type="submit" class="btn btn-primary">Save</button>
                 <a href="{% url 'resources' %}" class="btn btn-secondary">Cancel</a>
             </div>
+            </div>
         </form>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 </body>
 </html>
+{% endblock %}
