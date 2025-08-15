@@ -3,7 +3,7 @@
 <div class="sidebar" id="sidebar">
     <!-- Sidebar Header -->
     <div class="sidebar-heading text-center py-4 primary-text fs-5 fw-bold border-bottom">
-        <img src="{% static 'images/defaultf1.png' %}" class="profile-side" alt="Faculty Profile">
+        <img src="{% static 'images/defaultf1.png' %}" id="profile-side" alt="Faculty Profile">
         <br><br>
         <h5>Hello, Prof. {{ request.user.profile.full_name }}</h5>
     </div>
@@ -57,7 +57,7 @@
     </div>
 
     <!-- Panel Footer -->
-    <div class="panel">
+    <div id="panel">
         <i class="bi bi-book me-1"></i> PolyRise Faculty Panel
     </div>
 </div>
