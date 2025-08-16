@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ full_name }} - Resume</title>
+  <link rel="stylesheet" href="{{ STATIC_ROOT }}career/css/modern.css">
+</head>
+<body>
+<div class="resume modern-style">
+    {% if photo_url %}
+      <img src="{{ photo_url }}" class="profile-photo">
+    {% endif %}
+    <h1>{{ full_name }}</h1>
+    <p>{{ email }} | {{ phone }}</p>
+    <section><h2>Education</h2><p>{{ education|linebreaks }}</p></section>
+    <section><h2>Skills</h2><p>{{ skills|linebreaks }}</p></section>
+    <section><h2>Projects</h2><p>{{ projects|linebreaks }}</p></section>
+    <section><h2>Achievements</h2><p>{{ achievements|linebreaks }}</p></section>
+</div>
+</body>
+</html>

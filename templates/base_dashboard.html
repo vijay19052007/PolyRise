@@ -11,7 +11,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
   <link rel="stylesheet" href="{% static 'css/home.css' %}"> 
-    <link rel="stylesheet" href="{% static 'css/auth.css' %}"> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   {% block extra_head %}
@@ -31,17 +30,17 @@
    
      {% if user.is_authenticated %}
         {% if user.is_superuser %}
-        {% elif user.profile.role|lower == 'student' %}
+        {% elif user.profile.role == 'student' %}
             {% include 'dashboard/partials/sidebar1.html' %}
-        {% elif user.profile.role|lower == 'faculty' %}
+        {% elif user.profile.role == 'faculty' %}
             {% include 'dashboard/partials/sidebar2.html' %}
         {% endif %}
     {% endif %}
 
     <div class="content-area">
-        {% block content %}{% endblock %}
+      {% block content %}
+      {% endblock %}
     </div>
-
   </div>
 
    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>

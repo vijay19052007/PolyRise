@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Dashboard | PolyRise</title>
 
-    <!-- Bootstrap Icons CDN -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
     />
 
-    <!-- External Sidebar CSS -->
+   
     <link rel="stylesheet" href="{% static 'dashboard/css/.css' %}" />
   </head>
   <body>
@@ -49,7 +48,7 @@
         </li>
 
         <li>
-          <a href="#" class="sidebar-link">
+          <a href="{% url 'career_home' %}" class="sidebar-link">
             <i class="bi bi-briefcase"></i>
             <div class="menu-text">
               <span class="menu-title">Career Launchpad</span>

@@ -1,0 +1,48 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block title %}Project Ideas - PolyRise{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'career/css/project_ideas.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">💡 Final Year Project Ideas</h2>
+    <p class="text-center prp mb-5">Explore project ideas with recommended tech stacks and sample references for inspiration.</p>
+
+    <div class="row g-4">
+        {% for idea in ideas %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card shadow-sm h-100 career-card">
+                <div class="card-header d-flex align-items-center">
+                    <i class="bi bi-lightbulb-fill fs-3 text-warning me-2"></i>
+                    <h5 class="card-title mb-0">{{ idea.title }}</h5>
+                </div>
+                {% if idea.image %}
+                <img src="{{ idea.image.url }}" class="card-img-top" alt="{{ idea.title }}">
+                {% else %}
+                <img src="{% static 'images/ideas.jpg' %}" class="card-img-top" alt="{{ idea.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <p class="card-text">{{ idea.description|truncatechars:120 }}</p>
+                    <div class="mb-2">
+                        {% for tech in idea.stack_list %}
+                        <span class="badge bg-secondary me-1">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    {% if idea.link %}
+                    <a href="{{ idea.link }}" target="_blank" class="btn btn-success w-100">View Sample</a>
+                    {% else %}
+                    <a href="#" class="btn btn-success w-100 disabled">No Sample</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-muted">No project ideas available at the moment.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

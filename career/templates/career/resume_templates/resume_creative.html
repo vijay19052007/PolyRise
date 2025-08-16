@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ full_name }} - Resume</title>
+  <link rel="stylesheet" href="{{ STATIC_ROOT }}career/css/creative.css">
+</head>
+<body>
+<div class="resume creative-style">
+    {% if photo_url %}
+      <img src="{{ photo_url }}" class="profile-photo">
+    {% endif %}
+    <h1>{{ full_name }}</h1>
+    <p>{{ email }} | {{ phone }}</p>
+    <div class="card"><h2>Education</h2><p>{{ education|linebreaks }}</p></div>
+    <div class="card"><h2>Skills</h2><p>{{ skills|linebreaks }}</p></div>
+    <div class="card"><h2>Projects</h2><p>{{ projects|linebreaks }}</p></div>
+    <div class="card"><h2>Achievements</h2><p>{{ achievements|linebreaks }}</p></div>
+</div>
+</body>
+</html>
