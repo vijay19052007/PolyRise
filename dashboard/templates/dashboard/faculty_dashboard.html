@@ -9,11 +9,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="container dashboard-wrap">
+<div class="container-fluid dashboard-container my-4 px-3 px-md-5">
 
   <!-- HERO SECTION -->
   <section class="hero-section">
-    <div class="hero-content">
+    <div class="hero-content"> 
       <div class="hero-text">
         <span class="welcome-tag">
           <span class="welcome-icon">👋</span>
@@ -41,7 +41,7 @@
       </div>
       
       <div class="hero-avatar-container">
-        <img src="{% static 'images/faculty_avatar.png' %}" class="hero-avatar" alt="Professor avatar">
+        <img src="{% static 'images/defaultf1.png' %}" class="hero-avatar" alt="Professor avatar- {{ request.user.get_full_name }}">
       </div>
     </div>
   </section>
@@ -58,19 +58,19 @@
   <!-- UPLOAD CARDS -->
   <section>
     <div class="upload-grid">
-      <a href="#" class="upload-card">
+      <a href="{% url 'faculty_zone'%}" class="upload-card">
         <div class="upload-ico">📄</div>
         <h3 class="upload-title">Upload Notes</h3>
         <p class="upload-desc">Share lecture notes and reference PDFs with subject & semester metadata.</p>
       </a>
 
-      <a href="#" class="upload-card">
+      <a href="{% url 'faculty_zone'%}" class="upload-card">
         <div class="upload-ico">📚</div>
         <h3 class="upload-title">Upload Previous Papers</h3>
         <p class="upload-desc">Upload past exam papers year-wise to help students prepare better.</p>
       </a>
 
-      <a href="#" class="upload-card">
+      <a href="{% url 'faculty_zone'%}" class="upload-card">
         <div class="upload-ico">📝</div>
         <h3 class="upload-title">Upload MCQs</h3>
         <p class="upload-desc">Create topic-wise MCQs for quick practice quizzes in SmartTools.</p>

@@ -1,0 +1,290 @@
+/* === Dashboard Wrap === */
+.dashboard-wrap {
+  padding: 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* === Hero Section === */
+.hero-section {
+  background: var(--hero-bg, #f8f9fa);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-content {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hero-text {
+  flex: 1 1 60%;
+  padding-right: 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+  }
+  .hero-text {
+    padding-right: 0;
+  }
+}
+
+.welcome-tag {
+  display: inline-block;
+  background: var(--tag-bg, #e0e7ff);
+  border-left: 3px solid var(--accent, #7b61ff);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  color: var(--text-primary, #222);
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.85;
+  color: var(--text-secondary, #444);
+}
+
+.faculty-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.stat-box {
+  background: var(--stat-bg, #f1f3f5);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  flex: 1;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent, #7b61ff);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  color: var(--text-muted, #666);
+  margin-top: 0.2rem;
+}
+
+.hero-avatar-container {
+  flex: 0 0 180px;
+}
+
+.hero-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #222;
+  border: 4px solid var(--avatar-border, #5f5a7a);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.hero-avatar:hover {
+  transform: scale(1.05);
+}
+
+/* === Motivation Card === */
+.motivation-card {
+  background: var(--card-bg, #fff);
+  border-left: 4px solid var(--accent, #7b61ff);
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 3rem;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+  transition: transform 0.3s ease;
+}
+
+.motivation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.mot-text {
+  font-size: 1.4rem;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+  margin: 0;
+  color: var(--text-primary, #333);
+}
+
+/* === Upload Cards === */
+.upload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.upload-card {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  height: 100%;
+  cursor: pointer;
+  color: var(--text-primary, #222);
+  text-decoration: none;
+}
+
+.upload-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  border-color: var(--accent, #7b61ff);
+}
+
+.upload-ico {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.upload-card:hover .upload-ico {
+  transform: scale(1.1);
+}
+
+.upload-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.upload-desc {
+  font-size: 1rem;
+  opacity: 0.75;
+  margin: 0;
+}
+
+/* === Notifications Card === */
+.notifications-card {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  margin-bottom: 2rem;
+}
+
+.notifications-header {
+  background: var(--primary, #7b61ff);
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.notifications-header i {
+  font-size: 1.25rem;
+}
+
+.notifications-header h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.notifications-body {
+  padding: 1.5rem;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-light, #eee);
+  gap: 1rem;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.note-left {
+  font-size: 1.25rem;
+  color: var(--accent, #7b61ff);
+  flex-shrink: 0;
+}
+
+.note-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary, #222);
+}
+
+.note-message {
+  color: var(--text-muted, #666);
+  font-size: 0.95rem;
+}
+
+.note-date {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  color: var(--text-muted, #666);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.no-notes {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-muted, #888);
+}
+
+.notifications-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-light, #eee);
+  text-align: right;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .faculty-stats {
+    flex-direction: column;
+  }
+  .stat-box {
+    width: 100%;
+  }
+  .hero-section {
+    flex-direction: column;
+  }
+  .hero-avatar-container {
+    margin: 0 auto;
+  }
+}
