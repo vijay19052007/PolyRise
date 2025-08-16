@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>{% block title %}PolyRise{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CSS or your custom static CSS -->
+    
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
@@ -15,11 +15,11 @@
 
     <main class="main-content" style="margin-left: 220px; padding: 20px;">
         {% block content %}
-        <!-- Main Page Content -->
+      
         {% endblock %}
     </main>
 
-    <!-- Scripts -->
+    
     <script src="{% static 'js/script.js' %}"></script>
     {% block extra_js %}{% endblock %}
 </body>

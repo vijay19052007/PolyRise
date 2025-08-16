@@ -2,8 +2,7 @@
 {% block title %}Planner & Productivity - PolyRise{% endblock %}
 {% block content %}
 <style>
-/* -------------------- NAV TABS -------------------- */
-/* Base */
+
 .nav-tabs {
     border-bottom: 2px solid #eee;
 }
@@ -17,7 +16,7 @@
     border-bottom: 2px solid #ccc;
 }
 
-/* Light Theme */
+
 .theme-light .nav-tabs .nav-link {
     background-color: #f8f9fa;
     color: #000;
@@ -28,7 +27,7 @@
     font-weight: 600;
 }
 
-/* Dark Theme */
+
 .theme-dark .nav-tabs .nav-link {
     background-color: #000000;
     color: #fff;
@@ -39,7 +38,7 @@
     font-weight: 600;
 }
 
-/* Neon Theme */
+
 .theme-neon .nav-tabs .nav-link {
     background-color: #0a0a0a;
     color: #39ff14;
@@ -50,7 +49,6 @@
     font-weight: 600;
 }
 
-/* -------------------- CARDS -------------------- */
 .theme-light .planner-card {
     background-color: #fff;
     color: #212529;
@@ -95,7 +93,7 @@
     text-shadow: 0 0 8px #00f5ff;
 }
 
-/* -------------------- LIST ITEMS -------------------- */
+
 .theme-light .list-group-item {
     background-color: #fff;
     color: #212529;
@@ -118,7 +116,7 @@
         <h1> Planner & Productivity 📅</h1>
         <p>Organize your study schedule and track your productivity</p>
     </div>
-    <!-- Tab Navigation -->
+    
     <ul class="nav nav-tabs justify-content-center mb-4">
         <li class="nav-item">
             <a class="nav-link active" id="timetable-tab" data-bs-toggle="tab" href="#timetable" role="tab">Timetable</a>
@@ -134,12 +132,12 @@
         </li>
     </ul>
 
-    <!-- Tab Content -->
+   
     <div class="tab-content">
-        <!-- Timetable Tab -->
+        
         <div class="tab-pane fade show active" id="timetable" role="tabpanel">
             <div class="row">
-                <!-- Timetable List -->
+                
                 <div class="col-md-6">
                     <div class="card planner-card mb-4">
                         <div class="card-header planner-card-header">
@@ -163,7 +161,7 @@
                     </div>
                 </div>
 
-                <!-- Add Session Form -->
+               
                 <div class="col-md-6">
                     <div class="card planner-card">
                         <div class="card-header add-card-header">
@@ -196,10 +194,10 @@
             </div>
         </div>
 
-        <!-- Reminders Tab -->
+        
         <div class="tab-pane fade" id="reminders" role="tabpanel">
             <div class="row">
-                <!-- Display Reminders -->
+                
                 <div class="col-md-8">
                     <div class="card planner-card">
                         <div class="card-header planner-card-header">
@@ -235,7 +233,7 @@
                     </div>
                 </div>
 
-                <!-- Add Reminder Form -->
+               
                 <div class="col-md-4">
                     <div class="card planner-card">
                         <div class="card-header add-card-header">
@@ -265,20 +263,20 @@
                 </div>
             </div>
         </div>
-        <!-- Pomodoro Timer Tab -->
+        
         
         <div class="tab-pane fade" id="activity" role="tabpanel">
             <div class="card planner-card p-3 text-center" style="max-width: 600px; margin: auto;">
                 <h4>⏳ Pomodoro Timer</h4>
                 
-                <!-- Time Display -->
+              
                 <h1 id="timer" class="display-4">25:00</h1>
                 <p id="status" class="fw-bold">Work Session</p>
                 
-                <!-- Session Counter -->
+              
                 <p>🎯 Sessions Completed: <span id="sessions">0</span></p>
                 
-                <!-- Time Settings -->
+                
                 <div class="mb-3 text-center">
                     <label>Work (mins):</label>
                     <input type="number" id="workTime" value="25" min="1" max="60" class="form-control text-center mx-auto" style="width: 100px;">
@@ -288,7 +286,7 @@
                     <input type="number" id="longBreak" value="15" min="1" max="60" class="form-control text-center mx-auto" style="width: 100px;">
                 </div>
 
-                <!-- Controls -->
+                
                 <div class="d-flex justify-content-center gap-3">
                     <button id="startBtn" class="btn btn-success px-3">Start</button>
                     <button id="resetBtn" class="btn btn-danger px-3">Reset</button>
@@ -310,7 +308,7 @@
                                 <button type="submit" name="add_todo" class="btn btn-success px-3">+</button>
                             </div>
                         </form>
-                        <!-- Task List -->
+                        
                         <ul class="list-group">
                             {% for todo in todos %}
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -348,7 +346,7 @@ let isRunning = false;
 let isWorkSession = true;
 let sessionCount = 0;
 let timeLeft;
-let cycles = 0; // Tracks cycles for long break
+let cycles = 0; 
 
 function startTimer() {
     if (isRunning) return;
@@ -377,7 +375,7 @@ function startTimer() {
                 ? "Work Session" 
                 : (cycles % 4 === 0 ? "Long Break" : "Short Break");
             isRunning = false;
-            startTimer(); // Auto-start next session
+            startTimer(); 
         }
     }, 1000);
 
@@ -395,7 +393,6 @@ function resetTimer() {
     timerDisplay.textContent = `${String(workTimeInput.value).padStart(2, '0')}:00`;
 }
 
-// Update display when settings change
 workTimeInput.addEventListener("input", () => {
     if (!isRunning && isWorkSession) {
         timerDisplay.textContent = `${String(workTimeInput.value).padStart(2, '0')}:00`;

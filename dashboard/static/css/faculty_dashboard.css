@@ -1,11 +1,11 @@
-/* === Dashboard Wrap === */
+
 .dashboard-wrap {
   padding: 2rem 0;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* === Hero Section === */
+
 .hero-section {
   background: var(--hero-bg, #f8f9fa);
   border-radius: 16px;
@@ -114,7 +114,7 @@
   transform: scale(1.05);
 }
 
-/* === Motivation Card === */
+
 .motivation-card {
   background: var(--card-bg, #fff);
   border-left: 4px solid var(--accent, #7b61ff);
@@ -139,7 +139,7 @@
   color: var(--text-primary, #333);
 }
 
-/* === Upload Cards === */
+
 .upload-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -191,7 +191,7 @@
   margin: 0;
 }
 
-/* === Notifications Card === */
+
 .notifications-card {
   background: var(--card-bg, #fff);
   border: 1px solid var(--border-color, #ddd);
@@ -273,7 +273,7 @@
   text-align: right;
 }
 
-/* Responsive tweaks */
+
 @media (max-width: 576px) {
   .faculty-stats {
     flex-direction: column;

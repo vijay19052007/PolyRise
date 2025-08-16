@@ -6,13 +6,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 <style>
-/* Shared Styling */
+
 body {
     padding: 10px;
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Section Card Styling */
+
 .section-card {
     border-radius: 10px;
     padding: 2rem;
@@ -21,7 +21,7 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Light Mode */
+
 .theme-light body {
     background-color: #f8f9fa;
     color: #212529;
@@ -39,7 +39,7 @@ body {
     background-color: #e9ecef;
 }
 
-/* Dark Mode */
+
 .theme-dark body {
     background-color: #121212;
     color: #f1f1f1;
@@ -57,13 +57,13 @@ body {
     background-color: #3a3a4d;
 }
 
-/* Section Titles */
+
 .section-title {
     text-align: center;
     margin-bottom: 1.5rem;
 }
 
-/* Social Icons */
+
 .social-icon {
     display: inline-flex;
     align-items: center;
@@ -83,7 +83,7 @@ body {
     color: #5a1e06;
 }
 
-/* Form Styling */
+
 input.form-control, textarea.form-control, select.form-select {
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -97,12 +97,12 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
     border-radius: 8px;
 }
 
-/* FAQ Accordion Hover */
+
 .accordion-button:hover {
     background-color: rgba(90,30,6,0.1);
 }
 
-/* Responsive Centering */
+
 .text-center-md {
     text-align: center;
 }
@@ -126,7 +126,7 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
             <form method="POST" action="{% url 'submit_doubt' %}" class="mx-auto w-75" novalidate>
                 {% csrf_token %}
                 
-                <!-- Messages (Bootstrap 5) -->
+                
                 {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-{{ message.tags }} alert-dismissible fade show py-2" role="alert">
@@ -136,7 +136,7 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
                     {% endfor %}
                 {% endif %}
 
-                <!-- Category Field -->
+                
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
                     <select name="category" id="category" class="form-select {% if form.errors.category %}is-invalid{% endif %}" required>
@@ -151,7 +151,7 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
                     {% endif %}
                 </div>
 
-                <!-- Email Field -->
+                
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input name="email" id="email" type="email" 
@@ -164,7 +164,7 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
                     {% endif %}
                 </div>
 
-                <!-- Message Field -->
+                
                 <div class="mb-3">
                     <label for="message" class="form-label">Your Doubt</label>
                     <textarea name="message" id="message" rows="5" 
@@ -176,7 +176,7 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
                     {% endif %}
                 </div>
 
-                <!-- Submit Button -->
+                
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary px-5">Submit</button>
                 </div>
@@ -185,7 +185,7 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
         </div>
     </section>
 
-    <!-- FAQ Section -->
+   
     <section>
         <div class="section-card shadow-sm p-4">
             <h3 class="section-title">Frequently Asked Questions</h3>
@@ -289,7 +289,7 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
         </div>
     </section>
 
-    <!-- About & Contact Section -->
+   
     <section class="section-card text-center text-md-start">
         <div class="row align-items-center">
             <div class="col-md-6 mb-4 mb-md-0">
@@ -318,10 +318,10 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
     </section>
 </div>
 
-<!-- Bootstrap JS -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Initialize Tooltips -->
+
 <script>
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {

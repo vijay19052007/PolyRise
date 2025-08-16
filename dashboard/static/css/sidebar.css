@@ -1,4 +1,4 @@
-/* Sidebar Base Style */
+
 .sidebar {
   width: 260px;
   background-color: #1e1e2f;
@@ -13,7 +13,7 @@
   z-index: 100;
 }
 
-/* Sidebar Items */
+
 .sidebar-menu {
   list-style: none;
   padding: 0;
@@ -50,7 +50,7 @@
   margin-top: 2px;
 }
 
-/* User Info Section */
+
 .sidebar-user-box {
   margin-top: auto;
   padding: 15px 25px;
@@ -62,7 +62,7 @@
   color: #181827;
 }
 
-/* Collapse Button */
+
 .collapse-btn {
   position: absolute;
   right: -12px;
@@ -84,7 +84,7 @@
   font-size: 1.1rem;
 }
 
-/* Collapsed Mode */
+
 .sidebar.collapsed {
   width: 70px;
 }

@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Email settings
+
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
@@ -26,7 +26,7 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 
 def send_otp_email(to_email, full_name, otp):
-    """Send OTP email to user."""
+    
     try:
         msg = MIMEMultipart()
         msg['From'] = EMAIL_HOST_USER
@@ -44,7 +44,7 @@ def send_otp_email(to_email, full_name, otp):
 
 @transaction.atomic
 def signup_view(request):
-    """Handle user signup and OTP generation."""
+   
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
@@ -55,26 +55,26 @@ def signup_view(request):
             year = form.cleaned_data.get('year')
             password = form.cleaned_data['password']
 
-            # Create inactive user
+           
             user = User.objects.create_user(username=email, email=email, password=password, is_active=False)
 
-            # Use automatically created Profile from signals
+           
             profile = user.profile
             profile.full_name = full_name
             profile.role = role
             profile.department = department if role == 'student' else None
             profile.year = year if role == 'student' else None
 
-            # Generate OTP
+           
             otp_code = str(random.randint(100000, 999999))
             profile.email_otp = otp_code
             profile.otp_created_at = timezone.now()
             profile.save()
 
-            # Send OTP email
+            
             send_otp_email(email, full_name, otp_code)
 
-            # Store user ID in session for verification
+           
             request.session['verify_user_id'] = user.id
 
             messages.success(request, "Account created! Please verify your email.")
@@ -86,7 +86,7 @@ def signup_view(request):
 
 
 def verify_otp_view(request):
-    """Verify OTP submitted by user."""
+    
     user_id = request.session.get('verify_user_id')
     if not user_id:
         return redirect('signup')
@@ -110,7 +110,7 @@ def verify_otp_view(request):
                 login(request, user)
                 request.session.pop('verify_user_id', None)
 
-                # Redirect based on role
+              
                 if profile.role == 'student':
                     return redirect('student_dashboard')
                 elif profile.role == 'faculty':
@@ -126,7 +126,7 @@ def verify_otp_view(request):
 
 @require_POST
 def resend_otp(request):
-    """Resend OTP to user email."""
+   
     email = request.POST.get('email', '').strip().lower()
     try:
         user = User.objects.get(email__iexact=email)
@@ -151,7 +151,7 @@ def resend_otp(request):
 
 
 def login_view(request):
-    """Handle user login with role verification and OTP check."""
+    
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -167,12 +167,12 @@ def login_view(request):
                 user = None
 
             if user:
-                # Admin login check
+               
                 if role == 'admin' and not user.is_superuser:
                     messages.error(request, "Invalid admin login.")
                     return redirect('login')
 
-                # Role and verification check
+              
                 if role != 'admin':
                     if not hasattr(user, 'profile'):
                         messages.error(request, "Invalid login details.")
@@ -187,9 +187,9 @@ def login_view(request):
 
                 login(request, user)
 
-                # Session expiry
+               
                 if role == 'admin':
-                  request.session.set_expiry(0)  # Force login every time
+                  request.session.set_expiry(0)  
                 else:
                  if remember_me:
                   request.session.set_expiry(60*60*24*30)
@@ -197,7 +197,7 @@ def login_view(request):
                   request.session.set_expiry(0)
 
 
-                # Redirect based on role
+                
                 if role == 'student':
                     return redirect('student_dashboard')
                 elif role == 'faculty':
@@ -212,6 +212,6 @@ def login_view(request):
 
 
 def logout_view(request):
-    """Logout user and redirect to landing page."""
+
     logout(request)
     return redirect('landing_page')
