@@ -7,6 +7,7 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from .models import ResumeTemplate, ProjectIdea, AptitudeQuestion, HRQuestion, InterviewVideo, CareerQuizQuestion
 from .forms import ResumeForm
+from urllib.parse import urlparse, parse_qs
 
 @login_required
 def career_home(request):

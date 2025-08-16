@@ -1,17 +1,17 @@
 {% load static %}
 
 <div class="sidebar" id="sidebar">
-    <!-- Sidebar Header -->
+   
     <div class="sidebar-heading text-center py-4 primary-text fs-5 fw-bold border-bottom">
         <img src="{% static 'images/defaultf1.png' %}" class="profile" alt="Faculty Profile">
         <br><br>
         <h5>Hello, Prof. {{ request.user.profile.full_name }}</h5>
     </div>
 
-    <!-- Sidebar Menu -->
+    
     <ul class="sidebar-menu">
         <li>
-            <a href="#" class="sidebar-link">
+            <a href="{% url 'faculty_dashboard' %}" class="sidebar-link">
                 <i class="bi bi-speedometer2"></i>
                 <div class="menu-text">
                     <span class="menu-title">My Dashboard</span>
@@ -51,12 +51,12 @@
         </li>
     </ul>
 
-    <!-- Collapse Button -->
+    
     <div class="collapse-btn" onclick="toggleSidebar()">
         <i class="bi bi-chevron-left" id="collapseArrow"></i>
     </div>
 
-    <!-- Panel Footer -->
+    
     <div id="panel">
         <i class="bi bi-book me-1"></i> PolyRise Faculty Panel
     </div>

@@ -1,0 +1,28 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block title %}Interview Tips Library - PolyRise{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'career/css/tips.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="page-heading text-center">📝 HR Interview Tips Library</h2>
+    <p class="page-desc text-center mb-4">
+        Explore curated interview videos to improve your HR skills, understand common questions, and prepare confidently for your next interview.
+    </p>
+
+    <div class="video-grid">
+        {% for video in videos %}
+        <div class="video-card">
+            <div class="video-wrapper">
+                <iframe src="{{ video.embed_url }}" title="{{ video.title }}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <h5 class="video-title">{{ video.title }}</h5>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
