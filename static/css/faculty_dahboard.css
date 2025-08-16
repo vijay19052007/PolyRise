@@ -1,0 +1,212 @@
+/* ===========================
+   ROOT VARIABLES (LIGHT MODE)
+   =========================== */
+:root {
+  --hero-bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --accent: #007bff;
+  --border-color: #dee2e6;
+  --stat-bg: #f1f3f5;
+  --notification-bg: #fdfdfd;
+  --shadow: rgba(0,0,0,0.08);
+}
+
+/* ===========================
+   DARK THEME
+   =========================== */
+.theme-dark {
+  --hero-bg: #1c1e21;
+  --card-bg: #242526;
+  --text-primary: #f1f1f1;
+  --text-secondary: #b0b3b8;
+  --accent: #0d6efd;
+  --border-color: #3a3b3c;
+  --stat-bg: #2d2f32;
+  --notification-bg: #2c2f33;
+  --shadow: rgba(0,0,0,0.5);
+}
+
+/* ===========================
+   NEON THEME
+   =========================== */
+.theme-neon {
+  --hero-bg: #0f0f0f;
+  --card-bg: #111;
+  --text-primary: #39ff14;
+  --text-secondary: #ff00ff;
+  --accent: #00eaff;
+  --border-color: #222;
+  --stat-bg: #191919;
+  --notification-bg: #141414;
+  --shadow: 0 0 15px rgba(0,255,150,0.6);
+}
+
+/* ===========================
+   BASE STYLES
+   =========================== */
+body {
+  background: var(--hero-bg);
+  color: var(--text-primary);
+  font-family: "Segoe UI", sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* HERO SECTION */
+.hero-section {
+  background: var(--hero-bg);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.hero-text h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.hero-description {
+  color: var(--text-secondary);
+  margin: 0.5rem 0 1.5rem;
+  max-width: 500px;
+}
+
+.hero-avatar-container {
+  flex-shrink: 0;
+}
+.hero-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid var(--accent);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.hero-avatar:hover {
+  transform: scale(1.05);
+}
+
+/* STATS BOXES */
+.faculty-stats {
+  display: flex;
+  gap: 1.2rem;
+}
+.stat-box {
+  background: var(--stat-bg);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  min-width: 100px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* MOTIVATION CARD */
+.motivation-card {
+  background: var(--card-bg);
+  border-left: 5px solid var(--accent);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.motivation-card .mot-text {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* UPLOAD GRID */
+.upload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.upload-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-primary);
+  box-shadow: 0 4px 10px var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.upload-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px var(--shadow);
+}
+.upload-ico {
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.upload-card:hover .upload-ico {
+  transform: scale(1.15);
+}
+.upload-title {
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+.upload-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* NOTIFICATIONS */
+.notifications-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 3px 12px var(--shadow);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.notifications-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+.notifications-header h4 {
+  margin: 0;
+  color: var(--accent);
+}
+.notification-item {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.notification-item:last-child {
+  border-bottom: none;
+}
+.note-title {
+  font-weight: bold;
+}
+.note-message {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.note-date {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.no-notes {
+  color: var(--text-secondary);
+}

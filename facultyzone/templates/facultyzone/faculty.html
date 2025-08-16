@@ -80,14 +80,13 @@
     }
 </style>
 
-<div class="faculty-header text-center mb-3 m-4">
-    <h2>👩‍🏫 Faculty Zone</h2>
-    <p>Upload and manage academic content</p>
-</div>
-
 <div class="container">
+    <div class="header">
+        <h1>Faculty Zone 👩‍🏫</h1>
+        <p>Upload and manage academic content</p>
+    </div>
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-6 w-75">
             <div class="card upload-card p-4 shadow-sm text-center">
                 {% if success %}
                 <div class="alert alert-success d-inline-block text-start">
@@ -98,6 +97,7 @@
                 <form method="post" enctype="multipart/form-data" class="d-flex flex-column align-items-center">
                     {% csrf_token %}
                     <div class="w-100">
+                        <h4>Upload Notes<br></h4>
                         {{ form.as_p }}
                     </div>
                     <button type="submit" class="btn btn-dark mt-2 w-50">📤 Upload Content</button>
@@ -113,7 +113,7 @@
     <div class="card note-card p-3 mb-2 shadow-sm">
         <h5 class="mb-1">{{ note.title }}</h5>
         <p class="text-muted small mb-2">{{ note.branch }} | Sem {{ note.semester }} | {{ note.subject }}</p>
-        <a href="{{ note.file.url }}" class="btn btn-download btn-sm text-white" download>⬇ Download</a>
+        <a href="{{ note.file.url }}" class="btn btn-download btn-sm text-white " download>⬇ Download</a>
     </div>
     {% empty %}
     <p class="text-muted">No notes uploaded yet.</p>

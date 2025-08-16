@@ -1,7 +1,154 @@
-{% extends 'base_dashboard.html' %}
+{% extends "base_dashboard.html" %}
+{% load static %}
 
+{% block title %}Faculty Dashboard - PolyRise{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/faculty_dashboard.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+{% endblock %}
 
 {% block content %}
-<h3>Welcome to the faculty Dashboard</h3>
-<p>This is where your study stats, goals, and quick links will appear.</p>
+<div class="container-fluid dashboard-container my-4 px-3 px-md-5">
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-content"> 
+      <div class="hero-text">
+        <span class="welcome-tag">
+          <span class="welcome-icon">👋</span>
+          <strong>Welcome Professor {{ request.user.get_full_name }}</strong>
+        </span>
+        <h1 class="hero-title">Faculty Command Center</h1>
+        <p class="hero-description">
+          Empower your students with notes, past papers, and quizzes — easily upload and manage resources from your Faculty Zone.
+        </p>
+        
+        <div class="faculty-stats">
+          <div class="stat-box">
+            <div class="stat-value">12</div>
+            <div class="stat-label">Courses</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">256</div>
+            <div class="stat-label">Students</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">48</div>
+            <div class="stat-label">Materials</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-avatar-container">
+        <img src="{% static 'images/defaultf1.png' %}" class="hero-avatar" alt="Professor avatar- {{ request.user.get_full_name }}">
+      </div>
+    </div>
+  </section>
+
+  <!-- MOTIVATION CARD -->
+  <section>
+    <div id="motivationCard" class="motivation-card">
+      <div class="mot-text">
+        {{ motivational_text|default:"Education is the most powerful weapon which you can use to change the world. — Nelson Mandela" }}
+      </div>
+    </div>
+  </section>
+
+  <!-- UPLOAD CARDS -->
+  <section>
+    <div class="upload-grid">
+      <a href="{% url 'faculty_zone'%}" class="upload-card">
+        <div class="upload-ico">📄</div>
+        <h3 class="upload-title">Upload Notes</h3>
+        <p class="upload-desc">Share lecture notes and reference PDFs with subject & semester metadata.</p>
+      </a>
+
+      <a href="{% url 'faculty_zone'%}" class="upload-card">
+        <div class="upload-ico">📚</div>
+        <h3 class="upload-title">Upload Previous Papers</h3>
+        <p class="upload-desc">Upload past exam papers year-wise to help students prepare better.</p>
+      </a>
+
+      <a href="{% url 'faculty_zone'%}" class="upload-card">
+        <div class="upload-ico">📝</div>
+        <h3 class="upload-title">Upload MCQs</h3>
+        <p class="upload-desc">Create topic-wise MCQs for quick practice quizzes in SmartTools.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- NOTIFICATIONS -->
+  <section>
+    <div class="notifications-card">
+      <div class="notifications-header">
+        <i class="bi bi-megaphone-fill"></i>
+        <h4>Faculty Notifications</h4>
+      </div>
+
+      <div class="notifications-body">
+        {% if faculty_notifications %}
+          {% for note in faculty_notifications %}
+            <div class="notification-item d-flex align-items-center">
+              <div class="note-left me-3">📌</div>
+              <div class="flex-grow-1">
+                <div class="note-title">{{ note.title }}</div>
+                <div class="note-message">{{ note.message }}</div>
+              </div>
+              <div class="note-date ms-3">{{ note.date_added|date:"M d" }}</div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="no-notes text-center py-4">
+            <i class="bi bi-check-circle-fill fs-3 mb-2"></i>
+            <br>
+            <span>No new notifications</span>
+          </div>
+        {% endif %}
+      </div>
+      
+      <div class="notifications-footer text-end">
+        <a href="{% url 'faculty_notifications_list' %}" class="btn btn-sm btn-outline-primary">View all</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  (function(){
+    // Fallback motivation text
+    const motEl = document.querySelector('#motivationCard .mot-text');
+    if (motEl && !motEl.textContent.trim()) {
+      const quotes = [
+        "A good teacher can inspire hope, ignite imagination, and instill love of learning. — Brad Henry",
+        "Teaching is the one profession that creates all other professions.",
+        "Education is the most powerful weapon to change the world. — Nelson Mandela",
+        "To teach is to touch a life forever.",
+        "The art of teaching is the art of assisting discovery. — Mark Van Doren",
+        "One child, one teacher, one book, one pen can change the world. — Malala Yousafzai",
+        "In learning you will teach, and in teaching you will learn.",
+        "Teachers affect eternity; their influence never stops.",
+        "Better than 1000 days of study is 1 day with a great teacher. — Japanese Proverb",
+        "It is the supreme art of the teacher to awaken joy in knowledge. — Einstein",
+        "Your influence as a teacher can never be erased."
+      ];
+      motEl.textContent = quotes[(new Date()).getDate() % quotes.length];
+    }
+    
+    // Add hover effects on upload cards
+    document.querySelectorAll('.upload-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px)';
+        this.querySelector('.upload-ico').style.transform = 'scale(1.1)';
+      });
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+        this.querySelector('.upload-ico').style.transform = '';
+      });
+    });
+  })();
+</script>
 {% endblock %}
