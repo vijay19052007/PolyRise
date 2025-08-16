@@ -1,0 +1,50 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block title %}Aptitude Practice - PolyRise{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'career/css/aptitude.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">📝 Aptitude MCQ Practice</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="accordion" id="questionsAccordion">
+            {% for question in questions %}
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading{{ question.id }}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ question.id }}" aria-expanded="false" aria-controls="collapse{{ question.id }}">
+                        Q{{ forloop.counter }}. {{ question.question }}
+                    </button>
+                </h2>
+                <div id="collapse{{ question.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ question.id }}" data-bs-parent="#questionsAccordion">
+                    <div class="accordion-body">
+                        {% for option in "ABCD" %}
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="q_{{ question.id }}" id="q{{ question.id }}{{ option }}" value="{{ option }}"
+                            {% if user_answers|default:{}|dict_get:question.id == option %}checked{% endif %}>
+                            <label class="form-check-label" for="q{{ question.id }}{{ option }}">
+                                {{ option }}. {{ question|get_option:option }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-dark w-100 mt-3">Submit Answers</button>
+    </form>
+
+    {% if score is not None %}
+    <div class="mt-4 text-center">
+        <h4>Your Score: {{ score }} / {{ total }}</h4>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

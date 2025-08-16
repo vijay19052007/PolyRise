@@ -1,0 +1,120 @@
+body.theme-dark {
+    background-color: #121212;
+    color: #f4f4f4;
+    --primary-color: #0d6efd;
+    --primary-hover: #0b5ed7;
+    --card-bg: #1e1e1e;
+    --card-border: #333;
+    --card-text: #f4f4f4;
+    --btn-color: #0d6efd;
+    --btn-hover: #0b5ed7;
+}
+
+body.theme-light {
+    background-color: #f9f9f9;
+    color: #222;
+    --primary-color: #0d6efd;
+    --primary-hover: #0b5ed7;
+    --card-bg: #fff;
+    --card-border: #ddd;
+    --card-text: #222;
+    --btn-color: #0d6efd;
+    --btn-hover: #0b5ed7;
+}
+
+body.theme-neon {
+    background-color: #0f0f0f;
+    color: #68f0dc;
+    --primary-color: #0ff;
+    --primary-hover: #0cc;
+    --card-bg: #111;
+    --card-border: #0ff;
+    --card-text: #68f0dc;
+    --btn-color: #0ff;
+    --btn-hover: #0cc;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.card p {
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.form-check {
+    margin-bottom: 10px;
+}
+
+.form-check-input:checked {
+    accent-color: var(--primary-color);
+}
+
+.form-check-label {
+    font-weight: 400;
+    color: var(--card-text);
+    cursor: pointer;
+}
+
+.btn-success {
+    background-color: var(--btn-color);
+    border: none;
+    font-weight: 500;
+    padding: 12px;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.btn-success:hover {
+    background-color: var(--btn-hover);
+}
+
+.mt-4 h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .btn-success {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+}

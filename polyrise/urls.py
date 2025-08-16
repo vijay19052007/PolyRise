@@ -13,7 +13,8 @@ urlpatterns = [
     path('planner/', include('planner.urls')), 
     path('facultyzone/', include('facultyzone.urls')), 
     path('notifications/', include('notifications.urls')),
-    path('academics/', include('academics.urls')),  # Added for Phase 4
+    path('academics/', include('academics.urls')),
+       path('career/', include('career.urls')),  
 ]
 
 if settings.DEBUG:

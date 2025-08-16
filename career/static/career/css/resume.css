@@ -1,82 +1,46 @@
-/* Container */
-.resume-builder, .resume-preview {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.resume-builder h2 {
+    font-weight: 700;
+    color: #212529;
 }
 
-/* Card styling */
+.resume-builder p {
+    font-size: 0.95rem;
+}
+
 .card {
-    border-radius: 12px;
-    background-color: #ffffff;
+    border-radius: 10px;
+    background-color: #fff;
 }
 
-/* Resume header */
-.resume-header {
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 15px;
+.form-control {
+    border-radius: 6px;
+}
+
+.btn-dark {
+    background-color: #212529;
+    border-color: #212529;
+}
+
+.btn-dark:hover {
+    background-color: #333;
+    border-color: #333;
 }
 
 .profile-photo {
     width: 100px;
     height: 100px;
-    border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #333;
+    border-radius: 50%;
+    border: 2px solid #212529;
 }
 
-/* Input & textarea styling */
-.form-control {
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-size: 0.95rem;
-    border: 1px solid #ccc;
-}
-
-.form-control:focus {
-    border-color: #333;
-    box-shadow: none;
-}
-
-/* Button styling */
-.btn-dark {
-    background-color: #333;
-    border: none;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 8px;
-}
-
-.btn-dark:hover {
-    background-color: #555;
-}
-
-/* Resume sections */
 .resume-section h4 {
-    font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 5px;
-    color: #333;
+    color: #212529;
 }
 
 .resume-section p {
     font-size: 0.95rem;
-    color: #555;
-    white-space: pre-line;
-}
-
-/* Centering buttons in preview */
-.text-center a.btn {
-    min-width: 120px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .resume-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .profile-photo {
-        margin-bottom: 10px;
-    }
+    line-height: 1.4;
 }
