@@ -1,9 +1,9 @@
 from django.shortcuts import render
-# from django.contrib.auth.decorators import login_required  # Commented for now
+from django.contrib.auth.decorators import login_required  
 from .models import TodayILearned, DailyTechNews, FacultyNotification
 
 
-# @login_required
+@login_required
 def student_dashboard(request):
     til = TodayILearned.objects.first() 
     tech_news = DailyTechNews.objects.first()
@@ -14,18 +14,18 @@ def student_dashboard(request):
     }
     return render(request, 'dashboard/student_dashboard.html', context)
 
-# @login_required
+@login_required
 def faculty_dashboard(request):
     faculty_notifications = FacultyNotification.objects.all()[:5]
     return render(request, 'dashboard/faculty_dashboard.html', {
         'faculty_notifications': faculty_notifications
     })
 
-# @login_required
+@login_required
 def admin_dashboard(request):
     return render(request, 'dashboard/admin_dashboard.html')
 
-# @login_required
+@login_required
 def home(request):
     return render(request, 'dashboard/home.html')
 

@@ -1,6 +1,4 @@
-/* -----------------------
-   GLOBAL THEME SETTINGS
------------------------- */
+
 
 body.theme-dark {
   background-color: #121212;
@@ -17,16 +15,13 @@ body.theme-neon {
   color: #39ff14;
 }
 
-/* Reset margins/padding */
+
 body, html {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* -----------------------
-   TOPBAR STYLES (fixed top)
------------------------- */
 
 .topbar {
   background-color: #1a1a1a;
@@ -83,13 +78,9 @@ body, html {
 }
 
 
-/* -----------------------
-   DASHBOARD LAYOUT
------------------------- */
-
 .main-wrapper {
   display: flex;
-  margin-top: 60px; /* below topbar */
+  margin-top: 60px; 
 }
 
 .content-area {
@@ -98,25 +89,23 @@ body, html {
   transition: margin-left 0.3s ease;
 }
 
-/* When sidebar is expanded */
+
 .main-wrapper.sidebar-expanded .content-area {
   margin-left: 260px;
 }
 
-/* When sidebar is collapsed */
+
 .main-wrapper.sidebar-collapsed .content-area {
   margin-left: 70px;
 }
 
-/* -----------------------
-   SIDEBAR STYLES
------------------------- */
+
 
 .sidebar {
   width: 260px;
   background-color: #1e1e2f;
   color: white;
-  height: calc(100vh - 60px); /* below topbar */
+  height: calc(100vh - 60px); 
   padding: 20px 15px;
   display: flex;
   flex-direction: column;
@@ -185,9 +174,6 @@ body, html {
 }
 
 
-/* -----------------------
-   COLLAPSE STYLES
------------------------- */
 
 .collapse-btn {
   text-align: center;
@@ -216,9 +202,7 @@ body, html {
   justify-content: center;
 }
 
-/* -----------------------
-   USER INFO BOX
------------------------- */
+
 
 .sidebar-user-box {
   background-color: #ececfb;
@@ -230,22 +214,3 @@ body, html {
   
 }
 
-/* -----------------------
-   RESPONSIVE FIX (Mobile)
------------------------- */
-
-@media (max-width: 768px) {
-  .main-wrapper.sidebar-expanded .content-area,
-  .main-wrapper.sidebar-collapsed .content-area {
-    margin-left: 0;
-  }
-
-  .sidebar {
-    position: fixed;
-    z-index: 1001;
-  }
-
-  .content-area {
-    margin-left: 0 !important;
-  }
-}

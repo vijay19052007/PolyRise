@@ -30,6 +30,25 @@
   background-size: 400% 400%;
 
 }
+ ul li a {
+  color: rgb(161, 156, 156);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 25px;
+  transition: 0.3s ease;
+  font-weight: 00;
+  }
+ul li a:hover {
+     background: linear-gradient(330deg, black, blue); 
+  color: gold;
+  box-shadow: 0 0 15px blueviolet;
+    }
+
+    #F #f #a #l{
+       font-size: 10px;
+    }
+     
+    
 
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top p-2">
@@ -56,16 +75,16 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item me-3">
-          <a class="nav-link" href="#features">Features</a>
+          <a id="f" href="#features">Features</a>
         </li>
         <li class="nav-item me-3">
-          <a class="nav-link" href="#about">About</a>
+          <a id="a" href="#about">About</a>
         </li>
         <li class="nav-item me-3">
-          <a class="nav-link" href="#faq">FAQ's</a>
+          <a id="F" href="#faq">FAQ's</a>
         </li>
         <li class="nav-item me-4">
-          <a class="nav-link" href="{% url 'login' %}">Login</a>
+          <a id="l" href="{% url 'login' %}">Login</a>
         </li>
         <li class="nav-item me-3">
           <a
