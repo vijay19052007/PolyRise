@@ -29,15 +29,15 @@ class Profile(models.Model):
     year = models.CharField(max_length=10, choices=YEAR_CHOICES, blank=True, null=True)
 
     is_verified = models.BooleanField(default=False)
-    # Old verification token (optional, can remove later)
+    
     verification_token = models.UUIDField(default=uuid.uuid4, editable=False)
 
-    # --- New OTP fields ---
+   
     email_otp = models.CharField(max_length=6, blank=True, null=True)
     otp_created_at = models.DateTimeField(blank=True, null=True)
 
     def is_otp_valid(self):
-        """Check if OTP is still valid (10 minutes)"""
+       
         if not self.otp_created_at:
             return False
         return timezone.now() <= self.otp_created_at + timedelta(minutes=10)
