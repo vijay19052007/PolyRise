@@ -1,6 +1,4 @@
-/* ===========================
-   ROOT VARIABLES (LIGHT MODE)
-   =========================== */
+
 :root {
   --hero-bg: #f8f9fa;
   --card-bg: #ffffff;
@@ -13,9 +11,7 @@
   --shadow: rgba(0,0,0,0.08);
 }
 
-/* ===========================
-   DARK THEME
-   =========================== */
+
 .theme-dark {
   --hero-bg: #1c1e21;
   --card-bg: #242526;
@@ -28,9 +24,7 @@
   --shadow: rgba(0,0,0,0.5);
 }
 
-/* ===========================
-   NEON THEME
-   =========================== */
+
 .theme-neon {
   --hero-bg: #0f0f0f;
   --card-bg: #111;
@@ -43,9 +37,7 @@
   --shadow: 0 0 15px rgba(0,255,150,0.6);
 }
 
-/* ===========================
-   BASE STYLES
-   =========================== */
+
 body {
   background: var(--hero-bg);
   color: var(--text-primary);
@@ -53,7 +45,7 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* HERO SECTION */
+
 .hero-section {
   background: var(--hero-bg);
   border-radius: 20px;
@@ -93,7 +85,7 @@ body {
   transform: scale(1.05);
 }
 
-/* STATS BOXES */
+
 .faculty-stats {
   display: flex;
   gap: 1.2rem;
@@ -116,7 +108,7 @@ body {
   color: var(--text-secondary);
 }
 
-/* MOTIVATION CARD */
+
 .motivation-card {
   background: var(--card-bg);
   border-left: 5px solid var(--accent);
@@ -130,7 +122,7 @@ body {
   color: var(--text-secondary);
 }
 
-/* UPLOAD GRID */
+
 .upload-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -169,7 +161,7 @@ body {
   color: var(--text-secondary);
 }
 
-/* NOTIFICATIONS */
+
 .notifications-card {
   background: var(--card-bg);
   border-radius: 16px;
