@@ -18,7 +18,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
@@ -26,7 +25,6 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 
 def send_otp_email(to_email, full_name, otp):
-    
     try:
         msg = MIMEMultipart()
         msg['From'] = EMAIL_HOST_USER
@@ -44,7 +42,6 @@ def send_otp_email(to_email, full_name, otp):
 
 @transaction.atomic
 def signup_view(request):
-   
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
@@ -54,46 +51,32 @@ def signup_view(request):
             department = form.cleaned_data.get('department')
             year = form.cleaned_data.get('year')
             password = form.cleaned_data['password']
-
-           
             user = User.objects.create_user(username=email, email=email, password=password, is_active=False)
-
-           
             profile = user.profile
             profile.full_name = full_name
             profile.role = role
             profile.department = department if role == 'student' else None
             profile.year = year if role == 'student' else None
-
-           
             otp_code = str(random.randint(100000, 999999))
             profile.email_otp = otp_code
             profile.otp_created_at = timezone.now()
             profile.save()
-
-            
             send_otp_email(email, full_name, otp_code)
-
-           
             request.session['verify_user_id'] = user.id
-
             messages.success(request, "Account created! Please verify your email.")
             return redirect('verify_otp')
     else:
         form = SignupForm()
-
     return render(request, 'accounts/signup.html', {'form': form})
 
 
 def verify_otp_view(request):
-    
     user_id = request.session.get('verify_user_id')
     if not user_id:
         return redirect('signup')
 
     user = get_object_or_404(User, id=user_id)
     profile = user.profile
-
     if request.method == 'POST':
         entered_otp = request.POST.get('otp', '').strip()
         if profile.email_otp and entered_otp == profile.email_otp:
@@ -126,32 +109,26 @@ def verify_otp_view(request):
 
 @require_POST
 def resend_otp(request):
-   
     email = request.POST.get('email', '').strip().lower()
     try:
         user = User.objects.get(email__iexact=email)
         profile = user.profile
-
         if profile.is_verified:
             messages.info(request, "Your account is already verified. Please log in.")
             return redirect('login')
-
         otp_code = str(random.randint(100000, 999999))
         profile.email_otp = otp_code
         profile.otp_created_at = timezone.now()
         profile.save()
-
         send_otp_email(email, profile.full_name, otp_code)
         request.session['verify_user_id'] = user.id
         messages.success(request, "OTP resent! Check your email.")
     except User.DoesNotExist:
         messages.error(request, "No account found with this email.")
-
     return redirect('verify_otp')
 
 
 def login_view(request):
-    
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -167,12 +144,10 @@ def login_view(request):
                 user = None
 
             if user:
-               
                 if role == 'admin' and not user.is_superuser:
                     messages.error(request, "Invalid admin login.")
                     return redirect('login')
-
-              
+                
                 if role != 'admin':
                     if not hasattr(user, 'profile'):
                         messages.error(request, "Invalid login details.")
@@ -186,8 +161,6 @@ def login_view(request):
                         return redirect('verify_otp')
 
                 login(request, user)
-
-               
                 if role == 'admin':
                   request.session.set_expiry(0)  
                 else:
@@ -195,9 +168,6 @@ def login_view(request):
                   request.session.set_expiry(60*60*24*30)
                  else:
                   request.session.set_expiry(0)
-
-
-                
                 if role == 'student':
                     return redirect('student_dashboard')
                 elif role == 'faculty':
@@ -207,11 +177,8 @@ def login_view(request):
                 messages.error(request, "Invalid username/email or password.")
     else:
         form = LoginForm()
-
     return render(request, 'accounts/login.html', {'form': form})
 
-
 def logout_view(request):
-
     logout(request)
     return redirect('landing_page')

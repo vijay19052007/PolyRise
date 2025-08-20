@@ -5,10 +5,11 @@ class ResumeTemplate(models.Model):
     file = models.FileField(upload_to='career/resumes/')
     style_name = models.CharField(max_length=50)
     is_active = models.BooleanField(default=True)
+
 class ProjectIdea(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField()
-    tech_stack = models.CharField(max_length=150)  # comma-separated techs
+    tech_stack = models.CharField(max_length=150)
     link = models.URLField(blank=True, null=True)
     image = models.ImageField(upload_to='career/project_images/', blank=True, null=True)
     is_active = models.BooleanField(default=True)
@@ -16,7 +17,6 @@ class ProjectIdea(models.Model):
     def __str__(self):
         return self.title
 
-   
     @property
     def stack_list(self):
         return [tech.strip() for tech in self.tech_stack.split(',') if tech.strip()]

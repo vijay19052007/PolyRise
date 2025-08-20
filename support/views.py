@@ -11,7 +11,6 @@ def support(request):
 def submit_doubt(request):
     if request.method == "POST":
         form = DoubtForm(request.POST)
-        
         if form.is_valid():
             try:
                 form.save()
@@ -24,12 +23,9 @@ def submit_doubt(request):
                     request,
                     "An error occurred. Please try again later."
                 )
-               
         else:
-            
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.error(request, f"{field.capitalize()}: {error}")
         return redirect(reverse('support'))
-    
     return redirect(reverse('support'))

@@ -98,7 +98,7 @@
     const yearField = document.getElementById('id_year').parentElement;
 
     function toggleRoleFields() {
-      const role = roleSelect.value.toLowerCase(); // ✅ case-insensitive match
+      const role = roleSelect.value.toLowerCase();
       facultyCodeGroup.style.display = role === 'faculty' ? 'block' : 'none';
       const isStudent = role === 'student';
       deptField.style.display = isStudent ? 'block' : 'none';

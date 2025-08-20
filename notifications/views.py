@@ -3,7 +3,7 @@ from django.utils import timezone
 from .models import Notification
 
 def notifications_list(request):
-    category = request.GET.get('category', '')  # e.g. 'exam', 'result', ...
+    category = request.GET.get('category', '')
     today = timezone.now().date()
 
     notifications = Notification.objects.filter(is_active=True, expiry_date__gte=today)

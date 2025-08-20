@@ -14,7 +14,7 @@ urlpatterns = [
     path('facultyzone/', include('facultyzone.urls')), 
     path('notifications/', include('notifications.urls')),
     path('academics/', include('academics.urls')),
-       path('career/', include('career.urls')),  
+    path('career/', include('career.urls')),  
 ]
 
 if settings.DEBUG:

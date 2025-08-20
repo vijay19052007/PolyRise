@@ -9,5 +9,5 @@ urlpatterns = [
     path('hr/', views.hr_practice, name='hr_practice'),
     path('tips/', views.interview_tips, name='interview_tips'),
     path('quiz/', views.career_quiz, name='career_quiz'),
-     path('resume/download/', views.download_resume, name='download_resume'),
+    path('resume/download/', views.download_resume, name='download_resume'),
 ]
