@@ -47,7 +47,7 @@
                 <div id="card">
                     <h5><i class="bi bi-journal-text"></i>{{ item.title }}</h5>
                     <p><i class="bi bi-book"></i> {{ item.branch }} | Semester {{ item.semester }}</p>
-                    <a href="{{ item.file.url }}" class="btn btn-primary" download>Download</a>
+                    <a href="{% url 'secure_download' 'syllabus' item.id %}" class="btn btn-primary">Download</a>
                 </div>
                 {% empty %}
                 <p>No syllabus found.</p>
@@ -88,7 +88,7 @@
                     <h5><i class="bi bi-file-earmark-text"></i> {{ item.subject }} - {{ item.exam_name }}</h5>
                     <p><i class="bi bi-building"></i> {{ item.branch }} | Sem {{ item.semester }}</p>
                     <p><i class="bi bi-calendar-event"></i> {{ item.year }} | {{ item.exam_type }}</p>
-                    <a href="{{ item.file.url }}" class="btn btn-primary" download>Download</a>
+                    <a href="{% url 'secure_download' 'paper' item.id %}" class="btn btn-primary">Download</a>
                 </div>
                 {% empty %}
                 <p>No previous papers found.</p>
@@ -123,7 +123,7 @@
                     <h5><i class="bi bi-journal-bookmark"></i> {{ item.title }}</h5>
                     <p><i class="bi bi-book-half"></i> {{ item.branch }} | Sem {{ item.semester }}</p>
                     <p><i class="bi bi-card-text"></i> {{ item.subject }}</p>
-                    <a href="{{ item.file.url }}" class="btn btn-primary" download>Download</a>
+                    <a href="{% url 'secure_download' 'faculty_note' item.id %}" class="btn btn-primary">Download</a>
                 </div>
                 {% empty %}
                 <p>No study notes found.</p>
