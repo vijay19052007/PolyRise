@@ -672,6 +672,7 @@ body.theme-neon {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 25px;
+    width: 100%;
 }
 #card {
     background-color: rgba(255,255,255,0.1);
@@ -680,14 +681,16 @@ body.theme-neon {
     box-shadow: 0 8px 18px rgba(0,0,0,0.1);
     transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
     position: relative;
-    width: 500px;
+    width: 100%; 
+    box-sizing: border-box; 
+    margin-bottom: 0; 
 }
 body.theme-dark #card {
     background-color: #1e1e1e;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    box-shadow: 0 8px 20px rgba(122, 87, 230, 0.6);
 }
 body.theme-light #card {
-    background: linear-gradient(135deg, rgb(142, 150, 176), rgb(141, 126, 180));
+    background: linear-gradient(135deg, rgb(254, 254, 255), rgb(204, 204, 208));
     box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
 body.theme-neon #card {
