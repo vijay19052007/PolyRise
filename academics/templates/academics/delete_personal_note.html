@@ -5,7 +5,7 @@
 
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'academics/css/resources.css' %}">
-<!-- Font Awesome for icons -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
 
@@ -237,7 +237,6 @@ body.theme-neon .warning-text {
     }
 }
 
-/* Animation for emphasis */
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.02); }
@@ -298,7 +297,7 @@ function goBack() {
     window.history.back();
 }
 
-// Add confirmation for better UX
+
 document.addEventListener('DOMContentLoaded', function() {
     const deleteForm = document.querySelector('form');
     deleteForm.addEventListener('submit', function(e) {
