@@ -3,347 +3,960 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Welcome to PolyRise</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to PolyRise - Your All-in-One Academic Platform</title>
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
   <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-light: #6d8aff;
+      --secondary: #3a0ca3;
+      --accent: #f72585;
+      --accent-light: #ff5caa;
+      --success: #4cc9f0;
+      --warning: #f9c74f;
+      --dark-bg: #0a0a1a;
+      --dark-card: #12122a;
+      --darker-card: #0d0d1f;
+      --dark-purple: #1e1e3f;
+      --dark-blue: #16213e;
+      --dark-text: #e0e0ff;
+      --dark-muted: #8b8ba8;
+      --gradient-primary: linear-gradient(135deg, #4361ee, #3a0ca3);
+      --gradient-accent: linear-gradient(135deg, #f72585, #b5179e);
+      --gradient-success: linear-gradient(135deg, #4cc9f0, #4895ef);
+      --gradient-hero: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 100%);
+      --gradient-dark: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 100%);
+    }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+    }
+    
+    
+    .hero-section {
+      background: linear-gradient(rgba(3, 3, 11, 0.55), rgba(12, 12, 25, 0.55)), 
+        url("static/images/hero.webp");
+      background-size: cover;
+      background-position: center;
+      padding: 9rem 0 7rem;
+      position: relative;
+      overflow: hidden;
+      height: 650px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    
 
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #4361ee, #4cc9f0, #f72585);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      color: var(--dark-text);
+      font-weight: 400;
+    }
+    
+    .hero-buttons .btn {
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 50px;
+      padding: 0.9rem 2.2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .hero-buttons .btn-primary {
+      background: var(--gradient-primary);
+      border: none;
+    }
+    
+    .hero-buttons .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(67, 97, 238, 0.35);
+    }
+    
+    .hero-buttons .btn-outline-light {
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+    
+    .hero-buttons .btn-outline-light:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-3px);
+    }
+    
+    
+    .section-title {
+      position: relative;
+      margin-bottom: 3rem;
+      font-weight: 700;
+      text-align: center;
+      font-size: 2.5rem;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      color: var(--dark-muted);
+      margin-bottom: 4rem;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    
+    
+    .feature-card {
+      background: var(--dark-card);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: none;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      height: 100%;
+      border: 1px solid rgba(67, 97, 238, 0.1);
+      padding: 1.5rem;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(67, 97, 238, 0.2);
+      border-color: rgba(67, 97, 238, 0.3);
+      background: var(--darker-card);
+    }
+    
+    .feature-icon {
+      width: 90px;
+      height: 90px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2.5rem;
+      background: var(--gradient-primary);
+      color: white;
+      box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+    }
+    
+    .feature-card h3 {
+      color: var(--primary-light);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    
+    .feature-card p {
+      color: var(--dark-muted);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .feature-card .btn {
+      border-radius: 50px;
+      padding: 0.7rem 1.5rem;
+      font-weight: 600;
+      display: block;
+      margin: 0 auto;
+      width: fit-content;
+    }
+    
+    
+    .library-section {
+      background:  url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding: 8rem 0;
+    }
+    
+    .resource-card {
+      background: rgba(13, 13, 31, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2.5rem;
+      text-align: center;
+      height: 100%;
+      border: 1px solid rgba(67, 97, 238, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .resource-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(67, 97, 238, 0.5);
+      box-shadow: 0 15px 30px rgba(67, 97, 238, 0.2);
+    }
+    
+    .resource-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .resource-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+    
+   
+    .career-section {
+      background: rgb(25, 1, 52);
+      padding: 8rem 0;
+      position: relative;
+    }
+    
+    .career-path {
+      position: relative;
+      padding: 3rem 0;
+    }
+    
+    .path-item {
+      padding: 2rem;
+      background: var(--dark-card);
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      border-left: 4px solid blue;
+      transition: all 0.3s ease;
+    }
+    
+    .path-item:hover {
+      transform: translateX(10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .path-number {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: var(--gradient-primary);
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      font-weight: 700;
+      margin-right: 1rem;
+    }
+    
+
+    .faculty-section {
+      background: linear-gradient(rgba(3, 3, 11, 0.55), rgba(12, 12, 25, 0.55)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 8rem 0;
+    }
+    
+    .collab-feature {
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .collab-icon {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    
+    
+    .how-it-works {
+      padding: 6rem 0;
+      background: var(--dark-bg);
+    }
+    
+    .process-step {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+    
+    .step-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--gradient-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+    }
+    
+    .process-step h4 {
+      color: var(--primary-light);
+      margin-bottom: 1rem;
+    }
+    
+    .process-step p {
+      color: var(--dark-muted);
+    }
+    
+    
+    .faq-section {
+      background: var(--dark-purple);
+      padding: 8rem 0;
+    }
+    
+    .faq-container {
+      background: var(--dark-card);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    .faq-item {
+      margin-bottom: 1.5rem;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--darker-card);
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .faq-button {
+      background: var(--darker-card);
+      color: var(--dark-text);
+      font-weight: 600;
+      padding: 1.5rem;
+      width: 100%;
+      text-align: left;
+      border: none;
+      border-radius: 10px;
+      transition: all 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-button:not(.collapsed) {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .faq-button::after {
+      content: '\f078';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      transition: all 0.3s;
+    }
+    
+    .faq-button:not(.collapsed)::after {
+      transform: rotate(180deg);
+      color: white;
+    }
+    
+    .faq-body {
+      padding: 1.5rem;
+      background: var(--dark-card);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    
+    .cta-section {
+      background: linear-gradient(rgba(3, 3, 11, 0.55), rgba(12, 12, 25, 0.55)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 8rem 0;
+      text-align: center;
+      position: relative;
+    }
+    
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.8;
+      z-index: 1;
+    }
+    
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .cta-title {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+    
+    .cta-text {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .cta-btn {
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      background: wheat;
+      color: var(--primary);
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(330deg, rgb(75, 73, 73), rgb(48, 54, 54)); 
+    color: rgb(230, 223, 179);
+    }
+    
+    .rise{
+      color: goldenrod;
+    }
+    #mis{
+      color: rgb(7, 155, 155);
+    }
+    #vis{
+      color: rgb(204, 9, 139);
+    }
+  </style>
 </head>
 <body class="theme-dark">
 
   {% include 'partials/topbar_home.html' %}
-  
-<div class="container my-2 text-white" id="backg">
-  <div class="row align-items-center">
 
+  <section class="hero-section">
+    <div class="floating-element float-1"></div>
+    <div class="floating-element float-2"></div>
     
-    <div class="col-md-6 text-center text-md-start" data-aos="fade-right">
-      <h1 class="display-4 fw-bold">Rise Beyond Limits </h1><h2>- Your All-in-One Academic Platform</h2>
-      <p class="lead">
-  Study smarter, track progress, and <span style="color:#ffbb00;">plan your career</span> — built for diploma students.
-</p>
-
-      <div class="mt-4">
-        <a href="{% url 'signup' %}" class="btn btn-light me-3">Start with us</a>
-        <a href="{% url 'login' %}" class="btn btn-outline-light">Login</a>
-      </div>
-    </div>
-
-    
-    <div class="col-md-6 text-end pe-5" data-aos="fade-left">
-  <div class="avatar-wrapper">
-    <img src="{% static 'images/avatar1.png' %}" alt="Student Avatar" 
-         class="img-fluid" style="max-height: 550px;">
-  </div>
-</div>
-
-
-  </div>
-</div>
-
-<section class="py-5" style="background-color: #f8f9fa;">
-  <div class="container">
-    <div class="text-center mb-5" data-aos="fade-down">
-      <h2 class="fw-bold" style="color: #0d6efd;">Our Vision & Mission</h2>
-      <p style="color: #6c757d;">Shaping the future of diploma students with skills and opportunities.</p>
-    </div>
-
-    <div class="row g-4">
-    
-      <div class="col-md-6" data-aos="fade-right">
-        <div class="card shadow border-0 h-100">
-          <div class="card-body p-4" style="background-color: white; color: #000;">
-            <h4 class="fw-bold" style="color: #198754;">Vision</h4>
-            <p class="card-text" style="color: #000 !important;">
-              To empower diploma students to rise beyond limitations by providing innovative, 
-              skill-driven, and career-focused learning experiences.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      
-      <div class="col-md-6" data-aos="fade-left">
-        <div class="card shadow border-0 h-100">
-          <div class="card-body p-4" style="background-color: white; color: #000;">
-            <h4 class="fw-bold" style="color: #0dcaf0;">Mission</h4>
-            <p class="card-text" style="color: #000 !important;">
-              Polyrise is committed to bridging academic knowledge with real-world skills through 
-              interactive resources, personalized guidance, and collaborative opportunities that 
-              prepare students for future success.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="py-5" style="background-color: #121212;">
-  <div class="container">
-    <div class="row align-items-center">
-      
-     
-      <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
-        <img src="{%static 'images/laptop.webp' %}" 
-             alt="Laptop Illustration" 
-             class="img-fluid" style="margin-left: 10; max-height: 400px;border-radius: 10px;">
-      </div>
-
-    
-      <div class="col-md-6" data-aos="fade-left">
-        <h2 class="fw-bold" style="color: #ffffff;">Your Personalized Learning & Career Space</h2>
-        <p style="color: #b0b0b0;">
-          A dedicated platform to help you learn at your own pace, track your progress, and prepare for 
-          future career opportunities. Designed specifically for diploma students to bridge the gap between 
-          academics and the real world.
-        </p>
-        
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-<section id="features" class="py-5 bg-white">
-  <div class="container text-dark">
-    <div class="container px-4 py-4" id="featured-3">
-      <h2 class="pb-2 border-bottom text-primary" data-aos="fade-down">Why Choose PolyRise?</h2>
-      <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-
-        <div class="feature col">
-          <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-primary bg-gradient fs-2 mb-3 rounded-circle p-3 text-white">
-            📚
-          </div>
-          <h3 class="fs-4 text-dark">Syllabus Explorer</h3>
-          <p class="text-muted">Access the latest MSBTE syllabus instantly in one click.</p>
-          <a href="/accounts/signup/" class="icon-link text-primary">
-            Explore Now
-            <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
-          </a>
-        </div>
-
-        <div class="feature col">
-          <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-success bg-gradient fs-2 mb-3 rounded-circle p-3 text-white">
-            📝
-          </div>
-          <h3 class="fs-4 text-dark">Rapid 5 Quiz</h3>
-          <p class="text-muted">Challenge yourself with 5 quick MCQs per subject.</p>
-          <a href="/accounts/signup/" class="icon-link text-success">
-            Take Quiz
-            <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
-          </a>
-        </div>
-
-        <div class="feature col">
-          <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-warning bg-gradient fs-2 mb-3 rounded-circle p-3 text-white">
-            📄
-          </div>
-          <h3 class="fs-4 text-dark">Smart Resume Builder</h3>
-          <p class="text-muted">Create a professional resume in minutes with auto-filled templates.</p>
-          <a href="/accounts/signup/" class="icon-link text-warning">
-            Build Now
-            <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
-          </a>
-        </div>
-
-        <div class="feature col">
-          <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-danger bg-gradient fs-2 mb-3 rounded-circle p-3 text-white">
-            📢
-          </div>
-          <h3 class="fs-4 text-dark">MSBTE Notifications</h3>
-          <p class="text-muted">Stay updated with exam results, timetables, and official notices.</p>
-          <a href="/accounts/signup/" class="icon-link text-danger">
-            View Updates
-            <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
-          </a>
-        </div>
-
-        <div class="feature col">
-          <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-info bg-gradient fs-2 mb-3 rounded-circle p-3 text-white">
-            📑
-          </div>
-          <h3 class="fs-4 text-dark">Notes & PDFs</h3>
-          <p class="text-muted">Download faculty-uploaded notes, past papers, and study resources.</p>
-          <a href="/accounts/signup/" class="icon-link text-info">
-            Browse Notes
-            <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
-          </a>
-        </div>
-
-        <div class="feature col">
-          <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-secondary bg-gradient fs-2 mb-3 rounded-circle p-3 text-white">
-            💡
-          </div>
-          <h3 class="fs-4 text-dark">Project Ideas</h3>
-          <p class="text-muted">Get final year project ideas with tech stack and sample references.</p>
-          <a href="/accounts/signup/" class="icon-link text-secondary">
-            Get Ideas
-            <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="py-5 mt-3 mb-5" style="background-color: #121212; ;">
-  <div class="container py-4">
-    <h2 class="text-center mb-4" style="color: #ffffff;" data-aos="fade-down">About PolyRise</h2>
-    <div class="row align-items-center">
-      
-      
-      <div class="col-md-6" data-aos="fade-right">
-        <p class="lead" style="color: #e0e0e0;">
-          <strong style="color: #0d6efd;">PolyRise</strong> is an all-in-one academic platform built especially for diploma students under MSBTE.
-          Our goal is to help students, faculty, and administrators connect, share resources, and track academic progress in a single place.
-        </p>
-        <p style="color: #b0b0b0;">
-          Whether you need quick quizzes, syllabus access, career tools, or official MSBTE updates — PolyRise is here to make your learning journey smoother.
-        </p>
-        <ul style="color: #d0d0d0;">
-          <li>Latest MSBTE syllabus & notes</li>
-          <li>Rapid 5 Quiz for quick practice</li>
-          <li>Real-time MSBTE alerts & updates</li>
-          <li>Resume builder & career guidance</li>
-        </ul>
-        <p style="color: #b0b0b0;"><em>“Rise Beyond Limits”</em> — because your education should be limitless.</p>
-      </div>
-
-      
-      <div class="col-md-6 text-center">
-        <img src="{% static 'images/stud.webp' %}" 
-             alt="PolyRise Platform" 
-             class="img-fluid rounded shadow" 
-             style="max-height: 350px;"
-             data-aos="fade-left">
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section id="faq" class="py-5 bg-light">
-  <div class="container py-4">
-    <h2 class="text-center mb-4" data-aos="fade-down">Frequently Asked Questions</h2>
-
-    <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" 
-                  data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            1. Who can use PolyRise?
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" 
-             aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            PolyRise is designed primarily for polytechnic students and faculty members.
-            <ul>
-            <li>Students can access study materials, syllabus updates, quizzes, and career tools.</li> 
-            
-            <li>Faculty can upload notes, share important announcements, and track student progress.
-            Currently, the platform focuses on MSBTE-affiliated institutes, but we plan to expand to other polytechnic boards in the future.
-          </li>
-        </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            2. Is PolyRise free to use?
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" 
-             aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            Yes, PolyRise is completely free for students and faculty.
-
-            You can browse the syllabus, download notes, attempt quizzes, and view announcements without paying anything.
-
-            In the future, we may introduce optional premium features like advanced analytics or additional storage for faculty uploads, but the core learning tools will always remain free.
-
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            3. How often are study materials updated?
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" 
-             aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            Our team and registered faculty members regularly update study materials to make sure you always have access to the latest syllabus, notes, and past papers.
-
-            Official MSBTE updates (like syllabus changes or circulars) are uploaded as soon as they’re released.
-
-            Faculty-uploaded resources are instantly visible after approval.
-            This ensures you are always studying with current and relevant information.
-
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingFour">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-            4. Is PolyRise available for other states or only MSBTE?
-          </button>
-        </h2>
-        <div id="collapseFour" class="accordion-collapse collapse" 
-             aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            Right now, PolyRise is focused on MSBTE-affiliated polytechnic institutes in Maharashtra, ensuring that the syllabus, notes, and exam updates are accurate and relevant for MSBTE students.<br>
-            However, we are actively working on expanding support to other state boards and technical education councils across India.<br>
-            In the coming months, you can expect:
-            <ul>
-              <li>Custom syllabus sections for different boards.</li>
-              <li>State-specific exam notifications.</li>
-              <li>Faculty and student resources tailored to each region.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="py-5 text-center text-white" style="background: linear-gradient(135deg, #4b6cb7, #182848);">
     <div class="container">
-        <h2 class="display-5 fw-bold mb-3">Start Your Journey Today </h2>
-        <p class="lead mb-4">Join thousands of students learning smarter every day with PolyRise.</p>
-        <a href="{% url 'signup' %}" class="btn btn-lg btn-warning px-4 py-2 fw-bold">Get Started</a>
+      <div class="row align-items-center">
+        <div class="col-lg-6 hero-content" data-aos="fade-right" data-aos-delay="100">
+          <h1 class="hero-title">Transform Your Diploma Journey with PolyRise</h1>
+          <p class="hero-subtitle">The ultimate platform designed exclusively for MSBTE students to excel academically and build their career foundation.</p>
+          <p class="mb-4">Study smarter, track progress, and <span class="hero-highlight">plan your career</span> with AI-powered tools designed specifically for diploma students.</p>
+          <div class="hero-buttons">
+            <a href="{% url 'signup' %}" class="btn btn-primary me-2">Get Started Free</a>
+            <a href="#features" class="btn btn-outline-light">Explore Features</a>
+          </div>
+          
+          <div class="mt-5 d-flex align-items-center">
+            <div class="d-flex me-4">
+              <div class="me-2"><i class="fas fa-check-circle text-success"></i></div>
+              <div>No Credit Card Required</div>
+            </div>
+            <div class="d-flex">
+              <div class="me-2"><i class="fas fa-check-circle text-success"></i></div>
+              <div>Free Forever for Students</div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
     </div>
-</section>
+  </section>
 
+  <section class="py-5" style="background-color: rgb(14, 13, 38);">
+    <div class="container py-5">
+      <h2 class="section-title text-white" data-aos="fade-down">Our Vision & Mission</h2>
+      <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Shaping the future of diploma students with skills and opportunities</p>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+      <div class="row g-4">
+        <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
+          <div class="card feature-card h-100 border-0">
+            <div class="card-body p-5 text-center">
+              <div class="feature-icon">
+                <i class="fas fa-eye"></i>
+              </div>
+              <h3 id="vis">Vision</h3>
+              <p class="card-text">
+                To empower diploma students to rise beyond limitations by providing innovative, 
+                skill-driven, and career-focused learning experiences that transform education.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
+          <div class="card feature-card h-100 border-0">
+            <div class="card-body p-5 text-center">
+              <div class="feature-icon">
+                <i class="fas fa-bullseye"></i>
+              </div>
+              <h3 id="mis">Mission</h3>
+              <p class="card-text">
+                PolyRise is committed to bridging academic knowledge with real-world skills through 
+                interactive resources, personalized guidance, and collaborative opportunities that 
+                prepare students for future success.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="how-it-works" style="background-color: #3406a1;">
+    <div class="container">
+      <h2 class="section-title text-white" data-aos="fade-down">How PolyRise Works</h2>
+      <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Get started in three simple steps and transform your learning experience</p>
+      
+      <div class="row">
+        <div class="col-md-4 process-step" data-aos="fade-up" data-aos-delay="0">
+          <div class="step-number">1</div>
+          <h4>Create Your Account</h4>
+          <p>Sign up as a student or faculty member with your educational details to get personalized experience</p>
+        </div>
+        <div class="col-md-4 process-step" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-number">2</div>
+          <h4>Explore Resources</h4>
+          <p>Access syllabus, study materials, quizzes, and career tools tailored to your diploma program</p>
+        </div>
+        <div class="col-md-4 process-step" data-aos="fade-up" data-aos-delay="400">
+          <div class="step-number">3</div>
+          <h4>Track Your Progress</h4>
+          <p>Monitor your academic performance, skill development, and career readiness with our analytics dashboard</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+  <section class="py-5" style="background-color: rgb(12, 2, 21);">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
+          <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+               alt="Personalized Learning" 
+               class="img-fluid rounded shadow" 
+               style="max-height: 800px; width: 90%; object-fit: cover;">
+        </div>
+        <div class="col-md-6" data-aos="fade-left">
+          <h1 class="fw-bold mb-4">Your Personalized Learning & Career Space</h1>
+          <br>
+          <p class="mb-4">
+            A dedicated platform to help you learn at your own pace, track your progress, and prepare for 
+            future career opportunities. Designed specifically for diploma students to bridge the gap between 
+            academics and the real world.
+          </p>
+          <br>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Custom learning paths</li>
+            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Progress tracking dashboard</li>
+            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Career readiness assessment</li>
+            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Skill development roadmap</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="library-section">
+    <div class="container">
+      <h2 class="section-title text-white" data-aos="fade-down">Digital Library Resources</h2>
+      <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Access thousands of learning materials curated for MSBTE diploma students</p>
+      
+      <div class="row">
+        <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="resource-card">
+            <div class="resource-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="resource-number">1,250+</div>
+            <p>Subject Notes</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="resource-card">
+            <div class="resource-icon">
+              <i class="fas fa-file-pdf"></i>
+            </div>
+            <div class="resource-number">850+</div>
+            <p>Question Papers</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="resource-card">
+            <div class="resource-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <div class="resource-number">320+</div>
+            <p>Video Lectures</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="resource-card">
+            <div class="resource-icon">
+              <i class="fas fa-project-diagram"></i>
+            </div>
+            <div class="resource-number">180+</div>
+            <p>Project Guides</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="py-5" style="background-color: var(--dark-bg);">
+    <div class="container py-5">
+      <h2 class="section-title text-white" data-aos="fade-down">Why Choose PolyRise?</h2>
+      <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Everything you need to excel in your diploma program and beyond</p>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="card feature-card h-100 border-0">
+            <div class="card-body p-4 text-center">
+              <div class="feature-icon">
+                <i class="fas fa-book-open"></i>
+              </div>
+              <h3>Syllabus Explorer</h3>
+              <p>Access the latest MSBTE syllabus instantly in one click, organized by semester and subject with detailed topic breakdown.</p>
+              <a href="/accounts/signup/" class="btn btn-outline-primary mt-3">Explore Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card feature-card h-100 border-0">
+            <div class="card-body p-4 text-center">
+              <div class="feature-icon">
+                <i class="fas fa-brain"></i>
+              </div>
+              <h3>Rapid 5 Quiz</h3>
+              <p>Challenge yourself with 5 quick MCQs per subject to test your knowledge in minutes and track your improvement over time.</p>
+              <a href="/accounts/signup/" class="btn btn-outline-primary mt-3">Take Quiz</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="card feature-card h-100 border-0">
+            <div class="card-body p-4 text-center">
+              <div class="feature-icon">
+                <i class="fas fa-file-alt"></i>
+              </div>
+              <h3>Smart Resume Builder</h3>
+              <p>Create a professional resume in minutes with auto-filled templates tailored for diploma students and industry requirements.</p>
+              <a href="/accounts/signup/" class="btn btn-outline-primary mt-3">Build Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="card feature-card h-100 border-0">
+            <div class="card-body p-4 text-center">
+              <div class="feature-icon">
+                <i class="fas fa-bell"></i>
+              </div>
+              <h3>MSBTE Notifications</h3>
+              <p>Stay updated with exam results, timetables, and official notices directly from MSBTE with instant alerts.</p>
+              <a href="/accounts/signup/" class="btn btn-outline-primary mt-3">View Updates</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card feature-card h-100 border-0">
+            <div class="card-body p-4 text-center">
+              <div class="feature-icon">
+                <i class="fas fa-file-pdf"></i>
+              </div>
+              <h3>Notes & PDFs</h3>
+              <p>Download faculty-uploaded notes, past papers, and study resources for all subjects with rating and review system.</p>
+              <a href="/accounts/signup/" class="btn btn-outline-primary mt-3">Browse Notes</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="card feature-card h-100 border-0">
+            <div class="card-body p-4 text-center">
+              <div class="feature-icon">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <h3>Project Ideas</h3>
+              <p>Get final year project ideas with tech stack recommendations, sample references, and implementation guides.</p>
+              <a href="/accounts/signup/" class="btn btn-outline-primary mt-3">Get Ideas</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="career-section">
+    <div class="container">
+      <h2 class="section-title text-white" data-aos="fade-down">Career Path Guidance</h2>
+      <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Plan your future with specialized roadmaps for diploma students</p>
+      
+      <div class="career-path">
+        <div class="path-item" data-aos="fade-right" data-aos-delay="0">
+          <span class="path-number">1</span>
+          <h4>Skill Assessment</h4>
+          <p>Evaluate your current skills and identify areas for improvement with our comprehensive assessment tools.</p>
+        </div>
+        
+        <div class="path-item" data-aos="fade-right" data-aos-delay="100">
+          <span class="path-number">2</span>
+          <h4>Career Roadmapping</h4>
+          <p>Get personalized career paths based on your interests, skills, and market demands for diploma holders.</p>
+        </div>
+        
+        <div class="path-item" data-aos="fade-right" data-aos-delay="200">
+          <span class="path-number">3</span>
+          <h4>Industry Preparation</h4>
+          <p>Access interview preparation materials, resume templates, and placement guidance specifically for diploma students.</p>
+        </div>
+        
+        <div class="path-item" data-aos="fade-right" data-aos-delay="300">
+          <span class="path-number">4</span>
+          <h4>Higher Education Guidance</h4>
+          <p>Explore options for further studies after diploma, including direct second year engineering and other pathways.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faculty-section">
+    <div class="container">
+      <h2 class="section-title text-white" data-aos="fade-down">Faculty Collaboration Platform</h2>
+      <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Empowering educators to enhance teaching and student engagement</p>
+      
+      <div class="row">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="collab-feature">
+            <div class="collab-icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h4>Resource Sharing</h4>
+            <p>Share notes, assignments, and study materials with students seamlessly.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="collab-feature">
+            <div class="collab-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h4>Performance Analytics</h4>
+            <p>Track student progress and identify areas needing attention with detailed analytics.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+          <div class="collab-feature">
+            <div class="collab-icon">
+              <i class="fas fa-bullhorn"></i>
+            </div>
+            <h4>Announcements</h4>
+            <p>Make important announcements and ensure they reach all students instantly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="section-title text-white" data-aos="fade-down">Frequently Asked Questions</h2>
+      <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">Find answers to common questions about PolyRise</p>
+      
+      <div class="faq-container" data-aos="fade-up">
+        <div class="accordion" id="faqAccordion">
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="0">
+            <h3 class="mb-0">
+              <button class="faq-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                Who can use PolyRise?
+              </button>
+            </h3>
+            <div id="faq1" class="collapse show" data-bs-parent="#faqAccordion">
+              <div class="faq-body">
+                <p>PolyRise is designed primarily for polytechnic students and faculty members.</p>
+                <ul>
+                  <li>Students can access study materials, syllabus updates, quizzes, and career tools.</li>
+                  <li>Faculty can upload notes, share important announcements, and track student progress.</li>
+                </ul>
+                <p>Currently, the platform focuses on MSBTE-affiliated institutes, but we plan to expand to other polytechnic boards in the future.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="mb-0">
+              <button class="faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                Is PolyRise free to use?
+              </button>
+            </h3>
+            <div id="faq2" class="collapse" data-bs-parent="#faqAccordion">
+              <div class="faq-body">
+                <p>Yes, PolyRise is completely free for students and faculty.</p>
+                <p>You can browse the syllabus, download notes, attempt quizzes, and view announcements without paying anything.</p>
+                <p>In the future, we may introduce optional premium features like advanced analytics or additional storage for faculty uploads, but the core learning tools will always remain free.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="mb-0">
+              <button class="faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                How often are study materials updated?
+              </button>
+            </h3>
+            <div id="faq3" class="collapse" data-bs-parent="#faqAccordion">
+              <div class="faq-body">
+                <p>Our team and registered faculty members regularly update study materials to make sure you always have access to the latest syllabus, notes, and past papers.</p>
+                <p>Official MSBTE updates (like syllabus changes or circulars) are uploaded as soon as they're released.</p>
+                <p>Faculty-uploaded resources are instantly visible after approval, ensuring you always study with current and relevant information.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+            <h3 class="mb-0">
+              <button class="faq-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                Is PolyRise available for other states or only MSBTE?
+              </button>
+            </h3>
+            <div id="faq4" class="collapse" data-bs-parent="#faqAccordion">
+              <div class="faq-body">
+                <p>Right now, PolyRise is focused on MSBTE-affiliated polytechnic institutes in Maharashtra, ensuring that the syllabus, notes, and exam updates are accurate and relevant for MSBTE students.</p>
+                <p>However, we are actively working on expanding support to other state boards and technical education councils across India.</p>
+                <p>In the coming months, you can expect:</p>
+                <ul>
+                  <li>Custom syllabus sections for different boards</li>
+                  <li>State-specific exam notifications</li>
+                  <li>Faculty and student resources tailored to each region</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-5" style="background-color: black;" >
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6" data-aos="fade-right">
+          <h2 class="section-title text-start">About PolyRise</h2>
+          <p class="lead">
+            <strong class="text-primary">PolyRise</strong> is an all-in-one academic platform built especially for diploma students under MSBTE.
+          </p>
+          <p>
+            Our goal is to help students, faculty, and administrators connect, share resources, and track academic progress in a single place. Whether you need quick quizzes, syllabus access, career tools, or official MSBTE updates — PolyRise is here to make your learning journey smoother.
+          </p>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Latest MSBTE syllabus & notes</li>
+            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Rapid 5 Quiz for quick practice</li>
+            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Real-time MSBTE alerts & updates</li>
+            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Resume builder & career guidance</li>
+          </ul>
+          <p class="fst-italic rise">"Rise Beyond Limits" — because your education should be limitless.</p>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="PolyRise Platform" class="img-fluid rounded shadow">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2 class="cta-title" data-aos="fade-down">Ready to Transform Your Academic Journey?</h2>
+      <p class="cta-text" data-aos="fade-down" data-aos-delay="100">Join thousands of diploma students who are already using PolyRise to excel in their studies and build their careers</p>
+      <a href="{% url 'signup' %}" class="cta-btn" data-aos="zoom-in">Get Started For Free</a>
+      <p class="mt-4 text-white-50">No credit card required • Free forever for students</p>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
   integrity="sha384-qENu44B4BgmM+AYKkdE+6UXMaLLq5yRvDqxn6VOGGAIvHo9dZYkTfLZBBVY1+8nb" 
           crossorigin="anonymous"></script>
-     <script>
-  AOS.init({
-    duration: 1000,
-    once: true,
-    startEvent: 'DOMContentLoaded' 
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+    AOS.refresh();
   });
 </script>
   {% include 'partials/footer.html' %}
 </body>
 </html>
+
+
