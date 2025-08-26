@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),  
     path('accounts/', include('accounts.urls')),  
-    path('users/', include('allauth.urls')),   # you renamed to users
+    path('users/', include('allauth.urls')),   
     path('dashboard/', include('dashboard.urls')),
     path('support/', include('support.urls')), 
     path('smarttools/', include('smarttools.urls')),
