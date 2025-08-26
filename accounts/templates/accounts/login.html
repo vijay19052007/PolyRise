@@ -1,6 +1,7 @@
 {% extends 'base_auth.html' %}
 {% load static %}
 {% load form_tags %}
+{% load socialaccount %}
 
 {% block title %}Login - PolyRise{% endblock %}
 
@@ -14,7 +15,7 @@
       <p id="welcome-message">We're thrilled to see you again. Sign in to access your personalized dashboard and continue your learning journey with us.</p>
       <ul id="welcome-features">
         <li>Access all your features and materials</li>
-        <li>Create you career plan easily with us</li>
+        <li>Create your career plan easily with us</li>
         <li>Connect with instructors and peers</li>
       </ul>
     </div>
@@ -46,7 +47,7 @@
           {{ form.password|add_class:"form-input" }}
           {{ form.password.errors }}
         </div>
-         
+
         <div id="form-options">
           <div class="remember-me">
             <input type="checkbox" id="remember_me" name="remember_me">
@@ -56,6 +57,14 @@
         </div>
 
         <button type="submit" id="login-button">Login</button>
+
+      <div class="google-login-simple">
+    <a href="{% provider_login_url 'google' %}" class="google-btn">
+        <img src="{% static 'images/google.png' %}" alt="Google Logo">
+        <span>Sign in with Google</span>
+    </a>
+</div>
+
 
         <p id="signup-redirect">Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
       </form>
@@ -156,7 +165,7 @@ html, body {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18),
                 inset 0 0 16px rgba(255, 255, 255, 0.15);
     margin-top: -130px;
-    height: 560px;
+    height: 600px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
   }
 
@@ -178,6 +187,9 @@ html, body {
     font-size: 1rem;
     margin-bottom: 30px;
     text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  #auth-form {
+    margin-top: -20px;
   }
 
   .form-field {
@@ -321,6 +333,39 @@ html, body {
       font-size: 1.8rem;
     }
   }
+
+  .google-login-simple {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.google-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 0.95rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+.google-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.google-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    color: #000;
+    transform: scale(1.05);
+}
+
 </style>
 
 <script>

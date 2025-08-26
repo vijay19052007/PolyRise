@@ -1,12 +1,11 @@
 {% load static %}
 <nav class="topbar d-flex justify-content-between align-items-center px-3 py-2 shadow-sm">
 
-  
   <div class="topbar-left d-flex align-items-center">
     <img src="{% static 'images/logo.png' %}" alt="PolyRise Logo" class="logo-img me-2">
     <span class="logo-text fw-bold">PolyRise</span>
   </div>
- 
+
   <div class="topbar-right d-flex align-items-center gap-3">
 
     <div class="theme-toggle d-flex align-items-center gap-0">
@@ -15,61 +14,74 @@
       <button class="btn btn-sm btn-outline-light" onclick="setTheme('neon')">❄️</button>
     </div>
 
-     <div class="dropdown profile-dropdown">
-  <button class="btn dropdown-toggle profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
-    {% if request.user.profile.role == 'student' %}
-      <img src="{% static 'images/default-logo.webp' %}" class="profile-avatar" alt="Student Profile">
-    {% elif request.user.profile.role == 'faculty' %}
-      <img src="{% static 'images/defaultf1.png' %}" class="profile-avatar" alt="Faculty Profile">
-    {% else %}
-      <img src="{% static 'images/' %}" class="profile-avatar" alt="Profile">
-    {% endif %}
-    <span class="profile-name text-white">{{ request.user.profile.full_name }}</span>
-  </button>
-
-  <ul class="dropdown-menu dropdown-menu-end bg-dark">
-    
-    <li class="dropdown-header px-3 py-2">
-      <div class="d-flex align-items-center">
-        {% if request.user.profile.role == 'student' %}
-          <img src="{% static 'images/default-logo.webp' %}" class="profile-avatar-dropdown me-3" alt="Student Profile">
-        {% elif request.user.profile.role == 'faculty' %}
-          <img src="{% static 'images/defaultf1.png' %}" class="profile-avatar-dropdown me-3" alt="Faculty Profile">
+    <div class="dropdown profile-dropdown">
+      <button class="btn dropdown-toggle profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if request.user.is_authenticated %}
+          {% if request.user.socialaccount_set.exists %}
+            {% with social=request.user.socialaccount_set.first %}
+              <img src="{{ social.get_avatar_url }}" class="profile-avatar" alt="Profile">
+              <span class="profile-name text-white">{{ social.extra_data.name }}</span>
+            {% endwith %}
+          {% else %}
+            {% if request.user.profile.role == 'student' %}
+              <img src="{% static 'images/default-logo.webp' %}" class="profile-avatar" alt="Student Profile">
+            {% elif request.user.profile.role == 'faculty' %}
+              <img src="{% static 'images/defaultf1.png' %}" class="profile-avatar" alt="Faculty Profile">
+            {% else %}
+              <img src="{% static 'images/default-logo.webp' %}" class="profile-avatar" alt="Profile">
+            {% endif %}
+            <span class="profile-name text-white">{{ request.user.profile.full_name }}</span>
+          {% endif %}
         {% else %}
-          <img src="{% static 'images/-logo.webp' %}" class="profile-avatar-dropdown me-3" alt="Profile">
+          <a href="{% url 'login' %}" class="btn btn-sm btn-outline-light">Login</a>
         {% endif %}
-        <div>
-          <div class="profile-name-dropdown text-white">{{ request.user.profile.full_name }}</div>
-          <div class="profile-email text-white-50">{{ request.user.email }}</div>
-          <div class="profile-role-badge text-white mt-1">
+      </button>
+
+      {% if request.user.is_authenticated %}
+      <ul class="dropdown-menu dropdown-menu-end bg-dark">
+        <li class="dropdown-header px-3 py-2 d-flex align-items-center">
+          {% if request.user.socialaccount_set.exists %}
+            {% with social=request.user.socialaccount_set.first %}
+              <img src="{{ social.get_avatar_url }}" class="profile-avatar-dropdown me-3" alt="Profile">
+              <div>
+                <div class="profile-name-dropdown text-white">{{ social.extra_data.name }}</div>
+                <div class="profile-email text-white-50">{{ request.user.email }}</div>
+                <div class="profile-role-badge text-white mt-1">
+                        {% if request.user.profile.role == 'student' %}
+                       <i class="fas fa-graduation-cap role-icon text-white-50"></i> Student
+                         {% elif request.user.profile.role == 'faculty' %}
+                   <i class="fas fa-chalkboard-teacher role-icon text-white-50"></i> Faculty
+                {% endif %}
+                </div>
+              </div>
+            {% endwith %}
+          {% else %}
+            {% if request.user.profile.role == 'student' %}
+              <img src="{% static 'images/default-logo.webp' %}" class="profile-avatar-dropdown me-3" alt="Student Profile">
+            {% elif request.user.profile.role == 'faculty' %}
+              <img src="{% static 'images/defaultf1.png' %}" class="profile-avatar-dropdown me-3" alt="Faculty Profile">
+            {% endif %}
+            <div>
+              <div class="profile-name-dropdown text-white">{{ request.user.profile.full_name }}</div>
+              <div class="profile-email text-white-50">{{ request.user.email }}</div>
+            </div>
+            <div class="profile-role-badge text-white mt-1">
             {% if request.user.profile.role == 'student' %}
               <i class="fas fa-graduation-cap role-icon text-white-50"></i> Student
             {% elif request.user.profile.role == 'faculty' %}
               <i class="fas fa-chalkboard-teacher role-icon text-white-50"></i> Faculty
             {% endif %}
           </div>
-        </div>
-      </div>
-    </li>
-    
-    <li><hr class="dropdown-divider bg-secondary"></li>
-    <li>
-      <a class="dropdown-item text-white" href="{% url 'student_dashboard' %}">
-        <i class="fas fa-tachometer-alt menu-icon text-white-50 me-2"></i>My Dashboard
-      </a>
-    </li>
-    <li>
-      <a class="dropdown-item text-white" href="#">
-        <i class="fas fa-cog menu-icon text-white-50 me-2"></i>Settings
-      </a>
-    </li>
-    <li><hr class="dropdown-divider bg-secondary"></li>
-    <li>
-      <a class="dropdown-item text-danger" href="{% url 'logout' %}">
-        <i class="fas fa-sign-out-alt menu-icon me-2"></i>Logout
-      </a>
-    </li>
-  </ul>
-</div>
+          {% endif %}
+        </li>
+        <li><hr class="dropdown-divider bg-secondary"></li>
+        <li><a class="dropdown-item text-white" href="{% url 'student_dashboard' %}"><i class="fas fa-tachometer-alt menu-icon text-white-50 me-2"></i>My Dashboard</a></li>
+        <li><a class="dropdown-item text-white" href="#"><i class="fas fa-cog menu-icon text-white-50 me-2"></i>Settings</a></li>
+        <li><hr class="dropdown-divider bg-secondary"></li>
+        <li><a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt menu-icon me-2"></i>Logout</a></li>
+      </ul>
+      {% endif %}
+    </div>
+
   </div>
 </nav>
