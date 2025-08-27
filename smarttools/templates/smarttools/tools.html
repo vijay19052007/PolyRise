@@ -2,75 +2,377 @@
 {% block title %}Smart Tools{% endblock %}
 {% block content %}
 
-<div class="container py-3 mt-3">
+<style>
+:root {
+    --primary-color: #1d51ff;
+    --primary-light: rgba(90, 30, 6, 0.1);
+    --primary-dark: #ace6ff;
+    --secondary-color: #6c757d;
+    --light-bg: #f8f9fa;
+    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding: 1rem 0;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.nav-tabs {
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 2rem;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: 500;
+    color: var(--secondary-color);
+    border-radius: 8px 8px 0 0;
+    transition: var(--transition);
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--primary-color);
+    background-color: var(--primary-light);
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--primary-color);
+    background-color: transparent;
+    border-bottom: 3px solid var(--primary-color);
+    font-weight: 600;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.stats-box {
+    background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.stats-box:hover {
+    background: linear-gradient(145deg, #e9ecef, #dee2e6);
+    transform: translateY(-3px);
+}
+
+.stats-box .h4 {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.stats-box small {
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(90, 30, 6, 0.2);
+}
+
+.btn-outline-secondary {
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    transition: var(--transition);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+#flashcard {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 2rem;
+    min-height: 200px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+#flashcard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--primary-color);
+}
+
+#flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    padding: 1rem;
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+}
+
+.flashcard-indicator {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+}
+
+.card-title {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.tab-pane {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.progress-container {
+    margin: 1.5rem 0;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+.progress {
+    height: 8px;
+    border-radius: 4px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    border-radius: 4px;
+    background-color: var(--primary-color);
+}
+
+.subject-select {
+    max-width: 300px;
+    margin: 0 auto 1.5rem;
+}
+
+.subject-select select {
+    border-radius: 8px;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    transition: var(--transition);
+}
+
+.subject-select select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(90, 30, 6, 0.15);
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .nav-tabs .nav-link {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .stats-box {
+        padding: 1rem;
+    }
+}
+</style>
+
+<div class="container py-4">
   
   <div class="header">
-    <h1>Smart Learning Tools🧠</h1>
-    <p >Interactive study tools to enhance your learning experience</p>
+    <h1>Smart Learning Tools 🧠</h1>
+    <p>Interactive study tools to enhance your learning experience</p>
   </div>
 
   
-  <ul class="nav nav-tabs justify-content-center" role="tablist">
-    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#mcq" type="button">MCQ Practice</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#flashcards" type="button">Flashcards</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#playground" type="button">Coding Playground</button></li>
+  <ul class="nav nav-tabs justify-content-center" id="toolsTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="mcq-tab" data-bs-toggle="tab" data-bs-target="#mcq" type="button" role="tab">
+        <i class="bi bi-question-circle me-2"></i>MCQ Practice
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="flashcards-tab" data-bs-toggle="tab" data-bs-target="#flashcards" type="button" role="tab">
+        <i class="bi bi-card-text me-2"></i>Flashcards
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="playground-tab" data-bs-toggle="tab" data-bs-target="#playground" type="button" role="tab">
+        <i class="bi bi-code-slash me-2"></i>Coding Playground
+      </button>
+    </li>
   </ul>
-
+  
   <div class="tab-content mt-3">
 
     
-    <div class="tab-pane fade show active" id="mcq">
+    <div class="tab-pane fade show active" id="mcq" role="tabpanel" aria-labelledby="mcq-tab">
       <div class="card p-4">
-        <h4 class="text-center mb-1">MCQ Practice</h4>
-        <p class="text-center text-muted">Test your knowledge with subject-wise multiple choice questions</p>
-
+        <h4 class="card-title text-center"><i class="bi bi-question-circle me-2"></i>MCQ Practice</h4>
+        
         <div class="row g-3 text-center mt-2">
           <div class="col-12 col-md-4">
-            <div class="p-3 rounded bg-light border"><span class="h4">{{ total_questions|default:10 }}</span><br><small>Questions</small></div>
+            <div class="stats-box">
+              <span class="h4">{{ total_questions|default:10 }}</span><br>
+              <small>Total Questions</small>
+            </div>
           </div>
           <div class="col-12 col-md-4">
-            <div class="p-3 rounded bg-light border"><span class="h4">{{ time_limit|default:"1:00" }}</span><br><small>Time Limit</small></div>
+            <div class="stats-box">
+              <span class="h4">{{ time_limit|default:"1:00" }}</span><br>
+              <small>Time Limit</small>
+            </div>
           </div>
           <div class="col-12 col-md-4">
-            <div class="p-3 rounded bg-light border"><span class="h4">{{ difficulty|default:"Mixed" }}</span><br><small>Difficulty</small></div>
+            <div class="stats-box">
+              <span class="h4">{{ difficulty|default:"Mixed" }}</span><br>
+              <small>Difficulty Level</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-label">
+            <span>Your progress</span>
+            <span>25%</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="{% url 'quiz_start' %}" class="btn btn-primary px-4">
+            <i class="bi bi-play-fill me-2"></i>Start Quiz
+          </a>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="flashcards" role="tabpanel" aria-labelledby="flashcards-tab">
+      <div class="card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="card-title mb-0"><i class="bi bi-card-text me-2"></i>Flashcards</h4>
+          <div>
+            <button id="prevCard" class="btn btn-outline-secondary btn-sm">
+              <i class="bi bi-arrow-left"></i> Prev
+            </button>
+            <button id="nextCard" class="btn btn-outline-secondary btn-sm">
+              Next <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="flashcard">
+          <span class="flashcard-indicator">Click to flip</span>
+          <div class="flashcard-content flashcard-front">
+            <div class="h5 mb-0" id="flashFront">What is a pointer?</div>
+          </div>
+          <div class="flashcard-content flashcard-back">
+            <div class="h5 mb-0" id="flashBack">A variable that stores a memory address.</div>
           </div>
         </div>
 
         <div class="text-center mt-3">
-          
-          <a href="{% url 'quiz_start' %}" class="btn btn-dark px-4">▶ Start Quiz</a>
+          <small class="text-muted">Card <span id="cardIndex">1</span> of <span id="cardTotal">3</span></small>
+        </div>
+
+        <div class="d-flex justify-content-center mt-3">
+          <button class="btn btn-outline-primary btn-sm me-2" id="markKnown">
+            <i class="bi bi-check-circle me-1"></i> I know this
+          </button>
+          <button class="btn btn-outline-secondary btn-sm" id="shuffleCards">
+            <i class="bi bi-shuffle me-1"></i> Shuffle
+          </button>
         </div>
       </div>
     </div>
 
-    
-    <div class="tab-pane fade" id="flashcards">
+
+    <div class="tab-pane fade" id="playground" role="tabpanel" aria-labelledby="playground-tab">
       <div class="card p-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h4 class="mb-0">Flashcards</h4>
-          <div>
-            <button id="prevCard" class="btn btn-outline-secondary btn-sm">◀ Prev</button>
-            <button id="nextCard" class="btn btn-outline-secondary btn-sm">Next ▶</button>
-          </div>
+          <h4 class="card-title mb-0"><i class="bi bi-code-slash me-2"></i>Coding Playground</h4>
         </div>
-
-        <div id="flashcard" class="border rounded p-4 text-center" style="min-height:160px;cursor:pointer;">
-          <div class="text-muted">Click to flip</div>
-          <div id="flashFront" class="h5 mt-2">What is a pointer?</div>
-          <div id="flashBack" class="h5 mt-2 d-none">A variable that stores a memory address.</div>
+        
+        <div class="alert alert-info d-flex align-items-center" role="alert">
+          <i class="bi bi-info-circle me-2"></i>
+          <div>Practice coding right in your browser. No setup required!</div>
         </div>
-
-        <div class="text-center mt-2">
-          <small class="text-muted">Card <span id="cardIndex">1</span>/<span id="cardTotal">3</span></small>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="tab-pane fade" id="playground">
-      <div class="card p-3">
-        <h5 class="mb-3">Coding Playground</h5>
-        <iframe src="https://onecompiler.com/python" width="100%" height="650"></iframe>
+        
+        <iframe src="https://onecompiler.com/python" width="100%" height="650" style="border-radius: 8px;"></iframe>
       </div>
     </div>
 
@@ -78,38 +380,103 @@
 </div>
 
 <script>
+// Flashcards functionality
 const cards = [
   {q: "What is a pointer?", a: "A variable that stores a memory address."},
   {q: "HTTP stands for?", a: "HyperText Transfer Protocol."},
-  {q: "DBMS primary key?", a: "A unique identifier for a record."}
+  {q: "What is a DBMS primary key?", a: "A unique identifier for a record."},
+  {q: "What does SQL stand for?", a: "Structured Query Language."},
+  {q: "What is OOP?", a: "Object-Oriented Programming."}
 ];
-let idx = 0, flipped = false;
+
+let currentCardIndex = 0;
+let isFlipped = false;
+const flashcard = document.getElementById('flashcard');
 const flashFront = document.getElementById('flashFront');
-const flashBack  = document.getElementById('flashBack');
-const flashcard  = document.getElementById('flashcard');
-const cardIndex  = document.getElementById('cardIndex');
-const cardTotal  = document.getElementById('cardTotal');
-if (cardTotal) cardTotal.textContent = cards.length;
+const flashBack = document.getElementById('flashBack');
+const cardIndex = document.getElementById('cardIndex');
+const cardTotal = document.getElementById('cardTotal');
 
-function renderCard() {
-  if (!flashFront) return;
-  flashFront.textContent = cards[idx].q;
-  flashBack.textContent  = cards[idx].a;
-  cardIndex.textContent  = (idx+1);
-  flipped = false;
-  flashBack.classList.add('d-none');
-  flashFront.classList.remove('d-none');
+// Initialize flashcards
+function initFlashcards() {
+  if (cardTotal) cardTotal.textContent = cards.length;
+  renderCard();
 }
-flashcard?.addEventListener('click', () => {
-  flipped = !flipped;
-  flashFront.classList.toggle('d-none', flipped);
-  flashBack.classList.toggle('d-none', !flipped);
+
+// Render current card
+function renderCard() {
+  if (!flashFront || !flashBack) return;
+  
+  flashFront.textContent = cards[currentCardIndex].q;
+  flashBack.textContent = cards[currentCardIndex].a;
+  cardIndex.textContent = currentCardIndex + 1;
+  
+  // Reset to front view
+  if (isFlipped) {
+    flashcard.classList.remove('flipped');
+    isFlipped = false;
+  }
+}
+
+// Flip card on click
+if (flashcard) {
+  flashcard.addEventListener('click', () => {
+    flashcard.classList.toggle('flipped');
+    isFlipped = !isFlipped;
+  });
+}
+
+// Navigation between cards
+document.getElementById('prevCard')?.addEventListener('click', () => {
+  currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+  renderCard();
 });
-document.getElementById('prevCard')?.addEventListener('click', ()=>{ idx=(idx-1+cards.length)%cards.length; renderCard(); });
-document.getElementById('nextCard')?.addEventListener('click', ()=>{ idx=(idx+1)%cards.length; renderCard(); });
-renderCard();
 
+document.getElementById('nextCard')?.addEventListener('click', () => {
+  currentCardIndex = (currentCardIndex + 1) % cards.length;
+  renderCard();
+});
 
+// Mark card as known
+document.getElementById('markKnown')?.addEventListener('click', () => {
+  // Remove the card from the deck (for demo, just move to next card)
+  currentCardIndex = (currentCardIndex + 1) % cards.length;
+  renderCard();
+});
+
+// Shuffle cards
+document.getElementById('shuffleCards')?.addEventListener('click', () => {
+  // Fisher-Yates shuffle algorithm
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  currentCardIndex = 0;
+  renderCard();
+});
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', initFlashcards);
+
+// Tab persistence
+document.addEventListener('DOMContentLoaded', function() {
+  // Activate the current tab based on hash
+  const hash = window.location.hash;
+  if (hash) {
+    const tabTrigger = document.querySelector(`[data-bs-target="${hash}"]`);
+    if (tabTrigger) {
+      new bootstrap.Tab(tabTrigger).show();
+    }
+  }
+  
+  // Update hash when tab changes
+  const tabEls = document.querySelectorAll('button[data-bs-toggle="tab"]');
+  tabEls.forEach(tabEl => {
+    tabEl.addEventListener('shown.bs.tab', function (e) {
+      window.location.hash = e.target.getAttribute('data-bs-target');
+    });
+  });
+});
 </script>
 
 {% endblock %}
