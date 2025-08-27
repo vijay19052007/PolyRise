@@ -77,6 +77,7 @@ def verify_otp_view(request):
 
     user = get_object_or_404(User, id=user_id)
     profile = user.profile
+
     if request.method == 'POST':
         entered_otp = request.POST.get('otp', '').strip()
         if profile.email_otp and entered_otp == profile.email_otp:
@@ -90,10 +91,12 @@ def verify_otp_view(request):
                 user.save()
 
                 messages.success(request, "Your account has been verified successfully!")
-                login(request, user)
+
+               
+                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+
                 request.session.pop('verify_user_id', None)
 
-              
                 if profile.role == 'student':
                     return redirect('student_dashboard')
                 elif profile.role == 'faculty':

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 User = get_user_model()
 
@@ -71,13 +72,12 @@ class FacultyNote(BaseModel):
     semester = models.IntegerField(choices=SEMESTER_CHOICES)
     subject = models.CharField(max_length=100)
     file = models.FileField(upload_to='notes/')
+    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='faculty_notes')
+    is_public = models.BooleanField(default=True)  
 
     def __str__(self):
-        return f"{self.title} ({self.subject})"
-    
-    def clean(self):
-        if not hasattr(self.uploaded_by, 'profile') or self.uploaded_by.profile.role != 'Faculty':
-            raise ValidationError("Only faculty members can upload faculty notes")
+        return self.title
+
 
 class PersonalNote(models.Model):
     title = models.CharField(max_length=200)

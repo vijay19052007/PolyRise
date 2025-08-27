@@ -10,8 +10,19 @@ import os
 
 @login_required
 def protected_media_serve(request, path):
-    document_root = settings.MEDIA_ROOT
-    return serve(request, path, document_root=document_root)
+    full_path = safe_join(settings.MEDIA_ROOT, path)
+    if not os.path.exists(full_path):
+        raise Http404("File not found")
+
+   
+    try:
+        note = FacultyNote.objects.get(file=path)
+        if not note.is_public and note.uploaded_by != request.user and not request.user.is_staff:
+            raise PermissionDenied("You don't have permission to access this file")
+    except FacultyNote.DoesNotExist:
+        pass
+
+    return FileResponse(open(full_path, 'rb'))
 
 @login_required
 def resources_view(request):
