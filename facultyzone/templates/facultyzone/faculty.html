@@ -4,75 +4,381 @@
 
 {% block content %}
 <style>
+:root {
+    --primary-color: #1d51ff;
+    --primary-light: rgba(90, 30, 6, 0.1);
+    --primary-dark: #ace6ff;;
+    --secondary-color: #6c757d;
+    --light-bg: #f8f9fa;
+    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
 
-.theme-light .faculty-header h2 { color: #333; }
-.theme-light .faculty-header p { color: #6c757d; }
-.theme-light .upload-card { background: #fff; color: #000; }
-.theme-light .note-card { background: #fff; border-left-color: #0d6efd; }
+.header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding: 1rem 0;
+}
 
-.theme-dark .faculty-header h2 { color: #fff; }
-.theme-dark .faculty-header p { color: #bbb; }
-.theme-dark .upload-card { background: #1e1e1e; color: #fff; }
-.theme-dark .note-card { background: #2a2a2a; color: #fff; border-left-color: #0d6efd; }
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
 
-.theme-neon .faculty-header h2 { color: #00f5ff; text-shadow: 0 0 8px #00f5ff; }
-.theme-neon .faculty-header p { color: #89fffd; }
-.theme-neon .upload-card { background: #0a0a0a; color: #00f5ff; border: 1px solid #00f5ff; box-shadow: 0 0 10px #00f5ff; }
-.theme-neon .note-card { background: #0a0a0a; color: #fff; border-left: 5px solid #ff00f5; box-shadow: 0 0 10px #ff00f5; }
+.header p {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    max-width: 600px;
+    margin: 0 auto;
+}
 
-.upload-card { border-radius: 12px; transition: all 0.3s ease-in-out; }
-.upload-card:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
-.note-card { transition: all 0.2s ease-in-out; }
-.note-card:hover { transform: scale(1.01); }
+.upload-container {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(0,0,0,0.05);
+}
 
-.btn-download { background-color: #0d6efd; border: none; }
-.btn-download:hover { background-color: #0b5ed7; }
+.upload-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.upload-header h4 {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.upload-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(90, 30, 6, 0.15);
+}
+
+.btn-primary {
+    background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+    border: none;
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(90, 30, 6, 0.2);
+}
+
+.notes-container {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.notes-header {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notes-header h4 {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0;
+}
+
+.notes-count {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.note-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.note-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.note-title {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.note-meta {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.note-body {
+    padding: 1rem 1.5rem;
+}
+
+.btn-download {
+    background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    text-decoration: none;
+    width: fit-content;
+}
+
+.btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(90, 30, 6, 0.2);
+    color: white;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.empty-state h5 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.alert-success {
+    background: linear-gradient(to right, #198754, #0f5132);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Theme-specific styles */
+.theme-light .faculty-header h2 {
+    color: #333;
+}
+.theme-light .faculty-header p {
+    color: #6c757d;
+}
+.theme-light .upload-card {
+    background: #fff;
+    color: #000;
+}
+.theme-light .note-card {
+    background: #fff;
+    border-left-color: #0d6efd;
+}
+
+.theme-dark .faculty-header h2 {
+    color: #fff;
+}
+.theme-dark .faculty-header p {
+    color: #bbb;
+}
+.theme-dark .upload-card {
+    background: #1e1e1e;
+    color: #fff;
+}
+.theme-dark .note-card {
+    background: #2a2a2a;
+    color: #fff;
+    border-left-color: #0d6efd;
+}
+
+.theme-neon .faculty-header h2 {
+    color: #00f5ff;
+    text-shadow: 0 0 8px #00f5ff;
+}
+.theme-neon .faculty-header p {
+    color: #89fffd;
+}
+.theme-neon .upload-card {
+    background: #0a0a0a;
+    color: #00f5ff;
+    border: 1px solid #00f5ff;
+    box-shadow: 0 0 10px #00f5ff;
+}
+.theme-neon .note-card {
+    background: #0a0a0a;
+    color: #fff;
+    border-left: 5px solid #ff00f5;
+    box-shadow: 0 0 10px #ff00f5;
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .notes-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .notes-count {
+        align-self: flex-start;
+    }
+}
 </style>
 
-<div class="container">
-    <div class="header faculty-header">
+<div class="container py-4">
+    <div class="header">
         <h1>Faculty Zone 👩‍🏫</h1>
-        <p>Upload and manage academic content</p>
+        <p>Upload and manage academic content for your students</p>
     </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-6 w-75">
-            <div class="card upload-card p-4 shadow-sm text-center">
-                
-                
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} text-start">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-
-               
-                <form method="post" enctype="multipart/form-data" class="d-flex flex-column align-items-center">
-                    {% csrf_token %}
-                    <div class="w-100">
-                        <h4>Upload Notes<br></h4>
-                        {{ form.as_p }}
-                    </div>
-                    <button type="submit" class="btn btn-dark mt-2 w-50">📤 Upload Content</button>
-                </form>
-            </div>
+    <div class="upload-container">
+        <div class="upload-header">
+            <h4><i class="bi bi-cloud-upload me-2"></i>Upload Notes</h4>
+            <p class="text-muted">Share study materials with your students</p>
         </div>
-    </div>
-</div>
 
-<div class="container mt-4 w-75">
-    <h4 class="mb-3">📂 My Uploaded Notes</h4>
-    {% for note in notes %}
-    <div class="card note-card p-3 mb-2 shadow-sm">
-        <h5 class="mb-1">{{ note.title }}</h5>
-        <p class="text-muted small mb-2">{{ note.branch }} | Sem {{ note.semester }} | {{ note.subject }}</p>
-       
-        <a href="{% url 'protected_media' note.file.name %}" class="btn btn-download btn-sm text-white" download>⬇ Download</a>
+        {% if success %}
+        <div class="alert alert-success">
+            <i class="bi bi-check-circle-fill"></i> Content uploaded successfully!
+        </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_title">Title</label>
+                        <input type="text" name="title" class="form-control" id="id_title" placeholder="Enter note title" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_branch">Branch</label>
+                        <input type="text" name="branch" class="form-control" id="id_branch" placeholder="e.g., Computer Science" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_semester">Semester</label>
+                        <input type="number" name="semester" class="form-control" id="id_semester" placeholder="e.g., 4" min="1" max="8" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="id_subject">Subject</label>
+                        <input type="text" name="subject" class="form-control" id="id_subject" placeholder="e.g., Data Structures" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_file">File</label>
+                <input type="file" name="file" class="form-control" id="id_file" required>
+                <small class="form-text text-muted">Supported formats: PDF, DOC, DOCX, PPT, PPTX</small>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-cloud-upload"></i> Upload Content
+            </button>
+        </form>
     </div>
-    {% empty %}
-    <p class="text-muted">No notes uploaded yet.</p>
-    {% endfor %}
+
+    <div class="notes-container">
+        <div class="notes-header">
+            <h4><i class="bi bi-folder me-2"></i>My Uploaded Notes</h4>
+            <span class="notes-count">{{ notes|length }} note{{ notes|pluralize }}</span>
+        </div>
+        
+        {% if notes %}
+        <div class="notes-list">
+            {% for note in notes %}
+            <div class="card note-card">
+                <div class="note-header">
+                    <h5 class="note-title">{{ note.title }}</h5>
+                    <p class="note-meta">{{ note.branch }} | Semester {{ note.semester }} | {{ note.subject }}</p>
+                </div>
+                <div class="note-body">
+                    <a href="{{ note.file.url }}" class="btn btn-download" download>
+                        <i class="bi bi-download"></i> Download
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="bi bi-folder-x"></i>
+            <h5>No notes uploaded yet</h5>
+            <p class="text-muted">Upload your first set of notes to get started</p>
+        </div>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

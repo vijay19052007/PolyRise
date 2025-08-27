@@ -3,36 +3,82 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h2 class="text-center">📝 MCQ Practice</h2>
+     <h2 class="text-center">📝 MCQ Practice</h2>
     <p class="text-center text-muted">Test your knowledge and see how you score!</p>
 
     {% if score is not None %}
-        <div class="alert alert-info text-center">
-            <h4>🎯 Your Score: {{ score }} / {{ total }}</h4>
-            <a href="{% url 'quiz_start' %}" class="btn btn-success mt-2">Try Again</a>
-            <a href="{% url 'tools' %}" class="btn btn-primary mt-2">Go back</a>
+        <div class="text-center p-4 border rounded bg-light">
+            <h4 class="mb-3">Your Score: {{ score }} / {{ total }}</h4>
+            <div class="progress mb-3 mx-auto" style="max-width: 300px; height: 8px;">
+            </div>
+            <div class="d-flex justify-content-center gap-2">
+                <a href="{% url 'quiz_start' %}" class="btn btn-sm btn-outline-dark">Try Again</a>
+                <a href="{% url 'tools' %}" class="btn btn-sm btn-outline-dark">Back to Tools</a>
+            </div>
         </div>
     {% else %}
         <form method="post">
             {% csrf_token %}
             {% for q in questions %}
-                <div class="card mb-3 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Q{{ forloop.counter }}: {{ q.question }}</h5>
+                <div class="mb-4 pb-3 border-bottom">
+                    <h5 class="mb-3">Q{{ forloop.counter }}: {{ q.question }}</h5>
+                    <div class="ps-3">
                         {% for opt in q.options %}
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="question_{{ forloop.parentloop.counter0 }}" value="{{ opt }}" required>
-                                <label class="form-check-label">{{ opt }}</label>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" 
+                                    name="question_{{ forloop.parentloop.counter0 }}" 
+                                    value="{{ opt }}" id="opt_{{ forloop.parentloop.counter0 }}_{{ forloop.counter0 }}"
+                                    required>
+                                <label class="form-check-label" for="opt_{{ forloop.parentloop.counter0 }}_{{ forloop.counter0 }}">
+                                    {{ opt }}
+                                </label>
                             </div>
                         {% endfor %}
                     </div>
                 </div>
             {% endfor %}
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary px-4">Submit</button>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-dark px-4">Submit Answers</button>
             </div>
-            
         </form>
     {% endif %}
 </div>
+
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+        background-color: #fafafa;
+    }
+    
+    .container {
+        padding: 20px;
+    }
+    
+    h2 {
+        font-weight: 500;
+        color: #333;
+    }
+    
+    .form-check-input {
+        margin-top: 0.25rem;
+    }
+    
+    .form-check-label {
+        padding-left: 0.5rem;
+    }
+    
+    .btn {
+        border-radius: 4px;
+        padding: 8px 20px;
+        font-weight: 500;
+    }
+    
+    .progress {
+        background-color: #e9ecef;
+    }
+    
+    .progress-bar {
+        background-color: #333;
+    }
+</style>
 {% endblock %}

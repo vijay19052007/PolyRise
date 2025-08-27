@@ -41,33 +41,3 @@ def quiz_start(request):
         "score": score,
         "total": len(MCQ_QUESTIONS)
     })
-
-def unit_converter(request):
-    result = None
-    value = None
-    from_unit = None
-    to_unit = None
-
-    conversion_rates = {
-        'm': 1,
-        'cm': 100,
-        'km': 0.001
-    }
-
-    if request.method == 'POST':
-        try:
-            value = float(request.POST.get('value'))
-            from_unit = request.POST.get('from_unit')
-            to_unit = request.POST.get('to_unit')
-            value_in_meters = value / conversion_rates[from_unit]
-
-            result = value_in_meters * conversion_rates[to_unit]
-        except (ValueError, KeyError):
-            result = "Invalid input"
-
-    return render(request, 'unit_converter.html', {
-        'result': result,
-        'value': value,
-        'from_unit': from_unit,
-        'to_unit': to_unit
-    })

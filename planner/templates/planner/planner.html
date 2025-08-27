@@ -2,79 +2,132 @@
 {% block title %}Planner & Productivity - PolyRise{% endblock %}
 {% block content %}
 <style>
+:root {
+    --primary-color: #1d51ff;
+    --primary-light: rgba(90, 30, 6, 0.1);
+    --primary-dark: #ace6ff;
+    --secondary-color: #6c757d;
+    --light-bg: #f8f9fa;
+    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding: 1rem 0;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    max-width: 600px;
+    margin: 0 auto;
+}
 
 .nav-tabs {
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 2rem;
+    justify-content: center;
 }
+
 .nav-tabs .nav-link {
     border: none;
+    padding: 0.8rem 1.5rem;
     font-weight: 500;
-    padding: 10px 20px;
-    transition: all 0.2s ease;
+    color: var(--secondary-color);
+    border-radius: 8px 8px 0 0;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    align-items: center;
 }
+
 .nav-tabs .nav-link:hover {
-    border-bottom: 2px solid #ccc;
+    color: var(--primary-color);
+    background-color: var(--primary-light);
 }
 
-
-.theme-light .nav-tabs .nav-link {
-    background-color: #f8f9fa;
-    color: #000;
-}
-.theme-light .nav-tabs .nav-link.active {
-    background-color: #fff;
-    color: #0d6efd;
+.nav-tabs .nav-link.active {
+    color: var(--primary-color);
+    background-color: transparent;
+    border-bottom: 3px solid var(--primary-color);
     font-weight: 600;
 }
 
 
-.theme-dark .nav-tabs .nav-link {
-    background-color: #000000;
-    color: #fff;
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    margin-bottom: 1.5rem;
 }
-.theme-dark .nav-tabs .nav-link.active {
-    background-color: #ffffff;
-    color: #000000;
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.planner-card-header {
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    color: white;
     font-weight: 600;
+    padding: 1rem 1.5rem;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0 !important;
 }
 
-
-.theme-neon .nav-tabs .nav-link {
-    background-color: #0a0a0a;
-    color: #39ff14;
-}
-.theme-neon .nav-tabs .nav-link.active {
-    background-color: #6a6a6a;
-    color: #00f5ff;
+.add-card-header {
+    background: linear-gradient(to right, #198754, #20c997);
+    color: white;
     font-weight: 600;
+    padding: 1rem 1.5rem;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0 !important;
 }
 
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(90, 30, 6, 0.2);
+}
+
+.tab-pane {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Theme-specific styles */
 .theme-light .planner-card {
     background-color: #fff;
     color: #212529;
-    border: 1px solid #dee2e6;
-}
-.theme-light .planner-card-header {
-    background-color: #0d6efd;
-    color: white;
-}
-.theme-light .add-card-header {
-    background-color: #198754;
-    color: white;
 }
 
 .theme-dark .planner-card {
     background-color: #1e1e2f;
     color: #e0e0e0;
-    border: 1px solid #444;
-}
-.theme-dark .planner-card-header {
-    background-color: #0d6efd;
-    color: white;
-}
-.theme-dark .add-card-header {
-    background-color: #198754;
-    color: white;
 }
 
 .theme-neon .planner-card {
@@ -82,66 +135,71 @@
     color: #39ff14;
     border: 1px solid #39ff14;
 }
-.theme-neon .planner-card-header {
-    background-color: #111;
-    color: #39ff14;
-    text-shadow: 0 0 8px #39ff14;
-}
-.theme-neon .add-card-header {
-    background-color: #111;
-    color: #00f5ff;
-    text-shadow: 0 0 8px #00f5ff;
-}
-
 
 .theme-light .list-group-item {
     background-color: #fff;
     color: #212529;
 }
+
 .theme-dark .list-group-item {
     background-color: #2b2b3b;
     color: #e0e0e0;
-    border-color: #444;
 }
+
 .theme-neon .list-group-item {
     background-color: #0a0a0a;
     color: #39ff14;
-    border-color: #39ff14;
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .nav-tabs .nav-link {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
 }
 </style>
 
-
-<div class="container mt-2">
+<div class="container py-4">
     <div class="header">
-        <h1> Planner & Productivity 📅</h1>
+        <h1>Planner & Productivity 📅</h1>
         <p>Organize your study schedule and track your productivity</p>
     </div>
     
-    <ul class="nav nav-tabs justify-content-center mb-4">
-        <li class="nav-item">
-            <a class="nav-link active" id="timetable-tab" data-bs-toggle="tab" href="#timetable" role="tab">Timetable</a>
+    <ul class="nav nav-tabs" id="toolsTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="timetable-tab" data-bs-toggle="tab" data-bs-target="#timetable" type="button" role="tab">
+                <i class="bi bi-calendar-week me-2"></i>Timetable
+            </button>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="reminders-tab" data-bs-toggle="tab" href="#reminders" role="tab">Reminders</a>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="reminders-tab" data-bs-toggle="tab" data-bs-target="#reminders" type="button" role="tab">
+                <i class="bi bi-alarm me-2"></i>Reminders
+            </button>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="activity-tab" data-bs-toggle="tab" href="#activity" role="tab">Pomodoro Timer</a>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="activity-tab" data-bs-toggle="tab" data-bs-target="#activity" type="button" role="tab">
+                <i class="bi bi-clock me-2"></i>Pomodoro Timer
+            </button>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="engagement-tab" data-bs-toggle="tab" href="#engagement" role="tab">To Do-list</a>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="engagement-tab" data-bs-toggle="tab" data-bs-target="#engagement" type="button" role="tab">
+                <i class="bi bi-list-check me-2"></i>To-Do List
+            </button>
         </li>
     </ul>
 
-   
-    <div class="tab-content">
-        
-        <div class="tab-pane fade show active" id="timetable" role="tabpanel">
+    <div class="tab-content mt-4">
+        <!-- Timetable Tab -->
+        <div class="tab-pane fade show active" id="timetable" role="tabpanel" aria-labelledby="timetable-tab">
             <div class="row">
-                
                 <div class="col-md-6">
-                    <div class="card planner-card mb-4">
+                    <div class="card planner-card">
                         <div class="card-header planner-card-header">
-                            <h5 class="mb-0">📅 Weekly Timetable</h5>
+                            <h5 class="mb-0"><i class="bi bi-calendar-week me-2"></i>Weekly Timetable</h5>
                             <small>Your study session and activities</small>
                         </div>
                         <div class="card-body">
@@ -161,11 +219,10 @@
                     </div>
                 </div>
 
-               
                 <div class="col-md-6">
                     <div class="card planner-card">
                         <div class="card-header add-card-header">
-                            <h5 class="mb-1">+ Add Study Session</h5>
+                            <h5 class="mb-0"><i class="bi bi-plus-circle me-2"></i>Add Study Session</h5>
                         </div>
                         <div class="card-body">
                             <form method="POST" action="{% url 'timetable_add' %}">
@@ -194,14 +251,13 @@
             </div>
         </div>
 
-        
-        <div class="tab-pane fade" id="reminders" role="tabpanel">
+        <!-- Reminders Tab -->
+        <div class="tab-pane fade" id="reminders" role="tabpanel" aria-labelledby="reminders-tab">
             <div class="row">
-                
                 <div class="col-md-8">
                     <div class="card planner-card">
                         <div class="card-header planner-card-header">
-                            <h5 class="mb-0">⏰ Reminders</h5>
+                            <h5 class="mb-0"><i class="bi bi-alarm me-2"></i>Reminders</h5>
                             <small>Your upcoming study and exam alerts</small>
                         </div>
                         <div class="card-body">
@@ -233,11 +289,10 @@
                     </div>
                 </div>
 
-               
                 <div class="col-md-4">
                     <div class="card planner-card">
                         <div class="card-header add-card-header">
-                            <h5 class="mb-0">+ Add Reminder</h5>
+                            <h5 class="mb-0"><i class="bi bi-plus-circle me-2"></i>Add Reminder</h5>
                         </div>
                         <div class="card-body">
                             <form method="POST" action="{% url 'add_reminder' %}">
@@ -257,55 +312,64 @@
                                 </div>
                                 <button class="btn btn-primary w-100" type="submit">Add Reminder</button>
                             </form>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        
-        <div class="tab-pane fade" id="activity" role="tabpanel">
-            <div class="card planner-card p-3 text-center" style="max-width: 600px; margin: auto;">
-                <h4>⏳ Pomodoro Timer</h4>
+        <!-- Pomodoro Timer Tab -->
+        <div class="tab-pane fade" id="activity" role="tabpanel" aria-labelledby="activity-tab">
+            <div class="card planner-card p-4 text-center" style="max-width: 600px; margin: auto;">
+                <h4><i class="bi bi-clock me-2"></i>Pomodoro Timer</h4>
                 
-              
-                <h1 id="timer" class="display-4">25:00</h1>
+                <h1 id="timer" class="display-4 my-4">25:00</h1>
                 <p id="status" class="fw-bold">Work Session</p>
                 
-              
                 <p>🎯 Sessions Completed: <span id="sessions">0</span></p>
                 
-                
-                <div class="mb-3 text-center">
-                    <label>Work (mins):</label>
-                    <input type="number" id="workTime" value="25" min="1" max="60" class="form-control text-center mx-auto" style="width: 100px;">
-                    <label>Short Break (mins):</label>
-                    <input type="number" id="shortBreak" value="5" min="1" max="30" class="form-control text-center mx-auto" style="width: 100px;">
-                    <label>Long Break (mins):</label>
-                    <input type="number" id="longBreak" value="15" min="1" max="60" class="form-control text-center mx-auto" style="width: 100px;">
+                <div class="mb-4">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Work (mins):</label>
+                            <input type="number" id="workTime" value="25" min="1" max="60" class="form-control text-center">
+                        </div>
+                        <div class="col-4">
+                            <label>Short Break (mins):</label>
+                            <input type="number" id="shortBreak" value="5" min="1" max="30" class="form-control text-center">
+                        </div>
+                        <div class="col-4">
+                            <label>Long Break (mins):</label>
+                            <input type="number" id="longBreak" value="15" min="1" max="60" class="form-control text-center">
+                        </div>
+                    </div>
                 </div>
 
-                
                 <div class="d-flex justify-content-center gap-3">
-                    <button id="startBtn" class="btn btn-success px-3">Start</button>
-                    <button id="resetBtn" class="btn btn-danger px-3">Reset</button>
+                    <button id="startBtn" class="btn btn-success px-4">
+                        <i class="bi bi-play-fill me-1"></i>Start
+                    </button>
+                    <button id="resetBtn" class="btn btn-danger px-4">
+                        <i class="bi bi-arrow-repeat me-1"></i>Reset
+                    </button>
                 </div>
             </div>
         </div>
 
-
-        <div class="tab-pane fade" id="engagement" role="tabpanel">
+        <!-- To-Do List Tab -->
+        <div class="tab-pane fade" id="engagement" role="tabpanel" aria-labelledby="engagement-tab">
             <div class="row justify-content-center">
-                <div class="col-md-5">
-                    <div class="card planner-card p-3">
-                        <h4 class="text-center mb-3">✅ To-Do List</h4>
+                <div class="col-md-8">
+                    <div class="card planner-card p-4">
+                        <h4 class="text-center mb-3"><i class="bi bi-list-check me-2"></i>To-Do List</h4>
 
-                        <form method="POST" action="{% url 'planner' %}" class="mb-3 text-center">
+                        <form method="POST" action="{% url 'planner' %}" class="mb-4">
                             {% csrf_token %}
-                            <div class="input-group w-100 mx-auto">
+                            <div class="input-group">
                                 <input type="text" name="title" class="form-control" placeholder="Add a task..." required>
-                                <button type="submit" name="add_todo" class="btn btn-success px-3">+</button>
+                                <button type="submit" name="add_todo" class="btn btn-success">
+                                    <i class="bi bi-plus-lg"></i> Add
+                                </button>
                             </div>
                         </form>
                         
@@ -316,8 +380,12 @@
                                         {{ todo.title }}
                                     </span>
                                     <div>
-                                        <a href="{% url 'toggle_todo' todo.pk %}" class="btn btn-sm btn-warning">✔</a>
-                                        <a href="{% url 'delete_todo' todo.pk %}" class="btn btn-sm btn-danger">✖</a>
+                                        <a href="{% url 'toggle_todo' todo.pk %}" class="btn btn-sm btn-warning">
+                                            <i class="bi bi-check-lg"></i>
+                                        </a>
+                                        <a href="{% url 'delete_todo' todo.pk %}" class="btn btn-sm btn-danger">
+                                            <i class="bi bi-x-lg"></i>
+                                        </a>
                                     </div>
                                 </li>
                             {% empty %}
@@ -332,6 +400,27 @@
 </div>
 
 <script>
+// Tab persistence
+document.addEventListener('DOMContentLoaded', function() {
+    // Activate the current tab based on hash
+    const hash = window.location.hash;
+    if (hash) {
+        const tabTrigger = document.querySelector(`[data-bs-target="${hash}"]`);
+        if (tabTrigger) {
+            new bootstrap.Tab(tabTrigger).show();
+        }
+    }
+    
+    // Update hash when tab changes
+    const tabEls = document.querySelectorAll('button[data-bs-toggle="tab"]');
+    tabEls.forEach(tabEl => {
+        tabEl.addEventListener('shown.bs.tab', function (e) {
+            window.location.hash = e.target.getAttribute('data-bs-target');
+        });
+    });
+});
+
+// Pomodoro Timer functionality
 let timerDisplay = document.getElementById("timer");
 let statusDisplay = document.getElementById("status");
 let sessionCountDisplay = document.getElementById("sessions");
