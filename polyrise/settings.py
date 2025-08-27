@@ -24,11 +24,15 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-
         'SCOPE': [
             'profile',
-            'email',  
+            'email',
+            'openid',   
         ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+            'prompt': 'consent select_account', 
+        },
         'APP': {
             'client_id': os.getenv("GOOGLE_CLIENT_ID"),
             'secret': os.getenv("GOOGLE_SECRET"),
@@ -91,7 +95,7 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_REDIRECT_URL = '/'  
 LOGOUT_REDIRECT_URL = '/'  
 
-SOCIALACCOUNT_AUTO_SIGNUP = False
+SOCIALACCOUNT_AUTO_SIGNUP = True  
 
 SOCIALACCOUNT_STORE_TOKENS = False
 
