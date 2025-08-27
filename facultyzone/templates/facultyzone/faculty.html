@@ -6,379 +6,190 @@
 <style>
 :root {
     --primary-color: #1d51ff;
-    --primary-light: rgba(90, 30, 6, 0.1);
-    --primary-dark: #ace6ff;;
+    --primary-dark: #0d3bb8;
     --secondary-color: #6c757d;
     --light-bg: #f8f9fa;
-    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
 }
 
+/* Header */
 .header {
     text-align: center;
     margin-bottom: 2.5rem;
     padding: 1rem 0;
 }
-
 .header h1 {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    color: var(--primary-color);
 }
-
 .header p {
     font-size: 1.2rem;
     color: var(--secondary-color);
-    max-width: 600px;
-    margin: 0 auto;
 }
 
-.upload-container {
-    background: linear-gradient(145deg, #ffffff, #f8f9fa);
-    border-radius: 12px;
-    padding: 2rem;
-    margin-bottom: 2rem;
+/* Faculty icon theme-aware */
+.faculty-icon {
+    font-size: 2.5rem;
+    vertical-align: middle;
+}
+.theme-light .faculty-icon { color: #1d51ff; }
+.theme-dark .faculty-icon { color: #8ab4f8; }
+.theme-neon .faculty-icon { color: #00f5ff; text-shadow: 0 0 6px #00f5ff; }
+
+/* Upload Card */
+.upload-card {
+    border-radius: 18px;
+    padding: 3rem 2.5rem;
+    margin-bottom: 3rem;
     box-shadow: var(--card-shadow);
-    border: 1px solid rgba(0,0,0,0.05);
-}
-
-.upload-header {
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.upload-header h4 {
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.upload-form {
-    width: 100%;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.form-control {
-    border-radius: 8px;
-    padding: 0.75rem;
-    border: 1px solid #ced4da;
+    border: 1px solid #e9ecef;
     transition: var(--transition);
+}
+.upload-card h4 { font-size: 1.6rem; font-weight: 600; margin-bottom: 0.75rem; }
+.upload-card p { font-size: 1rem; color: var(--secondary-color); margin-bottom: 1.5rem; }
+.upload-card form .form-control {
+    border-radius: 10px;
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #ced4da;
     width: 100%;
 }
-
-.form-control:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.25rem rgba(90, 30, 6, 0.15);
-}
-
-.btn-primary {
-    background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+.upload-card form button {
+    background: var(--primary-color);
     border: none;
     padding: 0.75rem 2rem;
-    font-weight: 500;
-    border-radius: 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: white;
     transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    margin: 0 auto;
 }
-
-.btn-primary:hover {
+.upload-card form button:hover {
+    background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(90, 30, 6, 0.2);
 }
 
-.notes-container {
-    background: linear-gradient(145deg, #ffffff, #f8f9fa);
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: var(--card-shadow);
-    border: 1px solid rgba(0,0,0,0.05);
-}
-
-.notes-header {
-    margin-bottom: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.notes-header h4 {
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 0;
-}
-
-.notes-count {
-    background: var(--primary-light);
-    color: var(--primary-color);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-weight: 500;
-    font-size: 0.9rem;
-}
-
+/* Notes Cards */
 .note-card {
-    border: none;
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
+    border-radius: 14px;
+    padding: 1.8rem 2rem;
+    margin-bottom: 1.5rem;
     transition: var(--transition);
-    margin-bottom: 1rem;
-    overflow: hidden;
 }
+.note-card h5 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; }
+.note-card p { font-size: 1rem; color: var(--secondary-color); margin-bottom: 1rem; }
 
-.note-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
-}
-
-.note-header {
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.note-title {
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 0.25rem;
-}
-
-.note-meta {
-    color: var(--secondary-color);
-    font-size: 0.9rem;
-    margin-bottom: 0;
-}
-
-.note-body {
-    padding: 1rem 1.5rem;
-}
-
+/* Download Button */
 .btn-download {
-    background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+    background-color: #0d6efd;
     border: none;
-    padding: 0.5rem 1.5rem;
+    padding: 0.55rem 1.5rem;
     border-radius: 8px;
+    font-size: 1rem;
     font-weight: 500;
     transition: var(--transition);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
     color: white;
     text-decoration: none;
-    width: fit-content;
 }
+.btn-download:hover { background-color: #0b5ed7; }
 
-.btn-download:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(90, 30, 6, 0.2);
-    color: white;
-}
-
+/* Empty State */
 .empty-state {
     text-align: center;
-    padding: 2rem;
-    background: linear-gradient(145deg, #ffffff, #f8f9fa);
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
+    padding: 3rem;
+    color: var(--secondary-color);
 }
-
 .empty-state i {
     font-size: 3rem;
-    color: var(--secondary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
-.empty-state h5 {
-    color: var(--secondary-color);
-    margin-bottom: 0.5rem;
-}
+/* Theme overrides */
+.theme-light .faculty-header h1 { color: #333; }
+.theme-light .faculty-header p { color: #6c757d; }
+.theme-light .upload-card { background: #fff; color: #000; border-color: #e9ecef; }
+.theme-light .note-card { background: #fff; color: #000; border-left: 5px solid #0d6efd; }
 
-.alert-success {
-    background: linear-gradient(to right, #198754, #0f5132);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 1rem 1.5rem;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
+.theme-dark .faculty-header h1 { color: #fff; }
+.theme-dark .faculty-header p { color: #bbb; }
+.theme-dark .upload-card { background: #1e1e1e; color: #fff; border-color: #333; }
+.theme-dark .note-card { background: #2a2a2a; color: #fff; border-left: 5px solid #0d6efd; }
 
-/* Theme-specific styles */
-.theme-light .faculty-header h2 {
-    color: #333;
-}
-.theme-light .faculty-header p {
-    color: #6c757d;
-}
-.theme-light .upload-card {
-    background: #fff;
-    color: #000;
-}
-.theme-light .note-card {
-    background: #fff;
-    border-left-color: #0d6efd;
-}
+.theme-neon .faculty-header h1 { color: #00f5ff; text-shadow: 0 0 8px #00f5ff; }
+.theme-neon .faculty-header p { color: #89fffd; }
+.theme-neon .upload-card { background: #0a0a0a; color: #00f5ff; border: 1px solid #00f5ff; box-shadow: 0 0 10px #00f5ff; }
+.theme-neon .note-card { background: #0a0a0a; color: #fff; border-left: 5px solid #ff00f5; box-shadow: 0 0 10px #ff00f5; }
 
-.theme-dark .faculty-header h2 {
-    color: #fff;
-}
-.theme-dark .faculty-header p {
-    color: #bbb;
-}
-.theme-dark .upload-card {
-    background: #1e1e1e;
-    color: #fff;
-}
-.theme-dark .note-card {
-    background: #2a2a2a;
-    color: #fff;
-    border-left-color: #0d6efd;
-}
+/* Responsive */
+@media (max-width: 992px) { .upload-card, .note-card { padding: 2rem; } }
+@media (max-width: 576px) { .header h1 { font-size: 2rem; } }
 
-.theme-neon .faculty-header h2 {
-    color: #00f5ff;
-    text-shadow: 0 0 8px #00f5ff;
-}
-.theme-neon .faculty-header p {
-    color: #89fffd;
-}
-.theme-neon .upload-card {
-    background: #0a0a0a;
-    color: #00f5ff;
-    border: 1px solid #00f5ff;
-    box-shadow: 0 0 10px #00f5ff;
-}
-.theme-neon .note-card {
-    background: #0a0a0a;
-    color: #fff;
-    border-left: 5px solid #ff00f5;
-    box-shadow: 0 0 10px #ff00f5;
-}
 
-@media (max-width: 768px) {
-    .header h1 {
-        font-size: 2rem;
-    }
-    
-    .notes-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-    
-    .notes-count {
-        align-self: flex-start;
-    }
-}
+
 </style>
 
-<div class="container py-4">
-    <div class="header">
-        <h1>Faculty Zone 👩‍🏫</h1>
-        <p>Upload and manage academic content for your students</p>
+<div class="container container-lg">
+    <div class="header faculty-header">
+        <i class="bi bi-person-badge-fill faculty-icon" id="fac"></i>
+        <br><br>
+        <h1>Faculty Zone</h1>
+        <p>Upload and manage academic content professionally</p>
     </div>
 
-    <div class="upload-container">
-        <div class="upload-header">
-            <h4><i class="bi bi-cloud-upload me-2"></i>Upload Notes</h4>
-            <p class="text-muted">Share study materials with your students</p>
-        </div>
+    <!-- Upload Form Card -->
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="upload-card">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
 
-        {% if success %}
-        <div class="alert alert-success">
-            <i class="bi bi-check-circle-fill"></i> Content uploaded successfully!
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h4><i class="bi bi-cloud-upload"></i> Upload Notes</h4>
+                    <p>Share your study materials directly with your students</p>
+                    
+                    {{ form.as_p }}
+                    
+                    <button type="submit">
+                        <i class="bi bi-upload"></i> Upload Content
+                    </button>
+                </form>
+            </div>
         </div>
-        {% endif %}
-
-        <form method="post" enctype="multipart/form-data" class="upload-form">
-            {% csrf_token %}
-            
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="id_title">Title</label>
-                        <input type="text" name="title" class="form-control" id="id_title" placeholder="Enter note title" required>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="id_branch">Branch</label>
-                        <input type="text" name="branch" class="form-control" id="id_branch" placeholder="e.g., Computer Science" required>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="id_semester">Semester</label>
-                        <input type="number" name="semester" class="form-control" id="id_semester" placeholder="e.g., 4" min="1" max="8" required>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="id_subject">Subject</label>
-                        <input type="text" name="subject" class="form-control" id="id_subject" placeholder="e.g., Data Structures" required>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="id_file">File</label>
-                <input type="file" name="file" class="form-control" id="id_file" required>
-                <small class="form-text text-muted">Supported formats: PDF, DOC, DOCX, PPT, PPTX</small>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">
-                <i class="bi bi-cloud-upload"></i> Upload Content
-            </button>
-        </form>
     </div>
 
-    <div class="notes-container">
-        <div class="notes-header">
-            <h4><i class="bi bi-folder me-2"></i>My Uploaded Notes</h4>
-            <span class="notes-count">{{ notes|length }} note{{ notes|pluralize }}</span>
-        </div>
-        
-        {% if notes %}
-        <div class="notes-list">
-            {% for note in notes %}
-            <div class="card note-card">
-                <div class="note-header">
-                    <h5 class="note-title">{{ note.title }}</h5>
-                    <p class="note-meta">{{ note.branch }} | Semester {{ note.semester }} | {{ note.subject }}</p>
-                </div>
-                <div class="note-body">
-                    <a href="{{ note.file.url }}" class="btn btn-download" download>
+    <!-- Notes Section -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-12">
+            <div class="upload-card">
+                <h4 class="mb-3"><i class="bi bi-folder"></i> My Uploaded Notes</h4>
+                {% for note in notes %}
+                <div class="note-card">
+                    <h5>{{ note.title }}</h5>
+                    <p>{{ note.branch }} | Sem {{ note.semester }} | {{ note.subject }}</p>
+                    <a href="{% url 'protected_media' note.file.name %}" class="btn-download" download>
                         <i class="bi bi-download"></i> Download
                     </a>
                 </div>
+                {% empty %}
+                <div class="empty-state">
+                    <i class="bi bi-folder-x"></i>
+                    <h5>No notes uploaded yet</h5>
+                    <p>Upload your first set of notes to get started</p>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
-        {% else %}
-        <div class="empty-state">
-            <i class="bi bi-folder-x"></i>
-            <h5>No notes uploaded yet</h5>
-            <p class="text-muted">Upload your first set of notes to get started</p>
-        </div>
-        {% endif %}
     </div>
 </div>
 {% endblock %}
