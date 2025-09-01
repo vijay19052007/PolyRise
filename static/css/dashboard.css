@@ -281,7 +281,6 @@ body, html {
 .dropdown-menu.show {
   animation: fadeIn 0.3s ease-out forwards;
 }
-
 .main-wrapper {
   display: flex;
   margin-top: 60px; 
@@ -293,18 +292,15 @@ body, html {
   transition: margin-left 0.3s ease;
 }
 
-
 .main-wrapper.sidebar-expanded .content-area {
   margin-left: 260px;
 }
-
 
 .main-wrapper.sidebar-collapsed .content-area {
   margin-left: 70px;
 }
 
-
-
+/* ---------------- Sidebar ---------------- */
 .sidebar {
   width: 260px;
   background-color: #1e1e2f;
@@ -317,7 +313,7 @@ body, html {
   position: fixed;
   top: 60px;
   left: 0;
-  transition: width 0.3s ease;
+  transition: width 0.3s ease, padding 0.3s ease;
   overflow-y: hidden;
   overflow-x: hidden;
   z-index: 999;
@@ -335,7 +331,7 @@ body, html {
 
 .sidebar-menu li {
   display: flex;
-  align-items: flex-start; 
+  align-items: center; 
   gap: 12px; 
   padding: 12px 10px; 
   border-radius: 6px; 
@@ -343,7 +339,6 @@ body, html {
   cursor: pointer;
   position: relative;
 }
-
 
 .sidebar-menu li:hover {
   background-color: #2e2e42; 
@@ -354,15 +349,12 @@ body, html {
   border-left: 3px solid #7B61FF; 
 }
 
-
 .sidebar-menu i {
   font-size: 25px; 
-  margin-top: 2px; 
   color: #f0f0f0;
   flex-shrink: 0;
   transition: all 0.2s ease; 
 }
-
 
 .sidebar-menu li:nth-child(1) i { color: #FFD700; }
 .sidebar-menu li:nth-child(2) i { color: #00E5FF; }
@@ -372,12 +364,10 @@ body, html {
 .sidebar-menu li:nth-child(6) i { color: #FF4081; }
 .sidebar-menu li:nth-child(7) i { color: #00BFFF; }
 
-
 .menu-text {
   display: flex;
   flex-direction: column;
   line-height: 1.2;
-  margin-top: 6px; 
 }
 
 .menu-title {
@@ -392,7 +382,6 @@ body, html {
   margin-top: 2px; 
 }
 
-
 .sidebar-menu li:hover i {
   transform: scale(1.05); 
 }
@@ -401,15 +390,13 @@ body, html {
   color: #7B61FF; 
 }
 
-
 .sidebar-link {
   display: flex;           
-  align-items: flex-start; 
+  align-items: center; 
   gap: 12px;               
   color: inherit;         
   text-decoration: none;   
 }
-
 
 .sidebar-link:hover {
   background-color: #2e2e42; 
@@ -421,62 +408,43 @@ body, html {
   background-color: #323246;
   cursor: pointer;
   color: #fffbfb;
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 20px;
 }
 
 .collapse-btn:hover {
   color: white;
 }
 
+/* ---------------- Collapsed State ---------------- */
 .sidebar.collapsed {
   width: 70px;
+  padding: 20px 5px;
+  overflow-x: hidden;
 }
 
 .sidebar.collapsed .menu-text,
-.sidebar.collapsed .sidebar-heading .primary-text,
-.sidebar.collapsed .dept-text,
 .sidebar.collapsed .sidebar-heading,
-.sidebar.collapsed .sidebar-footer div {
-  display: none;
-}
-.sidebar.collapsed .sidebar-user-box {
-  display: none;
+.sidebar.collapsed .sidebar-footer,
+.sidebar.collapsed .sidebar-user-box,
+.sidebar.collapsed #panel {
+  display: none !important;
 }
 
 .sidebar.collapsed .sidebar-menu li {
   justify-content: center;
+  padding: 12px 0; /* tighter so no big gaps */
+}
+
+.sidebar.collapsed .sidebar-link {
+  justify-content: center;
 }
 
 .sidebar.collapsed .sidebar-menu li i {
-    margin-right: 0;
-    font-size: 1.25rem; 
+  margin: 0;
+  font-size: 1.4rem; /* consistent smaller size */
 }
 
-.sidebar.collapsed .sidebar-heading {
-    padding: 1rem 0;
-    text-align: center;
-}
-
-.sidebar.collapsed .sidebar-heading i {
-    margin-right: 0;
-}
-
-.sidebar.collapsed .panel{
-  display: none; 
-}
-
-
-
-.sidebar-user-box {
-  background-color: white;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  text-align: center;
-  margin-top: 10px;
-  
-}
-
+/* ---------------- User Box ---------------- */
 .sidebar-user-box {
   background: rgba(40, 40, 60, 0.9); 
   border-radius: 10px;
@@ -491,7 +459,6 @@ body, html {
   transition: all 0.3s ease;
 }
 
-
 .sidebar-user-box::before {
   content: '';
   position: absolute;
@@ -504,7 +471,6 @@ body, html {
     rgba(54, 174, 254, 0.8) 100%);
 }
 
-
 .sidebar-user-box .name {
   display: block;
   font-size: 15px;
@@ -512,6 +478,7 @@ body, html {
   color: #ffffff;
   margin-bottom: 6px; 
   letter-spacing: 0.3px;
+  text-align: center;
 }
 
 .sidebar-user-box .user-text {
@@ -521,44 +488,18 @@ body, html {
   font-weight: 500;
   letter-spacing: 0.2px;
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  text-align: center;
 }
-
 
 .sidebar-user-box:hover {
   background: rgba(45, 45, 70, 0.95);
   border-color: rgba(123, 97, 255, 0.5);
 }
 
-#panel{
+#panel {
   color: rgb(86, 78, 112);
   text-align: center;
   margin-bottom: 20px;
-}
-
-.sidebar.collapsed {
-    width: 70px;
-    padding: 20px 5px;
-}
-
-.sidebar.collapsed .menu-text,
-.sidebar.collapsed .sidebar-heading h5,
-.sidebar.collapsed #panel {
-    display: none;
-}
-
-.sidebar.collapsed .sidebar-heading img {
-    width: 40px;
-    margin: 0 auto;
-}
-
-.sidebar.collapsed .sidebar-link {
-    justify-content: center;
-    padding: 12px 0;
-}
-
-.sidebar.collapsed .sidebar-menu li i {
-    margin-right: 0;
-    font-size: 1.5rem;
 }
 
 
