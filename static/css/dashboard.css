@@ -300,7 +300,7 @@ body, html {
   margin-left: 70px;
 }
 
-/* ---------------- Sidebar ---------------- */
+
 .sidebar {
   width: 260px;
   background-color: #1e1e2f;
@@ -415,7 +415,7 @@ body, html {
   color: white;
 }
 
-/* ---------------- Collapsed State ---------------- */
+
 .sidebar.collapsed {
   width: 70px;
   padding: 20px 5px;
@@ -432,7 +432,7 @@ body, html {
 
 .sidebar.collapsed .sidebar-menu li {
   justify-content: center;
-  padding: 12px 0; /* tighter so no big gaps */
+  padding: 20px 0; 
 }
 
 .sidebar.collapsed .sidebar-link {
@@ -441,10 +441,10 @@ body, html {
 
 .sidebar.collapsed .sidebar-menu li i {
   margin: 0;
-  font-size: 1.4rem; /* consistent smaller size */
+  font-size: 1.4rem; 
 }
 
-/* ---------------- User Box ---------------- */
+
 .sidebar-user-box {
   background: rgba(40, 40, 60, 0.9); 
   border-radius: 10px;
